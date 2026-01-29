@@ -41,6 +41,7 @@
         <activity android:name="com.loancalculator.finance.manager.activity.PlfMainToolActivity" />
         <activity android:name="com.loancalculator.finance.manager.activity.set.PlfSetPolicyActivity" />
         <activity android:name="com.loancalculator.finance.manager.activity.set.PlfSetLanguageActivity" />
+        <activity android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsTemperatureActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

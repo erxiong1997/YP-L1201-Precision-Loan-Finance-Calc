@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
-import com.loancalculator.finance.manager.clueftLtd.LtdTokenMeans
 
 object PermissionLtdUtils {
     fun getNotifyStatus(context: Context): Boolean {

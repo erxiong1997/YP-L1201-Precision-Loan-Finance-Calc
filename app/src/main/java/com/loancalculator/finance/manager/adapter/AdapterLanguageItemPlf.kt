@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.videodownloader.light.downloader.databinding.ItemLanguageItemBinding
-import com.videodownloader.light.downloader.ltddata.DataLtdLanguage
+import com.loancalculator.finance.manager.data.DataLtdLanguage
+import com.loancalculator.finance.manager.databinding.ItemLanguageItemPlfBinding
 
 class AdapterLanguageItemPlf(
     private val mAdapterContext: Context,
@@ -17,7 +17,7 @@ class AdapterLanguageItemPlf(
         parent: ViewGroup,
         viewType: Int
     ): HolderItem {
-        val binding = ItemLanguageItemBinding.inflate(
+        val binding = ItemLanguageItemPlfBinding.inflate(
             LayoutInflater.from(mAdapterContext),
             parent,
             false
@@ -35,7 +35,7 @@ class AdapterLanguageItemPlf(
     ) {
         val data = mListDoData[position]
         holder.mLtdBinding.apply {
-            tvLanguageName.text = data.name
+//            tvLanguageName.text = data.name
             holder.itemView.isSelected = data.fingerSelect
         }
     }
@@ -44,7 +44,7 @@ class AdapterLanguageItemPlf(
         return mListDoData.size
     }
 
-    inner class HolderItem(val mLtdBinding: ItemLanguageItemBinding) :
+    inner class HolderItem(val mLtdBinding: ItemLanguageItemPlfBinding) :
         RecyclerView.ViewHolder(mLtdBinding.root)
 
 }

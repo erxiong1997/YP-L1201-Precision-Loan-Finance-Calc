@@ -25,10 +25,10 @@ class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
                     }
 
                     6382 -> {
-                        if (!ParamsLtdUtils.mLtdInitUmp && mPlcBinding.progressStart.progress == 10) {
-                            sendEmptyMessageDelayed(6382, 156)
-                            return
-                        }
+//                        if (!ParamsLtdUtils.mLtdInitUmp && mPlcBinding.progressStart.progress == 10) {
+//                            sendEmptyMessageDelayed(6382, 156)
+//                            return
+//                        }
                         if (mPlcBinding.progressStart.progress >= 100) {
                             mPlcBinding.progressStart.progress = 100
 //                            sendEmptyMessage(6384)

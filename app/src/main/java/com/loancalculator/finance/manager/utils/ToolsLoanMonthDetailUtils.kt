@@ -11,7 +11,7 @@ data class LoanMonthDetail(
     val remainingPrincipal: Float // 剩余本金
 )
 
-object LoanCalculator {
+object ToolsLoanMonthDetailUtils {
 
     /**
      * 计算等额本息贷款
@@ -78,7 +78,7 @@ fun main() {
     val annualRate = 0.12f       // 年利率 12%
     val months = 12              // 12个月
 
-    val (monthlyPayment, details) = LoanCalculator.calculateAmortization(
+    val (monthlyPayment, details) = ToolsLoanMonthDetailUtils.calculateAmortization(
         principal, annualRate, months
     )
 
