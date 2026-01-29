@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.loancalculator.finance.manager"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 36
         versionCode = 10
         versionName = "1.0"
@@ -30,6 +30,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = false
