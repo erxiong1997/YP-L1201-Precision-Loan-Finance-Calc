@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">Precision Loan Finance Calc</string>
+    <string name="app_name" translatable="false">Precision Loan Finance Calc</string>
+
+    <string name="plf_number_1" translatable="false">0123456789</string>
+    <string name="plf_number_2" translatable="false">0123456789.</string>
+
+    <string name="ltd_policy_message_plf" translatable="false">
+
+    </string>
+
+    <string name="plf_personal_loan">Personal Loan</string>
+    <string name="plf_loan_amount">Loan Amount</string>
+    <string name="plf_loan_term">Loan Term</string>
+    <string name="plf_setting">Setting</string>
+    <string name="plf_language">Language</string>
+    <string name="plf_privacy_policy">Privacy Policy</string>
+    <string name="plf_share">Share</string>
+    <string name="plf_tools">Tools</string>
+    <string name="plf_start_date">Start Date</string>
+    <string name="plf_interest_rate">Interest Rate</string>
+    <string name="plf_"></string>
 </resources>

@@ -38,6 +38,9 @@
         <activity
             android:name="com.loancalculator.finance.manager.activity.calc.PlfPersonalLoanActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.loancalculator.finance.manager.activity.PlfMainToolActivity" />
+        <activity android:name="com.loancalculator.finance.manager.activity.set.PlfSetPolicyActivity" />
+        <activity android:name="com.loancalculator.finance.manager.activity.set.PlfSetLanguageActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
