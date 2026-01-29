@@ -5,9 +5,9 @@ import androidx.core.content.edit
 import com.loancalculator.finance.manager.PlfDealApplication
 
 object DataManagerLtdUtils {
-    private const val SHARED_PREFERENCES_NAME = "LightDownloaderData"
+    private const val SHARED_PREFERENCES_NAME = "PrecisionLoanFiles"
 
-    fun setDataKeyLtd(saveKey: String, saveData: Any) {
+    fun setDataKeyPlf(saveKey: String, saveData: Any) {
         try {
             val sp = PlfDealApplication.Companion.mPlfContext.getSharedPreferences(
                 SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE
@@ -26,7 +26,7 @@ object DataManagerLtdUtils {
         }
     }
 
-    fun <T> getDataKeyLtd(getKey: String, defaultData: T): T {
+    fun <T> getDataKeyPlf(getKey: String, defaultData: T): T {
         return try {
             val sp = PlfDealApplication.Companion.mPlfContext.getSharedPreferences(
                 SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE

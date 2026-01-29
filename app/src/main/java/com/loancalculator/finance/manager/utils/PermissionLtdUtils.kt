@@ -21,7 +21,7 @@ object PermissionLtdUtils {
                     override fun onGranted(
                         permissions: MutableList<String>, allGranted: Boolean
                     ) {
-                        LtdTokenMeans.getLtdTokenValue(activity)
+//                        PlcTokenMeans.getLtdTokenValue(activity)
                         tilFunBack(true)
                     }
 

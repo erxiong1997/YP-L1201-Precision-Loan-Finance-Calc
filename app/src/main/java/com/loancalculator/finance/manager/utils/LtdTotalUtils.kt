@@ -54,38 +54,6 @@ object LtdTotalUtils {
         context.startActivity(intent)
     }
 
-    fun shareVideoLtd(activity: Activity, file: File) {
-        try {
-            val uri = FileProvider.getUriForFile(
-                activity, "${activity.packageName}.fileprovider", file
-            )
-            val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                type = when (file.extension) {
-                    "mp4", "MP4" -> {
-                        "video/*"
-                    }
-
-                    "mp3", "MP3" -> {
-                        "audio/*"
-                    }
-
-                    "jpg", "tiff", "jpeg", "webp", "png", "gif" -> {
-                        "image/*"
-                    }
-
-                    else -> {
-                        "video/*"
-                    }
-                }
-                putExtra(Intent.EXTRA_STREAM, uri)
-            }
-            activity.startActivity(Intent.createChooser(shareIntent, ""))
-        } catch (_: Exception) {
-            activity.showToastIDLtd(R.string.ltd_sharing_failed)
-        }
-    }
-
     fun getFileDateLtd(long: Long): String {
         val sim = SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault())
         return sim.format(Date(long))
@@ -113,92 +81,14 @@ object LtdTotalUtils {
         }
     }
 
-    fun openAppBrowserLtd(context: Context, ltdType: String) {
-        try {
-            var intent: Intent? = null
-            when (ltdType) {
-                "ltdFacebook" -> {
-                    intent = Intent(Intent.ACTION_VIEW).apply {
-                        data = "https://www.facebook.com/".toUri()
-                        setPackage("com.facebook.katana")
-                        addFlags(
-                            Intent.FLAG_ACTIVITY_NEW_TASK or
-                                    Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        )
-                    }
-                }
-
-                "ltdIns" -> {
-                    intent = try {
-                        Intent(Intent.ACTION_VIEW, "instagram://app".toUri())
-                    } catch (_: Exception) {
-                        // 如果 Scheme 格式错误或不被识别，直接打开网页版
-                        Intent(Intent.ACTION_VIEW, "https://www.instagram.com".toUri())
-                    }
-                }
-
-                "ltdX" -> {
-                    val packageName = "com.twitter.android"
-                    val pm = context.packageManager
-                    intent = pm.getLaunchIntentForPackage(packageName)
-                    intent?.addFlags(
-                        Intent.FLAG_ACTIVITY_NEW_TASK or
-                                Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    )
-                }
-
-                "ltdPin" -> {
-                    intent = Intent(Intent.ACTION_VIEW).apply {
-                        data = "https://www.pinterest.com/".toUri()
-                        setPackage("com.pinterest")
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }
-                }
-            }
-            context.startActivity(intent)
-        } catch (_: Exception) {
-            val dvpIntent =
-                Intent(
-                    Intent.ACTION_VIEW, when (ltdType) {
-                        "ltdFacebook" -> {
-                            "https://www.facebook.com/".toUri()
-                        }
-
-                        "ltdX" -> {
-                            "https://x.com/home".toUri()
-                        }
-
-                        "ltdPin" -> {
-                            "https://www.pinterest.com".toUri()
-                        }
-
-                        "ltdIns" -> {
-                            "https://www.instagram.com/reels".toUri()
-                        }
-
-                        else -> {
-                            "".toUri()
-                        }
-                    }
-                ).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }
-            try {
-                context.startActivity(dvpIntent)
-            } catch (_: ActivityNotFoundException) {
-                context.showToastIDLtd(R.string.ltd_failed_open_app_installed)
-            }
-        }
-    }
-
     fun getLtdFullDate(long: Long): String {
         val sim = SimpleDateFormat("yyyy_MM_dd", Locale.getDefault())
         return sim.format(Date(long))
     }
 
     fun getLtdAppStatus(): Boolean {
-        return DataManagerLtdUtils.getDataKeyLtd(LTD_AY_PERIOD_VALUE, "ltdValue") == "ltdValue"
-                && DataManagerLtdUtils.getDataKeyLtd(LTD_APP_FROM_VALUE, "") == "ltdValue"
+        return DataManagerLtdUtils.getDataKeyPlf(LTD_AY_PERIOD_VALUE, "ltdValue") == "ltdValue"
+                && DataManagerLtdUtils.getDataKeyPlf(LTD_APP_FROM_VALUE, "") == "ltdValue"
     }
 
 

@@ -66,11 +66,11 @@ class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
             finish()
             return
         }
-//        if (DataManagerLtdUtils.getDataKeyLtd(
+//        if (DataManagerLtdUtils.getDataKeyPlf(
 //                LTD_SHOW_HIDE_LANGUAGE_START, "showLanguage"
 //            ) == "showLanguage"
 //        ) {
-//            if (!DataManagerLtdUtils.getDataKeyLtd(LTD_ENTER_MAIN_RESULT, false)) {
+//            if (!DataManagerLtdUtils.getDataKeyPlf(LTD_ENTER_MAIN_RESULT, false)) {
 //                startActivity(Intent(this, LtdStartLanguageActivity::class.java))
 //                finish()
 //                return
