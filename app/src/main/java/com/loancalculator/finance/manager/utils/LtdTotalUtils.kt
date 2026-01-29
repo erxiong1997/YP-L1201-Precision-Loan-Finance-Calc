@@ -15,6 +15,9 @@ import com.loancalculator.finance.manager.utils.value.ConstantOftenLtd.LTD_APP_F
 import com.loancalculator.finance.manager.utils.value.ConstantOftenLtd.LTD_AY_PERIOD_VALUE
 import java.io.File
 import java.text.SimpleDateFormat
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 import javax.crypto.Cipher
@@ -127,5 +130,19 @@ object LtdTotalUtils {
         val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
         cipher.init(Cipher.DECRYPT_MODE, key, IvParameterSpec(iv))
         return cipher.doFinal(actualData)
+    }
+
+    fun getCurrentTimeInZone(ianaZone: String): String {
+        return try {
+            val zoneId = ZoneId.of(ianaZone)  // 自动处理夏令时、规则变化
+            val nowInZone = ZonedDateTime.now(zoneId)
+
+            // 自定义格式（可根据需要调整）
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z")
+            nowInZone.format(formatter)
+        } catch (e: Exception) {
+            "Invalid time zone: $ianaZone (${e.message})"
+            ""
+        }
     }
 }
