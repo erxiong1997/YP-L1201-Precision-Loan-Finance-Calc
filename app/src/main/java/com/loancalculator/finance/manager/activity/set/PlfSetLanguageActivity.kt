@@ -25,7 +25,7 @@ class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>
         mStarNativeValue = true
 
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_language)
-        setLtdRecyclerView()
+        setPlfRecyclerView()
 //        mPlcBinding.topSetPlf.ivChange.setOnClickListener {
 //            for (data in mListDoData) {
 //                if (data.fingerSelect) {
@@ -40,7 +40,7 @@ class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>
 //        }
     }
 
-    override fun setLtdRecyclerView() {
+    override fun setPlfRecyclerView() {
         initLanguageDataLtd()
         mAdapterLanguageItemPlf = AdapterLanguageItemPlf(this, mListDoData) {
             val data = mListDoData[it]

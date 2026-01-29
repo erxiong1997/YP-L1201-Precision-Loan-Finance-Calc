@@ -57,7 +57,7 @@ abstract class PlfBindingActivity<LL : ViewBinding>(
 
     abstract fun beginViewAndDoLtd()
 
-    open fun setLtdRecyclerView() {}
+    open fun setPlfRecyclerView() {}
 
     private fun setBarShow() {
         val immersionBar = ImmersionBar.with(this)

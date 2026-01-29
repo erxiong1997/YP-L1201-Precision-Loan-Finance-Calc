@@ -43,6 +43,7 @@
         <activity android:name="com.loancalculator.finance.manager.activity.set.PlfSetLanguageActivity" />
         <activity android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsTemperatureActivity" />
         <activity android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsWorldTimeActivity" />
+        <activity android:name="com.loancalculator.finance.manager.activity.utils.PlfWorldTimeSelectActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
