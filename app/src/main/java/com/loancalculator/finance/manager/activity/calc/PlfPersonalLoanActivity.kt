@@ -23,13 +23,13 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
     //等额本息 方式 每月还款额 = 本金 × [月利率 × (1 + 月利率)^期数] / [(1 + 月利率)^期数 - 1]
     private fun calculatorResult() {
         var hasAllValue = 3
-        if (mPlcBinding.etInterestRate.text.isNullOrEmpty()) {
+        if (mPlcBinding.etLoanAmount.text.isNullOrEmpty()) {
             hasAllValue--
         }
         if (mPlcBinding.etInterestRate.text.isNullOrEmpty()) {
             hasAllValue--
         }
-        if (mPlcBinding.etInterestRate.text.isNullOrEmpty()) {
+        if (mPlcBinding.etLoanTerm.text.isNullOrEmpty()) {
             hasAllValue--
         }
         if (hasAllValue != 3) {

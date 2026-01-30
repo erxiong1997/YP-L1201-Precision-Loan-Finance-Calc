@@ -7,7 +7,11 @@ import android.content.Intent
 import android.os.Bundle
 import com.hjq.language.MultiLanguages
 import com.loancalculator.finance.manager.activity.PlfRootActivity
+import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.utils.LtdTotalUtils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class PlfDealApplication : Application(), Application.ActivityLifecycleCallbacks {
     override fun attachBaseContext(newBase: Context?) {
@@ -32,6 +36,10 @@ class PlfDealApplication : Application(), Application.ActivityLifecycleCallbacks
         mPlfContext = this
         MultiLanguages.init(this)
         registerActivityLifecycleCallbacks(this)
+        mPlfLoanRoom
+        CoroutineScope(Dispatchers.IO).launch {
+
+        }
     }
 
     override fun onActivityCreated(

@@ -63,4 +63,9 @@ dependencies {
     implementation("com.github.getActivity:XXPermissions:23.0")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
     implementation("org.greenrobot:eventbus:3.3.1")
+
+    val roomVersion = "2.8.4"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
 }
