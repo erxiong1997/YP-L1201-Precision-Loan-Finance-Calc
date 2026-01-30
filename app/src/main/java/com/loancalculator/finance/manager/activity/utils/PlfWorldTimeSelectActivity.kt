@@ -20,7 +20,7 @@ class PlfWorldTimeSelectActivity : PlfBindingActivity<ActivityWorldTimeSelectPlf
     override fun setPlfRecyclerView() {
         mListDoData.clear()
         mWorldTimeUtcList.forEach {
-            mListDoData.add(DataUtcSelectPlf(it))
+            mListDoData.add(DataUtcSelectPlf(it, ""))
         }
         mAdapterWorldTimeSelectPlf = AdapterWorldTimeSelectPlf(this, mListDoData) {
             val data = mListDoData[it]

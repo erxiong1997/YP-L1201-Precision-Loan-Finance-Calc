@@ -5,6 +5,10 @@
     android:background="#ff0000"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/topSetPlf"
+        layout="@layout/layout_top_set_plf" />
+
     <Button
         android:id="@+id/btn1"
         android:layout_width="wrap_content"
@@ -20,4 +24,10 @@
         android:paddingVertical="10dp"
         android:textColor="@color/black"
         android:textSize="16sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRvView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp" />
 </LinearLayout>

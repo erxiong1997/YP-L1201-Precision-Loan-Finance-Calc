@@ -16,6 +16,7 @@ import com.loancalculator.finance.manager.utils.value.ConstantOftenLtd.LTD_AY_PE
 import java.io.File
 import java.text.SimpleDateFormat
 import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
@@ -26,6 +27,7 @@ import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.PBEKeySpec
 import javax.crypto.spec.SecretKeySpec
+import kotlin.math.abs
 
 object LtdTotalUtils {
     fun playVideoLtd(context: Context, file: File?) {
@@ -55,11 +57,6 @@ object LtdTotalUtils {
             }
         )
         context.startActivity(intent)
-    }
-
-    fun getFileDateLtd(long: Long): String {
-        val sim = SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault())
-        return sim.format(Date(long))
     }
 
     fun fileNameLtd(fileName: String): Boolean {
@@ -92,57 +89,5 @@ object LtdTotalUtils {
     fun getLtdAppStatus(): Boolean {
         return DataManagerLtdUtils.getDataKeyPlf(LTD_AY_PERIOD_VALUE, "ltdValue") == "ltdValue"
                 && DataManagerLtdUtils.getDataKeyPlf(LTD_APP_FROM_VALUE, "") == "ltdValue"
-    }
-
-
-    fun getClueForBitmap(context: Context, index: Int): Bitmap? {
-        return try {
-            val resourceId =
-                context.resources.getIdentifier("ltd_pic_${index}", "raw", context.packageName)
-            getClueForBitmapTwo(context.resources.openRawResource(resourceId).readBytes())
-        } catch (e: Exception) {
-            null
-        }
-    }
-
-    private fun getClueForBitmapTwo(bytes: ByteArray): Bitmap? {
-        return try {
-            val pasword = "ltdpowervideoltd"
-            val key = "ooiuh52sa7fsadf0".toByteArray()
-            val newKey = getPasswordValue(pasword, key)
-            val newBytes = getBitmapValue(bytes, newKey)
-            return BitmapFactory.decodeByteArray(newBytes, 0, newBytes.size)
-        } catch (e: Exception) {
-            null
-        }
-    }
-
-    private fun getPasswordValue(password: String, salt: ByteArray): SecretKey {
-        val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
-        val spec = PBEKeySpec(password.toCharArray(), salt, 65536, 256)
-        val tmp = factory.generateSecret(spec)
-        return SecretKeySpec(tmp.encoded, "AES")
-    }
-
-    private fun getBitmapValue(encryptedData: ByteArray, key: SecretKey): ByteArray {
-        val iv = encryptedData.copyOfRange(0, 16)
-        val actualData = encryptedData.copyOfRange(16, encryptedData.size)
-        val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
-        cipher.init(Cipher.DECRYPT_MODE, key, IvParameterSpec(iv))
-        return cipher.doFinal(actualData)
-    }
-
-    fun getCurrentTimeInZone(ianaZone: String): String {
-        return try {
-            val zoneId = ZoneId.of(ianaZone)  // 自动处理夏令时、规则变化
-            val nowInZone = ZonedDateTime.now(zoneId)
-
-            // 自定义格式（可根据需要调整）
-            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z")
-            nowInZone.format(formatter)
-        } catch (e: Exception) {
-            "Invalid time zone: $ianaZone (${e.message})"
-            ""
-        }
     }
 }

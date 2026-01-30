@@ -1,5 +1,11 @@
 package com.loancalculator.finance.manager.data
 
-data class DataUtcSelectPlf(var utcPlf: String) {
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class DataUtcSelectPlf(val utcPlf: String, val utcOffsetValue: String) {
+    @Json(ignore = true)
     var mSelectItem = false
+    var mCurTime = ""
 }

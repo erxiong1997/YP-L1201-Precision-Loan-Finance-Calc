@@ -7,6 +7,7 @@ import com.loancalculator.finance.manager.activity.utils.PlfToolsWorldTimeActivi
 import com.loancalculator.finance.manager.databinding.ActivityMainPlfBinding
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.LtdTotalUtils
+import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 
 class PlfMainToolActivity : PlfBindingActivity<ActivityMainPlfBinding>() {
     override fun beginViewAndDoLtd() {
@@ -20,7 +21,7 @@ class PlfMainToolActivity : PlfBindingActivity<ActivityMainPlfBinding>() {
             startActivity(Intent(this, PlfToolsWorldTimeActivity::class.java))
         }
         mPlcBinding.tvLoanThree.text =
-            mPlcBinding.tvLoanThree.text.toString() + "=" + LtdTotalUtils.getCurrentTimeInZone("PST8PDT")
+            mPlcBinding.tvLoanThree.text.toString() + "=" + TimeDatePlfUtils.getCurrentTimeInZone("PST8PDT")
     }
 
     override fun getLayoutValue(): ActivityMainPlfBinding {
