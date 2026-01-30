@@ -34,7 +34,7 @@ class AdapterLanguageItemPlf(
         position: Int
     ) {
         val data = mListDoData[position]
-        holder.mLtdBinding.apply {
+        holder.mPlfBinding.apply {
 //            tvLanguageName.text = data.name
             holder.itemView.isSelected = data.fingerSelect
         }
@@ -44,7 +44,7 @@ class AdapterLanguageItemPlf(
         return mListDoData.size
     }
 
-    inner class HolderItem(val mLtdBinding: ItemLanguageItemPlfBinding) :
-        RecyclerView.ViewHolder(mLtdBinding.root)
+    inner class HolderItem(val mPlfBinding: ItemLanguageItemPlfBinding) :
+        RecyclerView.ViewHolder(mPlfBinding.root)
 
 }

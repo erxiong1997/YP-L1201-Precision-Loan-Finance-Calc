@@ -38,7 +38,7 @@ class AdapterUtcSaveItemPlf(
         position: Int
     ) {
         val data = mListDoData[position]
-        holder.mLtdBinding.apply {
+        holder.mPlfBinding.apply {
             Log.d("TAG", "onBindViewHolder:${data.utcPlf}==${position} ")
             tvCurUtc.text = data.utcPlf
             tvCurTime.text = data.mCurTime
@@ -49,7 +49,7 @@ class AdapterUtcSaveItemPlf(
         return mListDoData.size
     }
 
-    inner class HolderItem(val mLtdBinding: ItemUtcSaveItemPlfBinding) :
-        RecyclerView.ViewHolder(mLtdBinding.root)
+    inner class HolderItem(val mPlfBinding: ItemUtcSaveItemPlfBinding) :
+        RecyclerView.ViewHolder(mPlfBinding.root)
 
 }

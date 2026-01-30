@@ -35,7 +35,7 @@ class AdapterWorldTimeSelectPlf(
         position: Int
     ) {
         val data = mListDoData[position]
-        holder.mLtdBinding.apply {
+        holder.mPlfBinding.apply {
             tvTimeUtc.text = data.utcPlf
         }
     }
@@ -44,7 +44,7 @@ class AdapterWorldTimeSelectPlf(
         return mListDoData.size
     }
 
-    inner class HolderItem(val mLtdBinding: ItemWorldTimeSelectPlfBinding) :
-        RecyclerView.ViewHolder(mLtdBinding.root)
+    inner class HolderItem(val mPlfBinding: ItemWorldTimeSelectPlfBinding) :
+        RecyclerView.ViewHolder(mPlfBinding.root)
 
 }

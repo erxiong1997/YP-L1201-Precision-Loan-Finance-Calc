@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Precision Loan Finance Calc</string>
+    <string name="app_name2" translatable="false">Precision\n Loan Finance Calc</string>
 
     <string name="plf_number_1" translatable="false">0123456789</string>
     <string name="plf_number_2" translatable="false">0123456789.</string>
@@ -18,5 +19,17 @@
     <string name="plf_tools">Tools</string>
     <string name="plf_start_date">Start Date</string>
     <string name="plf_interest_rate">Interest Rate</string>
+    <string name="plf_home">Home</string>
+    <string name="plf_compare">Compare</string>
+    <string name="plf_mine">Mine</string>
+    <string name="plf_business_loan">Business Loan</string>
+    <string name="plf_mortgages">Mortgages</string>
+    <string name="plf_auto_loan">Auto Loan</string>
+    <string name="plf_investment">Investment</string>
+    <string name="plf_fixed_deposit">Fixed Deposit</string>
+    <string name="plf_recurring_deposit">Recurring Deposit</string>
+    <string name="plf_history">History</string>
+    <string name="plf_more">More</string>
+    <string name="plf_details">Details</string>
     <string name="plf_"></string>
 </resources>
