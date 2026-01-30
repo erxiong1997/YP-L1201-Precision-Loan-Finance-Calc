@@ -8,6 +8,7 @@ import com.loancalculator.finance.manager.adapter.AdapterUtcSaveItemPlf
 import com.loancalculator.finance.manager.data.DataUtcSelectPlf
 import com.loancalculator.finance.manager.databinding.ActivityToolsWorldTimePlfBinding
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 
 class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBinding>() {
@@ -23,6 +24,7 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
                             mCurTime = a
                         })
                         mAdapterUtcSaveItemPlf.notifyItemInserted(0)
+                        DealRecentPlfUtils.addWorldTimeUtcRecent(mListData)
                     }
                 }
             }
@@ -39,6 +41,8 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
     }
 
     override fun setPlfRecyclerView() {
+        mListData.clear()
+        DealRecentPlfUtils.getWorldTimeUtcRecent(mListData)
         mAdapterUtcSaveItemPlf = AdapterUtcSaveItemPlf(this, mListData) {
 
         }

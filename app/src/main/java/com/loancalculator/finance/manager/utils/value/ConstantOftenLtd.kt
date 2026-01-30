@@ -9,4 +9,5 @@ object ConstantOftenLtd {
 
     //归因 "ltdValue"
     const val LTD_APP_FROM_VALUE = "ltdAppFromValue"
+
 }
