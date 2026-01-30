@@ -38,12 +38,28 @@
         <activity
             android:name="com.loancalculator.finance.manager.activity.calc.PlfPersonalLoanActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.loancalculator.finance.manager.activity.PlfMainToolActivity" />
-        <activity android:name="com.loancalculator.finance.manager.activity.set.PlfSetPolicyActivity" />
-        <activity android:name="com.loancalculator.finance.manager.activity.set.PlfSetLanguageActivity" />
-        <activity android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsTemperatureActivity" />
-        <activity android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsWorldTimeActivity" />
-        <activity android:name="com.loancalculator.finance.manager.activity.utils.PlfWorldTimeSelectActivity" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.PlfMainToolActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.set.PlfSetPolicyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.set.PlfSetLanguageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsTemperatureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsWorldTimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.utils.PlfWorldTimeSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

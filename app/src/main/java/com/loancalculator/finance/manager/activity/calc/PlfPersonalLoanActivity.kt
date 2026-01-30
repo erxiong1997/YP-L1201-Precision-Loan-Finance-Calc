@@ -1,11 +1,16 @@
 package com.loancalculator.finance.manager.activity.calc
 
+import android.content.Intent
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
+import com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity
 import com.loancalculator.finance.manager.databinding.ActivityPersonalLoanPlfBinding
 import com.loancalculator.finance.manager.setSafeListener
 
 class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBinding>() {
     override fun beginViewAndDoLtd() {
+        mPlcBinding.btnCurrency.setSafeListener {
+            startActivity(Intent(this, PlfCurrencyUnitActivity::class.java))
+        }
         mPlcBinding.tvDate.setSafeListener {
 
         }
@@ -41,7 +46,7 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
         val term = mPlcBinding.etLoanTerm.toString().trim().toIntOrNull() ?: 0
     }
 
-    private fun clearAllValue(){
+    private fun clearAllValue() {
         mPlcBinding.etLoanAmount.text = null
         mPlcBinding.etInterestRate.text = null
         mPlcBinding.etLoanTerm.text = null

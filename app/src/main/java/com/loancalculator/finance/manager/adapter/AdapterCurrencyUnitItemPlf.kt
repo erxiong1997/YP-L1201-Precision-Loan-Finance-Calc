@@ -1,31 +1,32 @@
 package com.loancalculator.finance.manager.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.loancalculator.finance.manager.data.DataUtcSelectPlf
-import com.loancalculator.finance.manager.databinding.ItemUtcSaveItemPlfBinding
-import com.loancalculator.finance.manager.setSafeListener
+import coil.load
+import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
+import com.loancalculator.finance.manager.data.DataPlfLanguage
+import com.loancalculator.finance.manager.databinding.ItemCurrencyUnitItemPlfBinding
+import com.loancalculator.finance.manager.databinding.ItemLanguageItemPlfBinding
 
-class AdapterUtcSaveItemPlf(
+class AdapterCurrencyUnitItemPlf(
     private val mAdapterContext: Context,
-    private val mListDoData: MutableList<DataUtcSelectPlf>,
+    private val mListDoData: MutableList<DataCurrencyUnitPlf>,
     private val tilFunBack: (Int) -> Unit
 ) :
-    RecyclerView.Adapter<AdapterUtcSaveItemPlf.HolderItem>() {
+    RecyclerView.Adapter<AdapterCurrencyUnitItemPlf.HolderItem>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): HolderItem {
-        val binding = ItemUtcSaveItemPlfBinding.inflate(
+        val binding = ItemCurrencyUnitItemPlfBinding.inflate(
             LayoutInflater.from(mAdapterContext),
             parent,
             false
         )
         val holderItem = HolderItem(binding)
-        holderItem.itemView.setSafeListener {
+        holderItem.itemView.setOnClickListener {
             tilFunBack(holderItem.absoluteAdapterPosition)
         }
         return holderItem
@@ -37,9 +38,12 @@ class AdapterUtcSaveItemPlf(
     ) {
         val data = mListDoData[position]
         holder.mPlfBinding.apply {
-            Log.d("TAG", "onBindViewHolder:${data.utcPlf}==${position} ")
-            tvCurUtc.text = data.utcPlf
-            tvCurTime.text = data.mCurTime
+            ivCurrencyUnit.load(data.currencyDrawable) {
+
+            }
+            tvCurrencyUnit.text = data.currencyUnit
+            tvCurrencyName.text = data.currencyName
+            holder.itemView.isSelected = data.fingerSelect
         }
     }
 
@@ -47,7 +51,7 @@ class AdapterUtcSaveItemPlf(
         return mListDoData.size
     }
 
-    inner class HolderItem(val mPlfBinding: ItemUtcSaveItemPlfBinding) :
+    inner class HolderItem(val mPlfBinding: ItemCurrencyUnitItemPlfBinding) :
         RecyclerView.ViewHolder(mPlfBinding.root)
 
 }

@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.loancalculator.finance.manager.data.DataLtdLanguage
 import com.loancalculator.finance.manager.data.DataUtcSelectPlf
 import com.loancalculator.finance.manager.databinding.ItemWorldTimeSelectPlfBinding
 

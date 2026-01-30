@@ -1,11 +1,13 @@
 package com.loancalculator.finance.manager.utils.value
 
 import com.loancalculator.finance.manager.PlfDealApplication
+import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
 import com.loancalculator.finance.manager.data.DataToolsTemperature
 import com.loancalculator.finance.manager.utils.TemperatureUnit
 import java.io.File
 
 object ParamsLtdUtils {
+    var mDataCurrencyUnitPlf: DataCurrencyUnitPlf? = null
 
     val mSaveFilePlf by lazy {
         File(

@@ -1,18 +1,16 @@
 package com.loancalculator.finance.manager.activity.set
 
-import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hjq.language.MultiLanguages
 import com.loancalculator.finance.manager.R
-import com.loancalculator.finance.manager.StartPlfActivity
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.adapter.AdapterLanguageItemPlf
-import com.loancalculator.finance.manager.data.DataLtdLanguage
+import com.loancalculator.finance.manager.data.DataPlfLanguage
 import com.loancalculator.finance.manager.databinding.ActivitySetLanguagePlfBinding
 
 class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>() {
     private lateinit var mAdapterLanguageItemPlf: AdapterLanguageItemPlf
-    private val mListDoData = mutableListOf<DataLtdLanguage>()
+    private val mListDoData = mutableListOf<DataPlfLanguage>()
     private var mLtdSelectIndex = -1
 
 //    override fun doBackPressed() {

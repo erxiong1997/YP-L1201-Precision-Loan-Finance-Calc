@@ -4,12 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.loancalculator.finance.manager.data.DataLtdLanguage
+import com.loancalculator.finance.manager.data.DataPlfLanguage
 import com.loancalculator.finance.manager.databinding.ItemLanguageItemPlfBinding
 
 class AdapterLanguageItemPlf(
     private val mAdapterContext: Context,
-    private val mListDoData: MutableList<DataLtdLanguage>,
+    private val mListDoData: MutableList<DataPlfLanguage>,
     private val tilFunBack: (Int) -> Unit
 ) :
     RecyclerView.Adapter<AdapterLanguageItemPlf.HolderItem>() {
