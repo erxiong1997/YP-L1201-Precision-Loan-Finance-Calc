@@ -9,7 +9,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.loancalculator.finance.manager"
+        applicationId = "com.sfsa.bbb.ffff.loan"
         minSdk = 26
         targetSdk = 36
         versionCode = 10

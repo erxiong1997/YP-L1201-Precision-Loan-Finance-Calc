@@ -1,35 +1,18 @@
 package com.loancalculator.finance.manager.utils
 
-import android.app.Activity
-import android.content.ActivityNotFoundException
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import androidx.core.content.FileProvider
-import androidx.core.net.toUri
 import com.loancalculator.finance.manager.R
-import com.loancalculator.finance.manager.showToastIDLtd
 import com.loancalculator.finance.manager.utils.value.ConstantOftenLtd.LTD_APP_FROM_VALUE
 import com.loancalculator.finance.manager.utils.value.ConstantOftenLtd.LTD_AY_PERIOD_VALUE
 import java.io.File
 import java.text.SimpleDateFormat
-import java.time.ZoneId
-import java.time.ZoneOffset
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
-import javax.crypto.Cipher
-import javax.crypto.SecretKey
-import javax.crypto.SecretKeyFactory
-import javax.crypto.spec.IvParameterSpec
-import javax.crypto.spec.PBEKeySpec
-import javax.crypto.spec.SecretKeySpec
-import kotlin.math.abs
 
-object LtdTotalUtils {
+object PlfTotalUtils {
     fun playVideoLtd(context: Context, file: File?) {
         if (file == null) return
         val intent = Intent(Intent.ACTION_VIEW)
@@ -90,4 +73,20 @@ object LtdTotalUtils {
         return DataManagerLtdUtils.getDataKeyPlf(LTD_AY_PERIOD_VALUE, "ltdValue") == "ltdValue"
                 && DataManagerLtdUtils.getDataKeyPlf(LTD_APP_FROM_VALUE, "") == "ltdValue"
     }
+
+    fun shareAppLinkPlf(context: Context) {
+        val packageName = context.packageName
+        val playStoreUrl =
+            "https://play.google.com/store/apps/details?id=$packageName"
+
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, playStoreUrl)
+        }
+
+        context.startActivity(
+            Intent.createChooser(intent, context.getString(R.string.plf_share))
+        )
+    }
+
 }

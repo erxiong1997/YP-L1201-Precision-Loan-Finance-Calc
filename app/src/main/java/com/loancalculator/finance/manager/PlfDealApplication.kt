@@ -8,7 +8,7 @@ import android.os.Bundle
 import com.hjq.language.MultiLanguages
 import com.loancalculator.finance.manager.activity.PlfRootActivity
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
-import com.loancalculator.finance.manager.utils.LtdTotalUtils
+import com.loancalculator.finance.manager.utils.PlfTotalUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -56,7 +56,7 @@ class PlfDealApplication : Application(), Application.ActivityLifecycleCallbacks
             mLtdRootActivity = activity
         }
         if (!mAppLtdOpen && !mLtdClParams && activity !is StartPlfActivity) {
-            if (LtdTotalUtils.getLtdAppStatus()) {
+            if (PlfTotalUtils.getLtdAppStatus()) {
                 activity.startActivity(Intent(activity, StartPlfActivity::class.java).apply {
                     mStartPageFinish = true
                 })
