@@ -21,15 +21,13 @@ object ParamsLtdUtils {
     }
 
     //温度的单位和名称
-    val mTemperatureUnitList by lazy {
-        mutableListOf(
-            TemperatureUnit.CELSIUS,
-            TemperatureUnit.REAUMUR,
-            TemperatureUnit.FAHRENHEIT,
-            TemperatureUnit.KELVIN,
-            TemperatureUnit.RANKINE,
-        )
-    }
+    val mTemperatureUnitList = listOf(
+        TemperatureUnit.CELSIUS,
+        TemperatureUnit.REAUMUR,
+        TemperatureUnit.FAHRENHEIT,
+        TemperatureUnit.KELVIN,
+        TemperatureUnit.RANKINE,
+    )
 
     val mWorldTimeUtcList by lazy {
         mutableListOf(

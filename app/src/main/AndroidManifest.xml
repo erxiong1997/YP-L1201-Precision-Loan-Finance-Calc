@@ -60,6 +60,9 @@
         <activity
             android:name="com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsUnitSelectActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

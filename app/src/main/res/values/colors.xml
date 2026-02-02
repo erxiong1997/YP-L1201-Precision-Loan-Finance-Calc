@@ -7,10 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="plf_white_40">#66FFFFFF</color>
     <color name="plf_white_64">#A3FFFFFF</color>
     <color name="plf_EFF8F4">#EFF8F4</color>
     <color name="plf_A8B0AB">#A8B0AB</color>
     <color name="plf_0ACE86">#0ACE86</color>
+    <color name="plf_0ACE86_64">#A30ACE86</color>
     <color name="plf_050C03">#050C03</color>
+    <color name="plf_050C03_30">#4D050C03</color>
+    <color name="plf_050C03_40">#66050C03</color>
+    <color name="plf_BCBCBD">#BCBCBD</color>
     <color name="plf_"></color>
 </resources>

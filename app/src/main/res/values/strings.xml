@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Precision Loan Finance Calc</string>
     <string name="app_name2" translatable="false">Precision\n Loan Finance Calc</string>
+    <string name="app_zero" translatable="false">0</string>
 
     <string name="plf_number_1" translatable="false">0123456789</string>
     <string name="plf_number_2" translatable="false">0123456789.</string>
@@ -31,5 +32,19 @@
     <string name="plf_history">History</string>
     <string name="plf_more">More</string>
     <string name="plf_details">Details</string>
+    <string name="plf_exchange_rate">Exchange Rate</string>
+    <string name="plf_exchange_rate_des">Easily Convert Between Currencies</string>
+    <string name="plf_temperature">Temperature</string>
+    <string name="plf_temperature_des">Convert Celsius Fahrenheit And Kelvin</string>
+    <string name="plf_mass_convert">Mass Convert</string>
+    <string name="plf_mass_convert_des">Convert grams, pounds ounces and other units</string>
+    <string name="plf_speed_convert">Speed Convert</string>
+    <string name="plf_speed_convert_des">Convert kilometers per hour,miles per hour</string>
+    <string name="plf_length_convert">Length Convert</string>
+    <string name="plf_length_convert_des">Convert units like inches,meters and more</string>
+    <string name="plf_world_clock">World Clock</string>
+    <string name="plf_world_clock_des">Track current time in multiple cities</string>
+    <string name="plf_reset_fields">Reset Fields</string>
+    <string name="plf_calculate">Calculate</string>
     <string name="plf_"></string>
 </resources>

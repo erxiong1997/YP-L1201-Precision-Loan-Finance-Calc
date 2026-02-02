@@ -28,10 +28,12 @@ object ToolsTemperatureUnitUtils {
      */
     fun convert(
         value: Double = 1.0,
-        fromUnit: TemperatureUnit,
-        toUnit: TemperatureUnit,
+        fromUnit: TemperatureUnit? = null,
+        toUnit: TemperatureUnit? = null,
         decimalPlaces: Int = 2
     ): String {
+        if (fromUnit == null) return ""
+        if (toUnit == null) return ""
         if (fromUnit == toUnit) {
             return format(1.0, decimalPlaces)
         }

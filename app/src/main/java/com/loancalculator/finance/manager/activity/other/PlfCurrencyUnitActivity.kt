@@ -6,7 +6,6 @@ import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.adapter.AdapterCurrencyUnitItemPlf
 import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
 import com.loancalculator.finance.manager.databinding.ActivityCurrencyUnitPlfBinding
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mSelectCurrencyUnit
 
 class PlfCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfBinding>() {
     private val mListData = mutableListOf(
@@ -29,7 +28,7 @@ class PlfCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfBindin
     override fun setPlfRecyclerView() {
         mAdapterCurrencyUnitItemPlf = AdapterCurrencyUnitItemPlf(this, mListData) {
             val data = mListData[it]
-            mSelectCurrencyUnit = data.currencyUnit
+//            mSelectCurrencyUnit = data.currencyUnit
         }
         mPlcBinding.rvRvView.layoutManager = LinearLayoutManager(this)
         mPlcBinding.rvRvView.adapter = mAdapterCurrencyUnitItemPlf
