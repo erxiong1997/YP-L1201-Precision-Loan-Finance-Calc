@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">Precision Loan Finance Calc</string>
     <string name="app_name2" translatable="false">Precision\n Loan Finance Calc</string>
     <string name="app_zero" translatable="false">0</string>
+    <string name="app_percent" translatable="false">%</string>
 
     <string name="plf_number_1" translatable="false">0123456789</string>
     <string name="plf_number_2" translatable="false">0123456789.</string>
@@ -46,5 +47,12 @@
     <string name="plf_world_clock_des">Track current time in multiple cities</string>
     <string name="plf_reset_fields">Reset Fields</string>
     <string name="plf_calculate">Calculate</string>
+    <string name="plf_currency_unit">Currency Unit</string>
+    <string name="plf_enter_your_loan_amount">Enter your loan amount in this field</string>
+    <string name="plf_remember_enter_interest">Remember to enter the interest rate annually(yearly)</string>
+    <string name="plf_enter_the_loan_term">Enter the loan term, in year or month</string>
+    <string name="plf_month">Month</string>
+    <string name="plf_year">Year</string>
+    <string name="plf_start_date_calculation">Start date of calculation</string>
     <string name="plf_"></string>
 </resources>

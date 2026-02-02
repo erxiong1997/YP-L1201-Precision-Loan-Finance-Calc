@@ -13,7 +13,7 @@ import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mTemperatur
 
 class PlfToolsTemperatureActivity :
     PlfBindingActivity<ActivityToolsTemperaturePlfBinding>(mBarTextWhite = false) {
-    private val mUtcSelectLauncher =
+    private val mUnitSelectLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 result.data?.let {
@@ -59,7 +59,7 @@ class PlfToolsTemperatureActivity :
 
         mPlcBinding.llSelectTop.setSafeListener {
             mCurSelect = "top"
-            mUtcSelectLauncher.launch(
+            mUnitSelectLauncher.launch(
                 Intent(this, PlfToolsUnitSelectActivity::class.java).apply {
                     putExtra("unitClass", "temperature")
                     putExtra("prePosition", mTopPosition)
@@ -68,7 +68,7 @@ class PlfToolsTemperatureActivity :
         }
         mPlcBinding.llSelectBottom.setSafeListener {
             mCurSelect = "bottom"
-            mUtcSelectLauncher.launch(
+            mUnitSelectLauncher.launch(
                 Intent(this, PlfToolsUnitSelectActivity::class.java).apply {
                     putExtra("unitClass", "temperature")
                     putExtra("prePosition", mBottomPosition)

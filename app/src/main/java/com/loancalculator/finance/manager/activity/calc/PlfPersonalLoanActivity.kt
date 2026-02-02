@@ -1,18 +1,45 @@
 package com.loancalculator.finance.manager.activity.calc
 
 import android.content.Intent
+import androidx.activity.result.contract.ActivityResultContracts
+import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity
 import com.loancalculator.finance.manager.databinding.ActivityPersonalLoanPlfBinding
 import com.loancalculator.finance.manager.setSafeListener
 
-class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBinding>() {
-    override fun beginViewAndDoLtd() {
-        mPlcBinding.btnCurrency.setSafeListener {
-            startActivity(Intent(this, PlfCurrencyUnitActivity::class.java))
-        }
-        mPlcBinding.tvDate.setSafeListener {
+class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBinding>(
+    mBarTextWhite = false
+) {
+    private val mCurrencySelectLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                result.data?.let {
+                    val position = it.getIntExtra("position", -1)
+                    if (position > -1) {
 
+                    }
+                }
+            }
+        }
+
+    override fun beginViewAndDoLtd() {
+        mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_personal_loan)
+
+        mPlcBinding.llCurrencyUnit.setSafeListener {
+            mCurrencySelectLauncher.launch(Intent(this, PlfCurrencyUnitActivity::class.java))
+        }
+        mPlcBinding.ivDeleteLoanAmount.setSafeListener {
+            mPlcBinding.etLoanAmount.setText(null)
+        }
+        mPlcBinding.clStartDate.setSafeListener {
+
+        }
+        mPlcBinding.tvCalculate.setSafeListener {
+            calculatorResult()
+        }
+        mPlcBinding.tvResetFields.setSafeListener {
+            clearAllValue()
         }
     }
 
@@ -44,6 +71,8 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
         val amount = mPlcBinding.etLoanAmount.toString().trim().toIntOrNull() ?: 0
         val rate = mPlcBinding.etInterestRate.toString().trim().toDoubleOrNull() ?: 0
         val term = mPlcBinding.etLoanTerm.toString().trim().toIntOrNull() ?: 0
+
+
     }
 
     private fun clearAllValue() {
