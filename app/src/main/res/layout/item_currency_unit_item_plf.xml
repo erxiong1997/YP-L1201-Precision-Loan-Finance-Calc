@@ -4,25 +4,40 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
     android:layout_marginTop="12dp"
+    android:background="@drawable/plf_selector_unit_selected_bg"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingHorizontal="12dp"
-    android:paddingVertical="10dp">
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/ivCurrencyUnit"
-        android:layout_width="40dp"
-        android:layout_height="40dp" />
+        android:layout_width="24dp"
+        android:layout_height="24dp" />
 
     <TextView
         android:id="@+id/tvCurrencyUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp" />
+        android:layout_marginStart="12dp"
+        android:textColor="@color/color_plf_selector_white_050c03"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvCurrencyName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp" />
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_plf_selector_white_050c03_40"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/ivSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/plf_selector_item_select" />
 </LinearLayout>

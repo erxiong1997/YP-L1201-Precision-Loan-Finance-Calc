@@ -108,12 +108,12 @@
                     android:textColorHint="@color/plf_050C03_40"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tvCurrencyUnit"
+                    app:layout_constraintEnd_toStartOf="@+id/tvCurrencySymbol"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvCurrencyUnit"
+                    android:id="@+id/tvCurrencySymbol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/plf_050C03"
@@ -130,7 +130,6 @@
                     android:src="@drawable/plf_til_input_clear_text"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/etLoanAmount"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

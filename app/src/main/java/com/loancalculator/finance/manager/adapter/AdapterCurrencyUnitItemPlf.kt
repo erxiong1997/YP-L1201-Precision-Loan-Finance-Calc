@@ -38,9 +38,7 @@ class AdapterCurrencyUnitItemPlf(
     ) {
         val data = mListDoData[position]
         holder.mPlfBinding.apply {
-            ivCurrencyUnit.load(data.currencyDrawable) {
-
-            }
+            ivCurrencyUnit.load(data.currencyDrawable)
             tvCurrencyUnit.text = data.currencyUnit
             tvCurrencyName.text = data.currencyName
             holder.itemView.isSelected = data.fingerSelect

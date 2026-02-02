@@ -40,15 +40,15 @@ class PlfToolsUnitSelectActivity : PlfBindingActivity<ActivityToolsUnitSelectPlf
     override fun setPlfRecyclerView() {
         mAdapterToolsUnitItemPlf = AdapterToolsUnitItemPlf(this, mListData) {
             val data = mListData[it]
-            if (data.mSelectPlf) return@AdapterToolsUnitItemPlf
+            if (data.fingerSelect) return@AdapterToolsUnitItemPlf
             for (i in mListData.indices) {
-                if (mListData[i].mSelectPlf) {
-                    mListData[i].mSelectPlf = false
+                if (mListData[i].fingerSelect) {
+                    mListData[i].fingerSelect = false
                     mAdapterToolsUnitItemPlf.notifyItemChanged(i)
                     break
                 }
             }
-            data.mSelectPlf = true
+            data.fingerSelect = true
             mSelectPosition = it
             mAdapterToolsUnitItemPlf.notifyItemChanged(it)
         }
@@ -63,7 +63,7 @@ class PlfToolsUnitSelectActivity : PlfBindingActivity<ActivityToolsUnitSelectPlf
                 mTemperatureUnitList.forEachIndexed { index, data ->
                     mListData.add(DataUnitSelectPlf(data.symbol, data.displayName).apply {
                         if (index == mSelectPosition) {
-                            mSelectPlf = true
+                            fingerSelect = true
                         }
                     })
                 }

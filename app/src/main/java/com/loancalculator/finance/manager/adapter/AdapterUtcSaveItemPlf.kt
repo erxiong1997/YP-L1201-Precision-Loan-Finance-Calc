@@ -1,7 +1,6 @@
 package com.loancalculator.finance.manager.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -37,7 +36,6 @@ class AdapterUtcSaveItemPlf(
     ) {
         val data = mListDoData[position]
         holder.mPlfBinding.apply {
-            Log.d("TAG", "onBindViewHolder:${data.utcPlf}==${position} ")
             tvCurUtc.text = data.utcPlf
             tvCurTime.text = data.mCurTime
         }

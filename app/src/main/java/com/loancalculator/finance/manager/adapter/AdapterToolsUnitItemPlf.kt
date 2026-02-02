@@ -42,7 +42,7 @@ class AdapterToolsUnitItemPlf(
         holder.mPlfBinding.apply {
             tvUnit.text = data.symbol
             tvName.text = data.displayName
-            holder.itemView.isSelected = data.mSelectPlf
+            holder.itemView.isSelected = data.fingerSelect
         }
     }
 

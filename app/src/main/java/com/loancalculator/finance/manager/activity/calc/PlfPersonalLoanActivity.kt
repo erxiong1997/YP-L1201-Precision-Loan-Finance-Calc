@@ -2,11 +2,13 @@ package com.loancalculator.finance.manager.activity.calc
 
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContracts
+import coil.load
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity
 import com.loancalculator.finance.manager.databinding.ActivityPersonalLoanPlfBinding
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
 
 class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBinding>(
     mBarTextWhite = false
@@ -14,12 +16,9 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
     private val mCurrencySelectLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
-                result.data?.let {
-                    val position = it.getIntExtra("position", -1)
-                    if (position > -1) {
-
-                    }
-                }
+                mPlcBinding.tvCurrencySymbol.text = mDataCurrencyUnitPlf?.currencySymbol
+                mPlcBinding.ivCurrencyFlag.load(mDataCurrencyUnitPlf?.currencyDrawable)
+                mPlcBinding.tvCurrencyName.text = mDataCurrencyUnitPlf?.currencyUnit
             }
         }
 
