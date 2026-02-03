@@ -30,10 +30,12 @@ object ToolsSpeedConverterUtils {
      */
     fun convert(
         value: Double,
-        fromUnit: SpeedUnit,
-        toUnit: SpeedUnit,
+        fromUnit: SpeedUnit? = null,
+        toUnit: SpeedUnit? = null,
         decimalPlaces: Int = 2
     ): String {
+        if (fromUnit == null) return ""
+        if (toUnit == null) return ""
         if (fromUnit == toUnit) {
             return format(value, decimalPlaces)
         }
@@ -74,9 +76,10 @@ fun main() {
     // 示例1：输入 1 c (光速)，转换为所有单位
     val lightValue = 1.0
     println("输入: $lightValue ${SpeedUnit.LIGHT.symbol} (光速)")
-    ToolsSpeedConverterUtils.convertToAllUnits(lightValue, SpeedUnit.LIGHT).forEach { (unit, result) ->
-        println("${unit.displayName.padEnd(25)} (${unit.symbol}): $result ${unit.symbol}")
-    }
+    ToolsSpeedConverterUtils.convertToAllUnits(lightValue, SpeedUnit.LIGHT)
+        .forEach { (unit, result) ->
+            println("${unit.displayName.padEnd(25)} (${unit.symbol}): $result ${unit.symbol}")
+        }
 
     println("\n-------------------\n")
 

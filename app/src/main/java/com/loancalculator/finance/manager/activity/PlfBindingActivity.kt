@@ -9,7 +9,7 @@ import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
 import com.gyf.immersionbar.ktx.statusBarHeight
 import com.loancalculator.finance.manager.R
-import com.loancalculator.finance.manager.ltdPxDp
+import com.loancalculator.finance.manager.plfPxDp
 
 /**
  * mBarType  hideAll hideBottom hideTop
@@ -86,7 +86,7 @@ abstract class PlfBindingActivity<LL : ViewBinding>(
                 }
             } catch (_: Exception) {
                 findViewById<View>(R.id.topBarViewLtd)?.apply {
-                    layoutParams.height = 46.ltdPxDp()
+                    layoutParams.height = 46.plfPxDp()
                 }
             }
         }

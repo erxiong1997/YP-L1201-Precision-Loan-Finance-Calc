@@ -4,7 +4,7 @@ import android.content.res.Resources
 import android.view.Gravity
 import android.view.Window
 import android.view.WindowManager
-import com.loancalculator.finance.manager.ltdPxDp
+import com.loancalculator.finance.manager.plfPxDp
 
 object DialogMangerLtdUtils {
     val mWidthValue by lazy {
@@ -35,7 +35,7 @@ object DialogMangerLtdUtils {
             attributes.gravity = gravity
             attributes.width = (mWidthValue * widthValue).toInt()
             attributes.height = WindowManager.LayoutParams.WRAP_CONTENT
-            attributes.y = (-28).ltdPxDp()
+            attributes.y = (-28).plfPxDp()
             it.attributes = attributes
         }
     }

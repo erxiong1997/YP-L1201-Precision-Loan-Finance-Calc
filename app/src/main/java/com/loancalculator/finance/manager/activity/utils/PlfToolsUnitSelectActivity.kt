@@ -8,6 +8,7 @@ import com.loancalculator.finance.manager.adapter.AdapterToolsUnitItemPlf
 import com.loancalculator.finance.manager.data.DataUnitSelectPlf
 import com.loancalculator.finance.manager.databinding.ActivityToolsUnitSelectPlfBinding
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mSpeedUnitList
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mTemperatureUnitList
 
 class PlfToolsUnitSelectActivity : PlfBindingActivity<ActivityToolsUnitSelectPlfBinding>() {
@@ -61,6 +62,17 @@ class PlfToolsUnitSelectActivity : PlfBindingActivity<ActivityToolsUnitSelectPlf
             "temperature" -> {
                 mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_temperature)
                 mTemperatureUnitList.forEachIndexed { index, data ->
+                    mListData.add(DataUnitSelectPlf(data.symbol, data.displayName).apply {
+                        if (index == mSelectPosition) {
+                            fingerSelect = true
+                        }
+                    })
+                }
+            }
+
+            "speed" -> {
+                mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_speed_convert)
+                mSpeedUnitList.forEachIndexed { index, data ->
                     mListData.add(DataUnitSelectPlf(data.symbol, data.displayName).apply {
                         if (index == mSelectPosition) {
                             fingerSelect = true

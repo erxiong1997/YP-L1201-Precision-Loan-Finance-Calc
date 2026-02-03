@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="84dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/plf_stroke_12dp_white_1dp_0699a0"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvMonth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="18dp"
+        android:background="@drawable/plf_selector_12dp_0ace86_topr"
+        android:text="@string/plf_month"
+        android:textColor="@color/color_plf_selector_white_050c03"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvYear"
+        android:layout_width="match_parent"
+        android:background="@drawable/plf_selector_12dp_0ace86_bottomr"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="18dp"
+        android:text="@string/plf_year"
+        android:textColor="@color/color_plf_selector_white_050c03"
+        android:textSize="12sp" />
+</LinearLayout>

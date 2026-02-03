@@ -1,14 +1,24 @@
 package com.loancalculator.finance.manager.activity.calc
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
+import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import coil.load
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity
 import com.loancalculator.finance.manager.databinding.ActivityPersonalLoanPlfBinding
+import com.loancalculator.finance.manager.plfPxDp
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
+import androidx.core.graphics.drawable.toDrawable
 
 class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBinding>(
     mBarTextWhite = false
@@ -22,6 +32,8 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
             }
         }
 
+    //month year
+    private var mMonthYear = "month"
     override fun beginViewAndDoLtd() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_personal_loan)
 
@@ -30,6 +42,39 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
         }
         mPlcBinding.ivDeleteLoanAmount.setSafeListener {
             mPlcBinding.etLoanAmount.setText(null)
+        }
+        mPlcBinding.tvMonthYear.setSafeListener {
+            val popView = PopupWindow(this).apply {
+                width = 84.plfPxDp()
+                height = ViewGroup.LayoutParams.WRAP_CONTENT
+                val view = LayoutInflater.from(this@PlfPersonalLoanActivity)
+                    .inflate(R.layout.item_pop_month_year_plf, null, false)
+                val month = view.findViewById<TextView>(R.id.tvMonth)
+                month.setOnClickListener {
+                    mMonthYear = "month"
+                    dismiss()
+                    mPlcBinding.tvMonthYear.text = getString(R.string.plf_month)
+                }
+                val year = view.findViewById<TextView>(R.id.tvYear)
+                year.setOnClickListener {
+                    mMonthYear = "year"
+                    dismiss()
+                    mPlcBinding.tvMonthYear.text = getString(R.string.plf_year)
+                }
+                Log.d("TAG", "beginViewAndDoLtd:${mMonthYear}= ")
+                if (mMonthYear == "month") {
+                    month.isSelected = true
+                    year.isSelected = false
+                } else {
+                    month.isSelected = false
+                    year.isSelected = true
+                }
+                contentView = view
+                isFocusable = true
+                setBackgroundDrawable(0x00000000.toDrawable())
+                isOutsideTouchable = true
+            }
+            popView.showAsDropDown(it, 0, 0, Gravity.CENTER)
         }
         mPlcBinding.clStartDate.setSafeListener {
 

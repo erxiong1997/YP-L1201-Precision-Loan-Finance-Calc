@@ -3,6 +3,7 @@ package com.loancalculator.finance.manager.utils.value
 import com.loancalculator.finance.manager.PlfDealApplication
 import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
 import com.loancalculator.finance.manager.data.DataToolsTemperature
+import com.loancalculator.finance.manager.utils.SpeedUnit
 import com.loancalculator.finance.manager.utils.TemperatureUnit
 import java.io.File
 
@@ -27,6 +28,17 @@ object ParamsLtdUtils {
         TemperatureUnit.FAHRENHEIT,
         TemperatureUnit.KELVIN,
         TemperatureUnit.RANKINE,
+    )
+
+    //速度的单位和名称
+    val mSpeedUnitList = listOf(
+        SpeedUnit.LIGHT,
+        SpeedUnit.KMS,
+        SpeedUnit.KMH,
+        SpeedUnit.MS,
+        SpeedUnit.MH,
+        SpeedUnit.INS,
+        SpeedUnit.MACH,
     )
 
     val mWorldTimeUtcList by lazy {

@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatDialog
 import kotlin.internal.InlineOnly
 
 @InlineOnly
-inline fun <reified T> T.ltdPxDp(): T {
+inline fun <reified T> T.plfPxDp(): T {
     val scale = Resources.getSystem().displayMetrics.density
     return when (T::class) {
         Float::class -> (scale * this as Float + 0.5f) as T

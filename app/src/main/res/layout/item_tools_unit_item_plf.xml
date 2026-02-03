@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:textColor="@color/color_plf_selector_white_050c03"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvName"
