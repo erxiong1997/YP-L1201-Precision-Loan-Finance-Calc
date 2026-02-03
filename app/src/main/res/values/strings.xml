@@ -65,5 +65,10 @@
     <string name="plf_paying_off_date">Paying Off Date</string>
     <string name="plf_content_error">content error</string>
     <string name="plf_calculate_result">Calculate Result</string>
+    <string name="plf_go">Go</string>
+    <string name="plf_compare_des_personal">Help you calculate the monthly payments and total interest for different loan amounts, terms and interest rates.</string>
+    <string name="plf_compare_des_business">Estimating the monthly payment and total cost of a commercial loan</string>
+    <string name="plf_compare_des_mortgages">Estimate the affordability limit, explore the interest rate, and connect with the lender within the application.</string>
+    <string name="plf_compare_des_auto_loan">Calculate the monthly car loan payment based on the car price, down payment, interest rate, etc.</string>
     <string name="plf_"></string>
 </resources>

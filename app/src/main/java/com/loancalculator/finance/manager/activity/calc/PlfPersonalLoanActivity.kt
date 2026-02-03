@@ -122,14 +122,14 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
         if (hasAllValue != 3) {
             return
         }
-        val amount = mPlcBinding.etLoanAmount.text.toString().trim().toFloatOrNull() ?: 0f
+        val amount = mPlcBinding.etLoanAmount.text.toString().trim().toIntOrNull() ?: 0
         if (amount <= 0) {
             mPlcBinding.tvLoanAmountError.visibility = View.VISIBLE
             return
         } else {
             mPlcBinding.tvLoanAmountError.visibility = View.GONE
         }
-        val rate = mPlcBinding.etInterestRate.text.toString().trim().toFloatOrNull() ?: 0f
+        val rate = mPlcBinding.etInterestRate.text.toString().trim().toDoubleOrNull() ?: 0.0
         if (rate <= 0) {
             mPlcBinding.tvInterestRateError.visibility = View.VISIBLE
             return

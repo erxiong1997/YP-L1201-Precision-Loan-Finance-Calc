@@ -16,10 +16,10 @@ class DataPersonalLoanPlf() : TilBaseData() {
     var dataIndexId: Long = 0L
 
     //贷款金额
-    var loanAmount: Float = 0f
+    var loanAmount: Int = 0
 
     //贷款年利率
-    var interestRate: Float = 0f
+    var interestRate: Double = 0.0
 
     //表示多少个月
     var loanTerm: Int = 0
@@ -28,7 +28,7 @@ class DataPersonalLoanPlf() : TilBaseData() {
     var startDate: Long = 0
 
     //月供
-    var monthlyPayment: Float = 0f
+    var monthlyPayment: Double = 0.0
 
     //添加日期
     var addDate: Long = System.currentTimeMillis()

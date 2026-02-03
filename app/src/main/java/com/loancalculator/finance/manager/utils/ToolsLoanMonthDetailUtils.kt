@@ -6,10 +6,10 @@ import kotlin.math.pow
 
 data class LoanMonthDetail(
     val month: Int,             // 月份（从1开始）
-    val payment: Float,         // 当月还款额
-    val principalPart: Float,   // 当月偿还本金
-    val interestPart: Float,    // 当月利息
-    val remainingPrincipal: Float // 剩余本金
+    val payment: Double,         // 当月还款额
+    val principalPart: Double,   // 当月偿还本金
+    val interestPart: Double,    // 当月利息
+    val remainingPrincipal: Double // 剩余本金
 )
 
 object ToolsLoanMonthDetailUtils {
@@ -24,12 +24,12 @@ object ToolsLoanMonthDetailUtils {
      */
     @SuppressLint("DefaultLocale")
     fun calculateAmortization(
-        amount: Float,
-        annualRate: Float,
+        amount: Int,
+        annualRate: Double,
         months: Int
-    ): Pair<Float, List<LoanMonthDetail>> {
+    ): Pair<Double, List<LoanMonthDetail>> {
         if (amount <= 0 || months <= 0 || annualRate < 0) {
-            return 0f to emptyList()
+            return 0.0 to emptyList()
         }
 
         val monthlyRate = annualRate / 12f           // 月利率
@@ -39,10 +39,10 @@ object ToolsLoanMonthDetailUtils {
         val monthlyPayment = amount * (monthlyRate * power) / (power - 1)
 
         // 保留两位小数（四舍五入）
-        val fixedPayment = String.format("%.2f", monthlyPayment).toFloat()
+        val fixedPayment = String.format("%.2f", monthlyPayment).toDouble()
 
         val details = mutableListOf<LoanMonthDetail>()
-        var remaining = amount
+        var remaining = amount * 1.0
 
         for (month in 1..months) {
             // 当月利息 = 剩余本金 × 月利率
@@ -56,46 +56,21 @@ object ToolsLoanMonthDetailUtils {
 
             // 最后一期做微调（防止小数累积误差导致剩余不为0）
             if (month == months) {
-                remaining = 0f
+                remaining = 0.0
             }
 
             details.add(
                 LoanMonthDetail(
                     month = month,
                     payment = fixedPayment,
-                    principalPart = String.format("%.2f", principalPart).toFloat(),
-                    interestPart = String.format("%.2f", interest).toFloat(),
-                    remainingPrincipal = String.format("%.2f", remaining.coerceAtLeast(0f))
-                        .toFloat()
+                    principalPart = String.format("%.2f", principalPart).toDouble(),
+                    interestPart = String.format("%.2f", interest).toDouble(),
+                    remainingPrincipal = String.format("%.2f", remaining.coerceAtLeast(0.0))
+                        .toDouble()
                 )
             )
         }
 
         return fixedPayment to details
-    }
-}
-
-// 使用示例
-fun main() {
-    val principal = 120000f      // 本金
-    val annualRate = 0.12f       // 年利率 12%
-    val months = 12              // 12个月
-
-    val (monthlyPayment, details) = ToolsLoanMonthDetailUtils.calculateAmortization(
-        principal, annualRate, months
-    )
-
-    println("每月固定还款额: $monthlyPayment 元")
-    println("总还款额: ${monthlyPayment * months} 元")
-    println("总利息: ${monthlyPayment * months - principal} 元\n")
-
-    println("月份 | 还款额    | 本金部分  | 利息部分  | 剩余本金")
-    println("-".repeat(50))
-    details.forEach { d ->
-        println(
-            "%2d   | %-9.2f | %-9.2f | %-9.2f | %-9.2f".format(
-                d.month, d.payment, d.principalPart, d.interestPart, d.remainingPrincipal
-            )
-        )
     }
 }

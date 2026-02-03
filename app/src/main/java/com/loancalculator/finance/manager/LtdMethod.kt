@@ -62,3 +62,8 @@ fun View.setSafeListener(defaultLong: Long = 460, onSafeClick: (View) -> Unit) {
     }
 }
 
+fun Double.formatToSmartString(): String {
+    val s = "%.2f".format(this)
+    return s.trimEnd('0').trimEnd('.')   // 去掉尾部 0，再去掉可能剩的 .
+}
+

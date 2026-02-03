@@ -2,15 +2,16 @@ package com.loancalculator.finance.manager.activity.calc
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.util.Log
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
 import com.loancalculator.finance.manager.databinding.ActivityCalculateResultPlfBinding
+import com.loancalculator.finance.manager.formatToSmartString
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
+import java.math.BigDecimal
 
 class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlfBinding>(
     mBarTextWhite = false
@@ -26,13 +27,16 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
             mPlcBinding.tvLoanTerm2.text = "${data.loanTerm} ${getString(R.string.plf_month)}"
             mPlcBinding.tvStartDate2.text = TimeDatePlfUtils.getTimeDateOnePlf(data.startDate)
             mPlcBinding.tvMonthPayment2.text = "${data.monthlyPayment}${symbol}"
+
             val totalPay = data.monthlyPayment * data.loanTerm
-            Log.d("TAG", "beginViewAndDoLtd:${data.monthlyPayment}==${data.loanTerm} =${data.loanAmount}")
-            mPlcBinding.tvTotalPayment2.text = totalPay.toString()
-            mPlcBinding.tvTotalInterestPayable2.text = (totalPay - data.loanAmount).toString()
+
+            mPlcBinding.tvTotalPayment2.text = totalPay.formatToSmartString()
+            mPlcBinding.tvTotalInterestPayable2.text =
+                (totalPay - data.loanAmount).formatToSmartString()
             mPlcBinding.tvPayingOffDate2.text =
                 TimeDatePlfUtils.getTimeDateOnePlf(TimeDatePlfUtils.getOverDatePlf(data.loanTerm.toLong()))
         }
+
         mPlcBinding.tvAddCompareList.setSafeListener {
 
         }
