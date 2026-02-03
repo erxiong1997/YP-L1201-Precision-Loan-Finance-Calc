@@ -1,6 +1,7 @@
 package com.loancalculator.finance.manager.utils
 
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
@@ -63,5 +64,24 @@ object TimeDatePlfUtils {
     fun getFileDatePlf(long: Long): String {
         val sim = SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault())
         return sim.format(Date(long))
+    }
+
+    fun getTimeDateOnePlf(long: Long): String {
+        val sim = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
+        return sim.format(Date(long))
+    }
+
+    fun getOverDatePlf(addMonth: Long): Long {
+        val currentTime = LocalDateTime.ofInstant(
+            Date(System.currentTimeMillis()).toInstant(),
+            ZoneId.systemDefault()
+        )
+        // 2. 加1个月：自动处理月末31号（归一化到下月最后一天）、12月跨年
+        val nextMonthTime = currentTime.plusMonths(addMonth)
+        // 3. 转换回时间戳（long 类型，与原需求的 System.currentTimeMillis() 类型一致）
+        return nextMonthTime
+            .atZone(ZoneId.systemDefault())
+            .toInstant()
+            .toEpochMilli()
     }
 }

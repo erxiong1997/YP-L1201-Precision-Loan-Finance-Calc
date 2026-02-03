@@ -134,6 +134,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                android:id="@+id/tvLoanAmountError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/plf_content_error"
+                android:textColor="@color/plf_F22335"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
@@ -195,6 +206,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                android:id="@+id/tvInterestRateError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/plf_content_error"
+                android:textColor="@color/plf_F22335"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
@@ -230,7 +252,7 @@
                     android:digits="@string/plf_number_1"
                     android:hint="@string/plf_loan_term"
                     android:inputType="number"
-                    android:maxLength="4"
+                    android:maxLength="3"
                     android:paddingHorizontal="16dp"
                     android:singleLine="true"
                     android:textColor="@color/plf_050C03"
@@ -259,6 +281,16 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <TextView
+                android:id="@+id/tvLoanTermError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/plf_content_error"
+                android:textColor="@color/plf_F22335"
+                android:textSize="12sp"
+                android:visibility="gone" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -1,24 +1,26 @@
 package com.loancalculator.finance.manager.activity.calc
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.graphics.drawable.toDrawable
 import coil.load
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity
+import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
 import com.loancalculator.finance.manager.databinding.ActivityPersonalLoanPlfBinding
 import com.loancalculator.finance.manager.plfPxDp
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils
+import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
-import androidx.core.graphics.drawable.toDrawable
 
 class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBinding>(
     mBarTextWhite = false
@@ -101,22 +103,60 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
         var hasAllValue = 3
         if (mPlcBinding.etLoanAmount.text.isNullOrEmpty()) {
             hasAllValue--
+            mPlcBinding.tvLoanAmountError.visibility = View.VISIBLE
+        } else {
+            mPlcBinding.tvLoanAmountError.visibility = View.GONE
         }
         if (mPlcBinding.etInterestRate.text.isNullOrEmpty()) {
             hasAllValue--
+            mPlcBinding.tvInterestRateError.visibility = View.VISIBLE
+        } else {
+            mPlcBinding.tvInterestRateError.visibility = View.GONE
         }
         if (mPlcBinding.etLoanTerm.text.isNullOrEmpty()) {
             hasAllValue--
+            mPlcBinding.tvLoanTermError.visibility = View.VISIBLE
+        } else {
+            mPlcBinding.tvLoanTermError.visibility = View.GONE
         }
         if (hasAllValue != 3) {
             return
         }
-
-        val amount = mPlcBinding.etLoanAmount.toString().trim().toIntOrNull() ?: 0
-        val rate = mPlcBinding.etInterestRate.toString().trim().toDoubleOrNull() ?: 0
-        val term = mPlcBinding.etLoanTerm.toString().trim().toIntOrNull() ?: 0
-
-
+        val amount = mPlcBinding.etLoanAmount.text.toString().trim().toFloatOrNull() ?: 0f
+        if (amount <= 0) {
+            mPlcBinding.tvLoanAmountError.visibility = View.VISIBLE
+            return
+        } else {
+            mPlcBinding.tvLoanAmountError.visibility = View.GONE
+        }
+        val rate = mPlcBinding.etInterestRate.text.toString().trim().toFloatOrNull() ?: 0f
+        if (rate <= 0) {
+            mPlcBinding.tvInterestRateError.visibility = View.VISIBLE
+            return
+        } else {
+            mPlcBinding.tvInterestRateError.visibility = View.GONE
+        }
+        var term = mPlcBinding.etLoanTerm.text.toString().trim().toIntOrNull() ?: 0
+        if (term <= 0) {
+            mPlcBinding.tvLoanTermError.visibility = View.VISIBLE
+            return
+        } else {
+            mPlcBinding.tvLoanTermError.visibility = View.GONE
+        }
+        if (mMonthYear == "year") {
+            term *= 12
+        }
+        val dataPersonalLoanPlf = DataPersonalLoanPlf().apply {
+            loanAmount = amount
+            interestRate = rate
+            loanTerm = term
+            startDate = System.currentTimeMillis()
+        }
+        val (a, b) = ToolsLoanMonthDetailUtils.calculateAmortization(amount, rate / 100, term)
+        dataPersonalLoanPlf.monthlyPayment = a
+        dataPersonalLoanPlf.mLoanMonthDetailList = b
+        mDataPersonalLoanPlf = dataPersonalLoanPlf
+        startActivity(Intent(this, PlfCalculateResultActivity::class.java))
     }
 
     private fun clearAllValue() {

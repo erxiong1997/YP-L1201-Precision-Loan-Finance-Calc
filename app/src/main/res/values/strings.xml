@@ -54,5 +54,16 @@
     <string name="plf_month">Month</string>
     <string name="plf_year">Year</string>
     <string name="plf_start_date_calculation">Start date of calculation</string>
+    <string name="plf_loan_information">Loan Information</string>
+    <string name="plf_result_after_calculation">Result After Calculation</string>
+    <string name="plf_add_to_compare_list">Add to compare list</string>
+    <string name="plf_amortization_table">Amortization Table</string>
+    <string name="plf_go_home">Go Home</string>
+    <string name="plf_monthly_payment">Monthly Payment</string>
+    <string name="plf_total_payment">Total Payment</string>
+    <string name="plf_total_interest_payable">Total Interest Payable</string>
+    <string name="plf_paying_off_date">Paying Off Date</string>
+    <string name="plf_content_error">content error</string>
+    <string name="plf_calculate_result">Calculate Result</string>
     <string name="plf_"></string>
 </resources>

@@ -1,6 +1,7 @@
 package com.loancalculator.finance.manager.utils
 
 import android.annotation.SuppressLint
+import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
 import kotlin.math.pow
 
 data class LoanMonthDetail(
@@ -12,6 +13,7 @@ data class LoanMonthDetail(
 )
 
 object ToolsLoanMonthDetailUtils {
+    var mDataPersonalLoanPlf: DataPersonalLoanPlf? = null
 
     /**
      * 计算等额本息贷款
@@ -22,11 +24,11 @@ object ToolsLoanMonthDetailUtils {
      */
     @SuppressLint("DefaultLocale")
     fun calculateAmortization(
-        principal: Float,
+        amount: Float,
         annualRate: Float,
         months: Int
     ): Pair<Float, List<LoanMonthDetail>> {
-        if (principal <= 0 || months <= 0 || annualRate < 0) {
+        if (amount <= 0 || months <= 0 || annualRate < 0) {
             return 0f to emptyList()
         }
 
@@ -34,13 +36,13 @@ object ToolsLoanMonthDetailUtils {
         val power = (1 + monthlyRate).pow(months)    // (1 + r)^n
 
         // 等额本息每月还款公式
-        val monthlyPayment = principal * (monthlyRate * power) / (power - 1)
+        val monthlyPayment = amount * (monthlyRate * power) / (power - 1)
 
         // 保留两位小数（四舍五入）
         val fixedPayment = String.format("%.2f", monthlyPayment).toFloat()
 
         val details = mutableListOf<LoanMonthDetail>()
-        var remaining = principal
+        var remaining = amount
 
         for (month in 1..months) {
             // 当月利息 = 剩余本金 × 月利率
@@ -63,7 +65,8 @@ object ToolsLoanMonthDetailUtils {
                     payment = fixedPayment,
                     principalPart = String.format("%.2f", principalPart).toFloat(),
                     interestPart = String.format("%.2f", interest).toFloat(),
-                    remainingPrincipal = String.format("%.2f", remaining.coerceAtLeast(0f)).toFloat()
+                    remainingPrincipal = String.format("%.2f", remaining.coerceAtLeast(0f))
+                        .toFloat()
                 )
             )
         }

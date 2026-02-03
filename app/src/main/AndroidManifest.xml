@@ -63,7 +63,12 @@
         <activity
             android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsUnitSelectActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsSpeedConvertActivity" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsSpeedConvertActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.calc.PlfCalculateResultActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

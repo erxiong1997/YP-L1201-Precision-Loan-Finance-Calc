@@ -1,8 +1,10 @@
 package com.loancalculator.finance.manager.data
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.loancalculator.finance.manager.room.tildata.TilBaseData
+import com.loancalculator.finance.manager.utils.LoanMonthDetail
 
 @Entity(
     tableName = "data_personal_loan_plf",
@@ -14,7 +16,7 @@ class DataPersonalLoanPlf() : TilBaseData() {
     var dataIndexId: Long = 0L
 
     //贷款金额
-    var loanAmount: Int = 0
+    var loanAmount: Float = 0f
 
     //贷款年利率
     var interestRate: Float = 0f
@@ -35,4 +37,7 @@ class DataPersonalLoanPlf() : TilBaseData() {
     var tempLong2: Long = 0
     var tempString1: String = ""
     var tempString2: String = ""
+
+    @Ignore
+    var mLoanMonthDetailList: List<LoanMonthDetail>? = null
 }
