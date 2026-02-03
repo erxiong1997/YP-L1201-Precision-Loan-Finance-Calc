@@ -70,5 +70,8 @@
     <string name="plf_compare_des_business">Estimating the monthly payment and total cost of a commercial loan</string>
     <string name="plf_compare_des_mortgages">Estimate the affordability limit, explore the interest rate, and connect with the lender within the application.</string>
     <string name="plf_compare_des_auto_loan">Calculate the monthly car loan payment based on the car price, down payment, interest rate, etc.</string>
+    <string name="plf_city">City</string>
+    <string name="plf_add_clock">Add Clock</string>
+    <string name="plf_search">Search</string>
     <string name="plf_"></string>
 </resources>

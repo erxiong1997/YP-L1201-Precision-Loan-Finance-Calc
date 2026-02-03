@@ -35,7 +35,7 @@ object TimeDatePlfUtils {
             // 自定义格式（可根据需要调整）
 //            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z")
             val formatter = if (onlyTime) {
-                DateTimeFormatter.ofPattern("HH:mm:ss")
+                DateTimeFormatter.ofPattern("HH:mm")
             } else {
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
             }

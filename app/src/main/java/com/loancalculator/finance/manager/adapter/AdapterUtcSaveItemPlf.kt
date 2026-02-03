@@ -38,6 +38,8 @@ class AdapterUtcSaveItemPlf(
         holder.mPlfBinding.apply {
             tvCurUtc.text = data.utcPlf
             tvCurTime.text = data.mCurTime
+            tvCurZone.text = data.utcOffsetValue
+            tvCurAmPm.text = data.amOrPm
         }
     }
 

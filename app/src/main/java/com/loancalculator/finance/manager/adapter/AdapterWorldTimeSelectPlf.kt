@@ -36,6 +36,7 @@ class AdapterWorldTimeSelectPlf(
         val data = mListDoData[position]
         holder.mPlfBinding.apply {
             tvTimeUtc.text = data.utcPlf
+            holder.itemView.isSelected = data.fingerSelect
         }
     }
 

@@ -3,6 +3,7 @@ package com.loancalculator.finance.manager.activity.utils
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.adapter.AdapterUtcSaveItemPlf
 import com.loancalculator.finance.manager.data.DataUtcSelectPlf
@@ -18,12 +19,22 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
                 result.data?.let {
                     val utcValue = it.getStringExtra("utcValue")
                     if (!utcValue.isNullOrEmpty()) {
-                        val (a, b) = TimeDatePlfUtils.getCurrentTimeInZoneOffset(utcValue)
-                        mPlcBinding.tvCurTime.text = a
-                        mListData.add(0, DataUtcSelectPlf(utcValue, b).apply {
-                            mCurTime = a
-                        })
-                        mAdapterUtcSaveItemPlf.notifyItemInserted(0)
+                        val utcValueList = utcValue.split("::")
+                        for (data in utcValueList) {
+                            if (data.isNotEmpty()) {
+                                val (a, b) = TimeDatePlfUtils.getCurrentTimeInZoneOffset(data)
+                                val s = a.split(":")[0].toInt()
+                                mListData.add(0, DataUtcSelectPlf(data, b).apply {
+                                    mCurTime = a
+                                    amOrPm = if (s > 12) {
+                                        "PM"
+                                    } else {
+                                        "AM"
+                                    }
+                                })
+                                mAdapterUtcSaveItemPlf.notifyItemInserted(0)
+                            }
+                        }
                         DealRecentPlfUtils.addWorldTimeUtcRecent(mListData)
                     }
                 }
@@ -34,8 +45,9 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
     private val mListData = mutableListOf<DataUtcSelectPlf>()
 
     override fun beginViewAndDoLtd() {
+        mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_world_clock)
         setPlfRecyclerView()
-        mPlcBinding.btn1.setSafeListener {
+        mPlcBinding.tvAddClock.setSafeListener {
             mUtcSelectLauncher.launch(Intent(this, PlfWorldTimeSelectActivity::class.java))
         }
     }

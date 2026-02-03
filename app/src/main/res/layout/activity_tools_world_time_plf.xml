@@ -1,33 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff0000"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <include
         android:id="@+id/topSetPlf"
         layout="@layout/layout_top_set_plf" />
 
-    <Button
-        android:id="@+id/btn1"
+    <TextView
+        android:id="@+id/tvCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="选择时区" />
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/plf_city"
+        android:textColor="@color/plf_050C03"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topSetPlf" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRvView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="100dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="120dp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
-        android:id="@+id/tvCurTime"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="#ff0000"
-        android:paddingVertical="10dp"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvRvView"
+        android:id="@+id/tvAddClock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp" />
-</LinearLayout>
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/plf_pressed_enabled_28dp_0ace86"
+        android:gravity="center"
+        android:paddingVertical="20dp"
+        android:text="@string/plf_add_clock"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,7 +57,7 @@ object ToolsSpeedConverterUtils {
         fromUnit: SpeedUnit,
         decimalPlaces: Int = 2
     ): Map<SpeedUnit, String> {
-        return SpeedUnit.values().associateWith { unit ->
+        return SpeedUnit.entries.associateWith { unit ->
             convert(value, fromUnit, unit, decimalPlaces)
         }
     }
@@ -66,34 +66,11 @@ object ToolsSpeedConverterUtils {
         return if (decimalPlaces <= 0) {
             value.roundToInt().toString()
         } else {
-            "%.${decimalPlaces}f".format(value)
+            if (value < 0) {
+                value.toString()
+            } else {
+                "%.${decimalPlaces}f".format(value)
+            }
         }
     }
-}
-
-// 使用示例
-fun main() {
-    // 示例1：输入 1 c (光速)，转换为所有单位
-    val lightValue = 1.0
-    println("输入: $lightValue ${SpeedUnit.LIGHT.symbol} (光速)")
-    ToolsSpeedConverterUtils.convertToAllUnits(lightValue, SpeedUnit.LIGHT)
-        .forEach { (unit, result) ->
-            println("${unit.displayName.padEnd(25)} (${unit.symbol}): $result ${unit.symbol}")
-        }
-
-    println("\n-------------------\n")
-
-    // 示例2：输入 100 km/h，转换为其他单位
-    val kmhValue = 100.0
-    println("输入: $kmhValue ${SpeedUnit.KMH.symbol} (常见车速)")
-    ToolsSpeedConverterUtils.convertToAllUnits(kmhValue, SpeedUnit.KMH).forEach { (unit, result) ->
-        println("${unit.displayName.padEnd(25)} (${unit.symbol}): $result ${unit.symbol}")
-    }
-
-    println("\n-------------------\n")
-
-    // 示例3：单次转换 - 1 Mach = ? km/s
-    val machValue = 1.0
-    val toKms = ToolsSpeedConverterUtils.convert(machValue, SpeedUnit.MACH, SpeedUnit.KMS, 6)
-    println("1 ${SpeedUnit.MACH.symbol} ≈ $toKms ${SpeedUnit.KMS.symbol}")
 }

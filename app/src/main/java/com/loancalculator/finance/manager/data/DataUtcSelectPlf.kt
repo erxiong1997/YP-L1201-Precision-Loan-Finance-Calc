@@ -8,4 +8,5 @@ data class DataUtcSelectPlf(val utcPlf: String, val utcOffsetValue: String) {
     @Json(ignore = true)
     var fingerSelect = false
     var mCurTime = ""
+    var amOrPm = "AM"
 }

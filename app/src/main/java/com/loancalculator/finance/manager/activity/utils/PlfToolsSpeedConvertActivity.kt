@@ -1,5 +1,6 @@
 package com.loancalculator.finance.manager.activity.utils
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doAfterTextChanged
@@ -22,14 +23,14 @@ class PlfToolsSpeedConvertActivity :
                         val data = mSpeedUnitList[position]
                         if (mCurSelect == "top") {
                             mTopPosition = position
-                            mPlcBinding.tvSelectTop.text = data.name
+                            mPlcBinding.tvSelectTop.text = data.symbol
                             mPlcBinding.tvCurrencyUnitTop.text = data.symbol
                             mTopUnitData = data
                             changeConvertTextShow()
                         }
                         if (mCurSelect == "bottom") {
                             mBottomPosition = position
-                            mPlcBinding.tvSelectBottom.text = data.name
+                            mPlcBinding.tvSelectBottom.text = data.symbol
                             mPlcBinding.tvCurrencyUnitBottom.text = data.symbol
                             mBottomUnitData = data
                             changeConvertTextShow()
@@ -51,9 +52,9 @@ class PlfToolsSpeedConvertActivity :
         val data2 = mSpeedUnitList[2]
         mTopUnitData = data1
         mBottomUnitData = data2
-        mPlcBinding.tvSelectTop.text = data1.name
+        mPlcBinding.tvSelectTop.text = data1.symbol
         mPlcBinding.tvCurrencyUnitTop.text = data1.symbol
-        mPlcBinding.tvSelectBottom.text = data2.name
+        mPlcBinding.tvSelectBottom.text = data2.symbol
         mPlcBinding.tvCurrencyUnitBottom.text = data2.symbol
         changeConvertTextShow()
 
@@ -87,8 +88,8 @@ class PlfToolsSpeedConvertActivity :
 
             mPlcBinding.tvCurrencyUnitTop.text = mTopUnitData?.symbol
             mPlcBinding.tvCurrencyUnitBottom.text = mBottomUnitData?.symbol
-            mPlcBinding.tvSelectTop.text = mTopUnitData?.name
-            mPlcBinding.tvSelectBottom.text = mBottomUnitData?.name
+            mPlcBinding.tvSelectTop.text = mTopUnitData?.symbol
+            mPlcBinding.tvSelectBottom.text = mBottomUnitData?.symbol
 
             changeConvertTextShow()
         }
@@ -143,11 +144,12 @@ class PlfToolsSpeedConvertActivity :
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun changeConvertTextShow() {
         mPlcBinding.tvTopConvertResult.text =
-            "1 ${mTopUnitData?.name} = ${getCurValueResult()} ${mBottomUnitData?.name}"
+            "1 ${mTopUnitData?.symbol} = ${getCurValueResult()} ${mBottomUnitData?.symbol}"
         mPlcBinding.tvBottomConvertResult.text =
-            "1 ${mBottomUnitData?.name} = ${getCurValueResult(true)} ${mTopUnitData?.name}"
+            "1 ${mBottomUnitData?.symbol} = ${getCurValueResult(true)} ${mTopUnitData?.symbol}"
         try {
             if (!mPlcBinding.etInputValueTop.text.isNullOrEmpty()) {
                 val valueInput = mPlcBinding.etInputValueTop.text.toString().trim().toDouble()

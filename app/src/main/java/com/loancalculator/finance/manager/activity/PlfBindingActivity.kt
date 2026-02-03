@@ -20,7 +20,7 @@ const val HIDE_TOP = "topHide"
 
 abstract class PlfBindingActivity<LL : ViewBinding>(
     private val mBarShow: String = HIDE_BOTTOM,
-    private val mBarTextWhite: Boolean = true,
+    private val mBarTextWhite: Boolean = false,
     private val mTopView: Boolean = true,
     private val mSetBack: Boolean = true
 ) : PlfRootActivity() {
