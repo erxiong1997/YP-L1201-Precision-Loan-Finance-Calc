@@ -8,10 +8,10 @@ import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
 interface TilPersonalLoanDao : TilBaseDao<DataPersonalLoanPlf> {
     //ASC 升序 DESC = 降序
     // 根据 loanType 查询
-    @Query("SELECT * FROM data_personal_loan_plf WHERE loanType = :loanType AND addAmortizationTable =:addAmortizationTable  ORDER BY dataIndexId ASC")
+    @Query("SELECT * FROM data_personal_loan_plf WHERE loanType = :loanType AND addCompareTable =:addCompareTable  ORDER BY dataIndexId ASC")
     fun getListByLoanType(
         loanType: String,
-        addAmortizationTable: String = "yes"
+        addCompareTable: String = "yes"
     ): List<DataPersonalLoanPlf>
 
     // 获取全部

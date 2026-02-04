@@ -5,7 +5,7 @@
 //import android.view.Gravity
 //import androidx.appcompat.app.AppCompatDialog
 //import com.loancalculator.finance.manager.databinding.DialogCanNextLtdBinding
-//import com.loancalculator.finance.manager.dismissGoLtd
+//import com.loancalculator.finance.manager.dismissGoPlf
 //
 //class DialogCanNextLtd(
 //    private val mContext: Context,
@@ -20,9 +20,9 @@
 //        setCancelable(true)
 //
 //        body?.let { mPlcBinding.tvLtdBody.text = mContext.getString(it) }
-//        mPlcBinding.ivCloseDialog.setOnClickListener { dismissGoLtd() }
+//        mPlcBinding.ivCloseDialog.setOnClickListener { dismissGoPlf() }
 //        mPlcBinding.tvOK.setOnClickListener {
-//            dismissGoLtd()
+//            dismissGoPlf()
 //            tilFunBack()
 //        }
 //

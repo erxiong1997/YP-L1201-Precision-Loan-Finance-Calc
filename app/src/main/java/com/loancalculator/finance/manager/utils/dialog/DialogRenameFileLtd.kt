@@ -5,7 +5,7 @@
 //import androidx.appcompat.app.AppCompatDialog
 //import com.loancalculator.finance.manager.R
 //import com.loancalculator.finance.manager.databinding.DialogRenameFileLtdBinding
-//import com.loancalculator.finance.manager.showToastIDLtd
+//import com.loancalculator.finance.manager.showToastIDPlf
 //import com.loancalculator.finance.manager.utils.LtdTotalUtils
 //import java.io.File
 //
@@ -30,7 +30,7 @@
 //        mPlcBinding.tvOK.setOnClickListener {
 //            var newName = mPlcBinding.etFileName.text.toString().trim()
 //            if (newName.isEmpty()) {
-//                mContext.showToastIDLtd(R.string.ltd_no_file_name)
+//                mContext.showToastIDPlf(R.string.ltd_no_file_name)
 //                return@setOnClickListener
 //            }
 //            if (mRenameFile.name == newName) {
@@ -38,7 +38,7 @@
 //                return@setOnClickListener
 //            }
 //            if (!LtdTotalUtils.fileNameLtd(newName) && !LtdTotalUtils.fileNameLtd2(newName)) {
-//                mContext.showToastIDLtd(R.string.ltd_containts_unspor)
+//                mContext.showToastIDPlf(R.string.ltd_containts_unspor)
 //                return@setOnClickListener
 //            }
 //            if (!newName.contains(".")) {
@@ -49,7 +49,7 @@
 //            }
 //            val file = File(mRenameFile.parent, newName)
 //            if (file.exists()) {
-//                mContext.showToastIDLtd(R.string.ltd_file_name_exists)
+//                mContext.showToastIDPlf(R.string.ltd_file_name_exists)
 //            } else {
 //                tilFunBack(file)
 //                dismiss()

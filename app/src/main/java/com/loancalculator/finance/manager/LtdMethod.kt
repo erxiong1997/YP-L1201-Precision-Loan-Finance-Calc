@@ -23,15 +23,15 @@ inline fun <reified T> T.plfPxDp(): T {
     }
 }
 
-fun String.ltdBaseResult64(): String {
+fun String.plfBaseResult64(): String {
     return String(Base64.decode(this, Base64.DEFAULT))
 }
 
-fun Context.showToastIDLtd(tipValue: Int) {
+fun Context.showToastIDPlf(tipValue: Int) {
     Toast.makeText(this, tipValue, Toast.LENGTH_SHORT).show()
 }
 
-fun AppCompatDialog?.dismissGoLtd() {
+fun AppCompatDialog?.dismissGoPlf() {
     try {
         this?.dismiss()
     } catch (_: Exception) {
@@ -39,7 +39,7 @@ fun AppCompatDialog?.dismissGoLtd() {
     }
 }
 
-fun ImageView.imageCenterCropLtd(radius: Float) {
+fun ImageView.imageCenterCropPlf(radius: Float) {
     scaleType = ImageView.ScaleType.CENTER_CROP
     val radius = radius * resources.displayMetrics.density
     clipToOutline = true

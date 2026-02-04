@@ -2,6 +2,7 @@ package com.loancalculator.finance.manager.activity.calc
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.widget.Toast
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
@@ -9,8 +10,10 @@ import com.loancalculator.finance.manager.databinding.ActivityCalculateResultPlf
 import com.loancalculator.finance.manager.formatToSmartString
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.showToastIDPlf
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
+import com.loancalculator.finance.manager.utils.dialog.DialogAddCompareName
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
 
 class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlfBinding>(
@@ -49,12 +52,20 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
         }
 
         mPlcBinding.tvAddCompareList.setSafeListener {
-            mDataPersonalLoanPlf?.let {
-                if (it.dataIndexId > -1L) {
-                    it.addAmortizationTable = "yes"
-                    mTilPersonalLoanDao.updateContent(it)
+            DialogAddCompareName(this) { name ->
+                mDataPersonalLoanPlf?.let {
+                    if (it.dataIndexId > -1L) {
+                        it.addCompareTable = "yes"
+                        it.aTableName = name
+                        val re = mTilPersonalLoanDao.updateContent(it)
+                        if (re > 0) {
+                            showToastIDPlf(R.string.plf_added_successfully)
+                        } else {
+                            showToastIDPlf(R.string.plf_add_failed)
+                        }
+                    }
                 }
-            }
+            }.show()
         }
         mPlcBinding.tvAmortizationTable.setSafeListener {
 

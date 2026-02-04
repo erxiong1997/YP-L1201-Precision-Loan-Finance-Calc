@@ -79,5 +79,11 @@
     <string name="plf_Yes">Yes</string>
     <string name="plf_please_confirm_whether_delete_clock">Please confirm whether you want to delete it. You can add it again using "%s" after deletion.</string>
     <string name="plf_delete">Delete</string>
+    <string name="plf_set_name">Set Name</string>
+    <string name="plf_the_name_cannot_empty">The name cannot be empty.</string>
+    <string name="plf_deleteed_no_recovered">Once deleted, the current content cannot be recovered. Are you sure you want to delete it?</string>
+    <string name="plf_added_successfully">Added successfully</string>
+    <string name="plf_add_failed">Add failed</string>
+    <string name="plf_no_data">No Data</string>
     <string name="plf_"></string>
 </resources>

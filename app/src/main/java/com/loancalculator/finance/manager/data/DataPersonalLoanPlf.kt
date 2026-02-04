@@ -19,10 +19,11 @@ class DataPersonalLoanPlf() : TilBaseData() {
     var loanType: String = ""
 
     //是否加入对比表 yes no
-    var addAmortizationTable = "no"
+    var addCompareTable = "no"
 
     //对比表的名称
     var aTableName = ""
+
     //货币符号
     var currencySymbol = ""
 

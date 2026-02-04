@@ -10,12 +10,14 @@ import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
 import com.loancalculator.finance.manager.data.DataPlfLanguage
 import com.loancalculator.finance.manager.databinding.ItemComparePersonalLoanPlfBinding
 import com.loancalculator.finance.manager.formatToSmartString
+import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
 
 class AdapterComparePersonalLoanPlf(
     private val mAdapterContext: Context,
     private val mListDoData: MutableList<DataPersonalLoanPlf>,
+    private val tilDeleteBack: (Int) -> Unit,
     private val tilFunBack: (Int) -> Unit
 ) :
     RecyclerView.Adapter<AdapterComparePersonalLoanPlf.HolderItem>() {
@@ -31,6 +33,9 @@ class AdapterComparePersonalLoanPlf(
         val holderItem = HolderItem(binding)
         holderItem.itemView.setOnClickListener {
             tilFunBack(holderItem.absoluteAdapterPosition)
+        }
+        binding.tvDeleteTable.setSafeListener {
+            tilDeleteBack(holderItem.absoluteAdapterPosition)
         }
         return holderItem
     }

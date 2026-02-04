@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatDialog
 import com.loancalculator.finance.manager.databinding.DialogDeleteConfirmPlfBinding
-import com.loancalculator.finance.manager.dismissGoLtd
+import com.loancalculator.finance.manager.dismissGoPlf
 
 class DialogDeleteConfirmPlf(
     private val mContext: Context,
@@ -20,9 +20,9 @@ class DialogDeleteConfirmPlf(
         setCancelable(true)
 
         mDeleteBody?.let { mPlcBinding.tvDeleteContent.text = it }
-        mPlcBinding.tvCancel.setOnClickListener { dismissGoLtd() }
+        mPlcBinding.tvCancel.setOnClickListener { dismissGoPlf() }
         mPlcBinding.tvYes.setOnClickListener {
-            dismissGoLtd()
+            dismissGoPlf()
             tilFunBack()
         }
 

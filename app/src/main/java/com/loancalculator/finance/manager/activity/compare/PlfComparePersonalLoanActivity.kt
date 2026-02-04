@@ -1,5 +1,6 @@
 package com.loancalculator.finance.manager.activity.compare
 
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
@@ -7,6 +8,7 @@ import com.loancalculator.finance.manager.adapter.AdapterComparePersonalLoanPlf
 import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
 import com.loancalculator.finance.manager.databinding.ActivityComparePersonalLoanPlfBinding
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
+import com.loancalculator.finance.manager.utils.dialog.DialogDeleteConfirmPlf
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 
 class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersonalLoanPlfBinding>() {
@@ -55,11 +57,29 @@ class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersona
     }
 
     override fun setPlfRecyclerView() {
-        mAdapterComparePersonalLoanPlf = AdapterComparePersonalLoanPlf(this, mListData) {
+        mAdapterComparePersonalLoanPlf = AdapterComparePersonalLoanPlf(this, mListData, {
+            //delete
+            DialogDeleteConfirmPlf(this, getString(R.string.plf_deleteed_no_recovered)) {
+                mListData.removeAt(it)
+                if (mListData.isEmpty()) {
+                    mPlcBinding.rvRvView.visibility = View.GONE
+                    mPlcBinding.clNoData.visibility = View.VISIBLE
+                }
+                mAdapterComparePersonalLoanPlf.notifyItemRemoved(it)
+            }.show()
+
+        }) {//item
 
         }
         mPlcBinding.rvRvView.layoutManager = LinearLayoutManager(this)
         mPlcBinding.rvRvView.adapter = mAdapterComparePersonalLoanPlf
+        if (mListData.isEmpty()) {
+            mPlcBinding.rvRvView.visibility = View.GONE
+            mPlcBinding.clNoData.visibility = View.VISIBLE
+        } else {
+            mPlcBinding.rvRvView.visibility = View.VISIBLE
+            mPlcBinding.clNoData.visibility = View.GONE
+        }
     }
 
     override fun getLayoutValue(): ActivityComparePersonalLoanPlfBinding {
