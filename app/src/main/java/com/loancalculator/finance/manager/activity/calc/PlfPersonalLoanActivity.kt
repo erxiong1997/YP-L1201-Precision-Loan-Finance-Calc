@@ -1,5 +1,6 @@
 package com.loancalculator.finance.manager.activity.calc
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.util.Log
 import android.view.Gravity
@@ -18,9 +19,11 @@ import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
 import com.loancalculator.finance.manager.databinding.ActivityPersonalLoanPlfBinding
 import com.loancalculator.finance.manager.plfPxDp
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
+import java.util.Calendar
 
 class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBinding>(
     mBarTextWhite = false
@@ -39,6 +42,8 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
     override fun beginViewAndDoLtd() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_personal_loan)
 
+        mPlcBinding.tvStartDate.text =
+            TimeDatePlfUtils.getTimeDateOnePlf(System.currentTimeMillis())
         mPlcBinding.llCurrencyUnit.setSafeListener {
             mCurrencySelectLauncher.launch(Intent(this, PlfCurrencyUnitActivity::class.java))
         }
@@ -79,7 +84,7 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
             popView.showAsDropDown(it, 0, 0, Gravity.CENTER)
         }
         mPlcBinding.clStartDate.setSafeListener {
-
+            showStartDateDialog()
         }
         mPlcBinding.tvCalculate.setSafeListener {
             calculatorResult()
@@ -150,7 +155,11 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
             loanAmount = amount
             interestRate = rate
             loanTerm = term
-            startDate = System.currentTimeMillis()
+            startDate = if (mCurStartDateTime == 0L) {
+                System.currentTimeMillis()
+            } else {
+                mCurStartDateTime
+            }
         }
         val (a, b) = ToolsLoanMonthDetailUtils.calculateAmortization(amount, rate / 100, term)
         dataPersonalLoanPlf.monthlyPayment = a
@@ -163,6 +172,36 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
         mPlcBinding.etLoanAmount.text = null
         mPlcBinding.etInterestRate.text = null
         mPlcBinding.etLoanTerm.text = null
+    }
+
+    private var mYearValue = 0
+    private var mMonthValue = 0
+    private var mDayValue = 0
+    private var mCurStartDateTime = 0L
+
+    private fun showStartDateDialog() {
+        val calendar = Calendar.getInstance()
+        mYearValue = calendar.get(Calendar.YEAR)
+        mMonthValue = calendar.get(Calendar.MONTH)
+        mDayValue = calendar.get(Calendar.DAY_OF_MONTH)
+        DatePickerDialog(
+            this,
+            R.style.MyDatePickerDialogTheme,
+            { view, year, month, dayOfMonth ->
+                mYearValue = year
+                mMonthValue = month
+                mDayValue = dayOfMonth
+                val selectedDate = Calendar.getInstance().apply {
+                    set(year, month, dayOfMonth)
+                }
+                mCurStartDateTime = selectedDate.time.time
+
+                mPlcBinding.tvStartDate.text = TimeDatePlfUtils.getTimeDateOnePlf(mCurStartDateTime)
+            },
+            mYearValue,
+            mMonthValue,
+            mDayValue
+        ).show()
     }
 
     override fun getLayoutValue(): ActivityPersonalLoanPlfBinding {

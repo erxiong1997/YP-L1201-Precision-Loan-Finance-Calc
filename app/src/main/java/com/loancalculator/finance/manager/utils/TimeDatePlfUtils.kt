@@ -20,7 +20,6 @@ object TimeDatePlfUtils {
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
             nowInZone.format(formatter)
         } catch (e: Exception) {
-            "Invalid time zone: $ianaZone (${e.message})"
             ""
         }
     }
@@ -42,7 +41,6 @@ object TimeDatePlfUtils {
 
             Pair(nowInZone.format(formatter), getUtcOffsetString(nowInZone.offset))
         } catch (e: Exception) {
-            "Invalid time zone: $ianaZone (${e.message})"
             Pair("", "")
         }
     }
@@ -55,9 +53,9 @@ object TimeDatePlfUtils {
         val absHours = abs(hours)
 
         return if (minutes == 0) {
-            "UTC$sign%02d:00".format(absHours)
+            "UTC $sign%02d:00".format(absHours)
         } else {
-            "UTC$sign%02d:%02d".format(absHours, Math.abs(minutes))
+            "UTC $sign%02d:%02d".format(absHours, Math.abs(minutes))
         }
     }
 
@@ -71,14 +69,13 @@ object TimeDatePlfUtils {
         return sim.format(Date(long))
     }
 
-    fun getOverDatePlf(addMonth: Long): Long {
+    fun getOverDatePlf(addMonth: Long, srcTime: Long): Long {
         val currentTime = LocalDateTime.ofInstant(
-            Date(System.currentTimeMillis()).toInstant(),
+            Date(srcTime).toInstant(),
             ZoneId.systemDefault()
         )
         // 2. 加1个月：自动处理月末31号（归一化到下月最后一天）、12月跨年
         val nextMonthTime = currentTime.plusMonths(addMonth)
-        // 3. 转换回时间戳（long 类型，与原需求的 System.currentTimeMillis() 类型一致）
         return nextMonthTime
             .atZone(ZoneId.systemDefault())
             .toInstant()

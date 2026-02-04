@@ -11,6 +11,7 @@ import com.loancalculator.finance.manager.databinding.ActivityToolsWorldTimePlfB
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
+import com.loancalculator.finance.manager.utils.dialog.DialogDeleteConfirmPlf
 
 class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBinding>() {
     private val mUtcSelectLauncher =
@@ -55,11 +56,58 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
     override fun setPlfRecyclerView() {
         mListData.clear()
         DealRecentPlfUtils.getWorldTimeUtcRecent(mListData)
-        mAdapterUtcSaveItemPlf = AdapterUtcSaveItemPlf(this, mListData) {
+        if (mListData.isEmpty()) {
+            fillEmptyList(true)
+        }
+        mAdapterUtcSaveItemPlf = AdapterUtcSaveItemPlf(this, mListData, {
+            //long click
+            val data = mListData[it]
+            DialogDeleteConfirmPlf(
+                this, String.format(
+                    getString(R.string.plf_please_confirm_whether_delete_clock),
+                    getString(R.string.plf_add_clock)
+                )
+            ) {
+                mListData.removeAt(it)
+                if (mListData.isEmpty()) {
+                    fillEmptyList(false)
+                } else {
+                    mAdapterUtcSaveItemPlf.notifyItemRemoved(it)
+                }
+                DealRecentPlfUtils.addWorldTimeUtcRecent(mListData)
+            }.show()
+        }) {
 
         }
         mPlcBinding.rvRvView.layoutManager = LinearLayoutManager(this)
         mPlcBinding.rvRvView.adapter = mAdapterUtcSaveItemPlf
+    }
+
+    private val mEmptyList = mutableListOf(
+        "Africa/Abidjan",
+        "Africa/Accra",
+        "Africa/Addis_Ababa",
+    )
+
+    private fun fillEmptyList(noUpdate: Boolean) {
+        mListData.clear()
+        for (data in mEmptyList) {
+            if (data.isNotEmpty()) {
+                val (a, b) = TimeDatePlfUtils.getCurrentTimeInZoneOffset(data)
+                val s = a.split(":")[0].toInt()
+                mListData.add(0, DataUtcSelectPlf(data, b).apply {
+                    mCurTime = a
+                    amOrPm = if (s > 12) {
+                        "PM"
+                    } else {
+                        "AM"
+                    }
+                })
+            }
+        }
+        if (noUpdate) {
+            mAdapterUtcSaveItemPlf.notifyDataSetChanged()
+        }
     }
 
     override fun getLayoutValue(): ActivityToolsWorldTimePlfBinding {

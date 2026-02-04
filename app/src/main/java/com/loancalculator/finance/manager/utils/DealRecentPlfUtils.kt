@@ -35,7 +35,11 @@ object DealRecentPlfUtils {
                 MutableList::class.java, DataUtcSelectPlf::class.java
             )
             val adapter = moshi.adapter<MutableList<DataUtcSelectPlf>>(type)
-            DataManagerLtdUtils.setDataKeyPlf(PLF_WORLD_TIME_UTC, adapter.toJson(saveList))
+            if (saveList.isEmpty()) {
+                DataManagerLtdUtils.setDataKeyPlf(PLF_WORLD_TIME_UTC, "")
+            } else {
+                DataManagerLtdUtils.setDataKeyPlf(PLF_WORLD_TIME_UTC, adapter.toJson(saveList))
+            }
         } catch (_: Exception) {
         }
     }

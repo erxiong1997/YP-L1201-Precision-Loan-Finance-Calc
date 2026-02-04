@@ -34,7 +34,11 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
             mPlcBinding.tvTotalInterestPayable2.text =
                 (totalPay - data.loanAmount).formatToSmartString()
             mPlcBinding.tvPayingOffDate2.text =
-                TimeDatePlfUtils.getTimeDateOnePlf(TimeDatePlfUtils.getOverDatePlf(data.loanTerm.toLong()))
+                TimeDatePlfUtils.getTimeDateOnePlf(
+                    TimeDatePlfUtils.getOverDatePlf(
+                        data.loanTerm.toLong(), data.startDate
+                    )
+                )
         }
 
         mPlcBinding.tvAddCompareList.setSafeListener {

@@ -11,6 +11,7 @@ import com.loancalculator.finance.manager.setSafeListener
 class AdapterUtcSaveItemPlf(
     private val mAdapterContext: Context,
     private val mListDoData: MutableList<DataUtcSelectPlf>,
+    private val tilLongBack: (Int) -> Unit,
     private val tilFunBack: (Int) -> Unit
 ) :
     RecyclerView.Adapter<AdapterUtcSaveItemPlf.HolderItem>() {
@@ -26,6 +27,10 @@ class AdapterUtcSaveItemPlf(
         val holderItem = HolderItem(binding)
         holderItem.itemView.setSafeListener {
             tilFunBack(holderItem.absoluteAdapterPosition)
+        }
+        holderItem.itemView.setOnLongClickListener {
+            tilLongBack(holderItem.absoluteAdapterPosition)
+            true
         }
         return holderItem
     }

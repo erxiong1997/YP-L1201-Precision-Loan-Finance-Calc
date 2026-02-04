@@ -2,4 +2,9 @@
 <resources>
 
     <style name="Theme.PrecisionLoanFinanceCalc" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <!-- 亮色主题示例 -->
+    <style name="MyDatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/plf_0ACE86</item>
+    </style>
 </resources>

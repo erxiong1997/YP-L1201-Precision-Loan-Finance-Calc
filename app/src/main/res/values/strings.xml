@@ -73,5 +73,9 @@
     <string name="plf_city">City</string>
     <string name="plf_add_clock">Add Clock</string>
     <string name="plf_search">Search</string>
+    <string name="plf_delete_reminder">Delete Reminder</string>
+    <string name="plf_cancel">Cancel</string>
+    <string name="plf_Yes">Yes</string>
+    <string name="plf_please_confirm_whether_delete_clock">Please confirm whether you want to delete it. You can add it again using "%s" after deletion.</string>
     <string name="plf_"></string>
 </resources>
