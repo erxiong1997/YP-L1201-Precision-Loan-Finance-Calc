@@ -78,8 +78,13 @@
         <activity
             android:name="com.loancalculator.finance.manager.activity.calc.PlfBusinessLoanActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.loancalculator.finance.manager.activity.calc.PlfCalculateResultTwoActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.calc.PlfCalculateResultTwoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.calc.PlfAutoLoanActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.loancalculator.finance.manager.activity.calc.PlfMortgagesActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

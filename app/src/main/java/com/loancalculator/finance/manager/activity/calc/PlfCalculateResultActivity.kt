@@ -7,7 +7,7 @@ import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
 import com.loancalculator.finance.manager.databinding.ActivityCalculateResultPlfBinding
-import com.loancalculator.finance.manager.formatToSmartString
+import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.showToastIDPlf
@@ -34,9 +34,9 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
 
             val totalPay = data.monthlyPayment * data.loanTerm
 
-            mPlcBinding.tvTotalPayment2.text = totalPay.formatToSmartString()
+            mPlcBinding.tvTotalPayment2.text = totalPay.formatToFixString()
             mPlcBinding.tvTotalInterestPayable2.text =
-                (totalPay - data.loanAmount).formatToSmartString()
+                (totalPay - data.loanAmount).formatToFixString()
             mPlcBinding.tvPayingOffDate2.text =
                 TimeDatePlfUtils.getTimeDateOnePlf(
                     TimeDatePlfUtils.getOverDatePlf(

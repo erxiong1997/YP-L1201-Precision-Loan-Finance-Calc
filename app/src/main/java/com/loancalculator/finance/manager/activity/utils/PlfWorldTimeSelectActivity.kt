@@ -50,7 +50,7 @@ class PlfWorldTimeSelectActivity : PlfBindingActivity<ActivityWorldTimeSelectPlf
                 mAdapterWorldTimeSelectPlf.notifyDataSetChanged()
             } else {
                 mHandlerLtd?.removeMessages(1189)
-                mHandlerLtd?.sendEmptyMessage(1189)
+                mHandlerLtd?.sendEmptyMessageDelayed(1189, 64)
             }
         }
         mPlcBinding.topSetPlf.ivSelect.visibility = View.INVISIBLE

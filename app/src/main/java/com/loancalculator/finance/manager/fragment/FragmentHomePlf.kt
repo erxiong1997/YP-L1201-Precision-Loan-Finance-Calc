@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.loancalculator.finance.manager.activity.PlfRootActivity
+import com.loancalculator.finance.manager.activity.calc.PlfAutoLoanActivity
 import com.loancalculator.finance.manager.activity.calc.PlfBusinessLoanActivity
+import com.loancalculator.finance.manager.activity.calc.PlfMortgagesActivity
 import com.loancalculator.finance.manager.activity.calc.PlfPersonalLoanActivity
 import com.loancalculator.finance.manager.activity.compare.PlfHistoryCalculateActivity
 import com.loancalculator.finance.manager.databinding.FragmentHomePlfBinding
@@ -33,6 +35,12 @@ class FragmentHomePlf : RootPlfFragment<FragmentHomePlfBinding>() {
         }
         mPlfBinding.tvBusinessLoan.setSafeListener {
             startActivity(Intent(rootActivity, PlfBusinessLoanActivity::class.java))
+        }
+        mPlfBinding.tvMortgages.setSafeListener {
+            startActivity(Intent(rootActivity, PlfMortgagesActivity::class.java))
+        }
+        mPlfBinding.tvAutoLoan.setSafeListener {
+            startActivity(Intent(rootActivity, PlfAutoLoanActivity::class.java))
         }
         mPlfBinding.tvMore.setSafeListener {
             startActivity(Intent(rootActivity, PlfHistoryCalculateActivity::class.java))

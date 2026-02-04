@@ -9,7 +9,7 @@ import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
 import com.loancalculator.finance.manager.data.DataPlfLanguage
 import com.loancalculator.finance.manager.databinding.ItemComparePersonalLoanPlfBinding
-import com.loancalculator.finance.manager.formatToSmartString
+import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
@@ -56,9 +56,9 @@ class AdapterComparePersonalLoanPlf(
 
             val totalPay = data.monthlyPayment * data.loanTerm
 
-            tvTotalPayment2.text = totalPay.formatToSmartString()
+            tvTotalPayment2.text = totalPay.formatToFixString()
             tvTotalInterestPayable2.text =
-                (totalPay - data.loanAmount).formatToSmartString()
+                (totalPay - data.loanAmount).formatToFixString()
             tvPayingOffDate2.text =
                 TimeDatePlfUtils.getTimeDateOnePlf(
                     TimeDatePlfUtils.getOverDatePlf(

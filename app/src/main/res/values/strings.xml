@@ -85,5 +85,16 @@
     <string name="plf_added_successfully">Added successfully</string>
     <string name="plf_add_failed">Add failed</string>
     <string name="plf_no_data">No Data</string>
+    <string name="plf_home_price">Home Price</string>
+    <string name="plf_the_total_price_house">The total price of the house</string>
+    <string name="plf_the_longer_term_but_higher">The longer the term, the lower the monthly payment,
+but the higher the interest.</string>
+    <string name="plf_download_payment">Download Payment</string>
+    <string name="plf_the_portion_paid_loan">The portion of the price that is not paid through a loan</string>
+    <string name="plf_payment_ratio">Payment Ratio</string>
+    <string name="plf_property_tax">Property Tax</string>
+    <string name="plf_pmi">PMI</string>
+    <string name="plf_hoa_fees">HOA Fees</string>
+    <string name="plf_home_insurance">Home Insurance</string>
     <string name="plf_"></string>
 </resources>

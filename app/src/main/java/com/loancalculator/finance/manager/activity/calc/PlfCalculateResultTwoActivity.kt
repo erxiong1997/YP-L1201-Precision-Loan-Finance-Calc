@@ -7,7 +7,7 @@ import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
 import com.loancalculator.finance.manager.databinding.ActivityCalculateResultPlfBinding
 import com.loancalculator.finance.manager.databinding.ActivityCalculateResultTwoPlfBinding
-import com.loancalculator.finance.manager.formatToSmartString
+import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.showToastIDPlf
