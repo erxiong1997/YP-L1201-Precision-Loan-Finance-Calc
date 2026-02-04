@@ -31,7 +31,7 @@ class DataPersonalLoanPlf() : TilBaseData() {
     var loanAmount: Int = 0
 
     //首次支付的房款
-    var firstAmount: Int = 0
+    var firstAmount: Double = 0.0
 
     //贷款年利率
     var interestRate: Double = 0.0

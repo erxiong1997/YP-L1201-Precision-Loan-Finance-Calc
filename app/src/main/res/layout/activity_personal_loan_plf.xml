@@ -181,7 +181,7 @@
                     android:digits="@string/plf_number_2"
                     android:hint="@string/plf_interest_rate"
                     android:inputType="numberDecimal"
-                    android:maxLength="4"
+                    android:maxLength="5"
                     android:singleLine="true"
                     android:textColor="@color/plf_050C03"
                     android:textColorHint="@color/plf_050C03_40"

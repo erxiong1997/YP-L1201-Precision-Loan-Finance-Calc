@@ -44,6 +44,7 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
     //month year
     private var mMonthYear = "month"
     private var mEditIng = false
+    private var mEditIngTwo = false
 
     init {
         mHandlerLtd = object : Handler(Looper.getMainLooper()) {
@@ -56,8 +57,9 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
                             mPlcBinding.etDownloadPayment.text.toString().trim().toDoubleOrNull()
                                 ?: 0.0
                         if (total > 0 && down <= total) {
-                            val re = (down * 1.0 / (total * 1.0) * 100.0).formatToFixString()
+                            val re = ((down * 1.0 / (total * 1.0)) * 100.0).formatToFixString()
                             mPlcBinding.etPaymentRatio.setText(re)
+                            mEditIng = true
                         }
                     }
 
@@ -66,10 +68,11 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
                             mPlcBinding.etHomePrice.text.toString().trim().toIntOrNull() ?: 0
                         val ratio =
                             (mPlcBinding.etPaymentRatio.text.toString().trim().toDoubleOrNull()
-                                ?: 0.0) / 100
+                                ?: 0.0) / 100.0
                         if (ratio < 1) {
                             val re = (total * 1.0 * ratio).formatToFixString()
                             mPlcBinding.etDownloadPayment.setText(re)
+                            mEditIng = true
                         }
                     }
                 }
@@ -133,8 +136,10 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
 
         mPlcBinding.etHomePrice.doAfterTextChanged {
             if (it.isNullOrEmpty()) {
+                mEditIngTwo = true
                 mPlcBinding.etDownloadPayment.setText(null)
                 mPlcBinding.etPaymentRatio.setText(null)
+                mEditIngTwo = false
                 mPlcBinding.tvDownloadPayment1.visibility = View.GONE
                 mPlcBinding.tvDownloadPayment2.visibility = View.GONE
                 mPlcBinding.clDownloadPayment1.visibility = View.GONE
@@ -145,10 +150,11 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
             }
         }
         mPlcBinding.etDownloadPayment.doAfterTextChanged {
-            if (it.isNullOrEmpty()) {
-                mPlcBinding.etPaymentRatio.setText(null)
-            } else {
-                if (mEditIng) {
+            if (mEditIngTwo) return@doAfterTextChanged
+            if (!mEditIng) {
+                if (it.isNullOrEmpty()) {
+                    mEditIng = true
+                    mPlcBinding.etPaymentRatio.setText(null)
                     mEditIng = false
                 } else {
                     mEditIng = true
@@ -157,11 +163,12 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
                 }
             }
         }
-        mPlcBinding.etDownloadPayment.doAfterTextChanged {
-            if (it.isNullOrEmpty()) {
-                mPlcBinding.etPaymentRatio.setText(null)
-            } else {
-                if (mEditIng) {
+        mPlcBinding.etPaymentRatio.doAfterTextChanged {
+            if (mEditIngTwo) return@doAfterTextChanged
+            if (!mEditIng) {
+                if (it.isNullOrEmpty()) {
+                    mEditIng = true
+                    mPlcBinding.etDownloadPayment.setText(null)
                     mEditIng = false
                 } else {
                     mEditIng = true
@@ -241,15 +248,33 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
         if (mMonthYear == "year") {
             term *= 12
         }
+        val downloadPayment =
+            mPlcBinding.etDownloadPayment.text.toString().trim().toDoubleOrNull() ?: 0.0
+        if (downloadPayment > amount) {
+            mPlcBinding.tvDownloadPaymentError.visibility = View.VISIBLE
+            mPlcBinding.tvHomePriceError.visibility = View.VISIBLE
+            return
+        } else {
+            mPlcBinding.tvDownloadPaymentError.visibility = View.GONE
+            mPlcBinding.tvHomePriceError.visibility = View.GONE
+        }
+        val one = mPlcBinding.etPropertyTax.text.toString().trim().toIntOrNull() ?: 0
+        val two = mPlcBinding.etPmiText.text.toString().trim().toIntOrNull() ?: 0
+        val three = mPlcBinding.etHOAFees.text.toString().trim().toIntOrNull() ?: 0
+        val four = mPlcBinding.etHomeInsurance.text.toString().trim().toIntOrNull() ?: 0
+
+        val total = amount + one + two + three + four - downloadPayment
+
         val dataPersonalLoanPlf = DataPersonalLoanPlf().apply {
             loanType = LoanTypePlf.MORTGAGES
             loanAmount = amount
+            firstAmount = downloadPayment
             interestRate = rate
             loanTerm = term
             startDate = System.currentTimeMillis()
             currencySymbol = mDataCurrencyUnitPlf?.currencySymbol ?: "$"
         }
-        val (a, b) = ToolsLoanMonthDetailUtils.calculateAmortization(amount, rate / 100, term)
+        val (a, b) = ToolsLoanMonthDetailUtils.calculateAmortization(total, rate / 100, term)
         dataPersonalLoanPlf.monthlyPayment = a
         dataPersonalLoanPlf.mLoanMonthDetailList = b
         mDataPersonalLoanPlf = dataPersonalLoanPlf
@@ -257,6 +282,7 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
     }
 
     private fun clearAllValue() {
+        mEditIngTwo = true
         mPlcBinding.etHomePrice.text = null
         mPlcBinding.etInterestRate.text = null
         mPlcBinding.etLoanTerm.text = null
@@ -266,6 +292,7 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
         mPlcBinding.etPmiText.text = null
         mPlcBinding.etHomeInsurance.text = null
         mPlcBinding.etHOAFees.text = null
+        mEditIngTwo = false
     }
 
     override fun getLayoutValue(): ActivityMortgagesPlfBinding {

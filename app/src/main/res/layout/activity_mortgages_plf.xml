@@ -181,7 +181,7 @@
                     android:digits="@string/plf_number_2"
                     android:hint="@string/plf_interest_rate"
                     android:inputType="numberDecimal"
-                    android:maxLength="4"
+                    android:maxLength="5"
                     android:singleLine="true"
                     android:textColor="@color/plf_050C03"
                     android:textColorHint="@color/plf_050C03_40"
@@ -403,19 +403,19 @@
                         android:background="@null"
                         android:digits="@string/plf_number_2"
                         android:hint="@string/plf_payment_ratio"
-                        android:inputType=""
+                        android:inputType="numberDecimal"
                         android:maxLength="4"
                         android:singleLine="true"
                         android:textColor="@color/plf_050C03"
                         android:textColorHint="@color/plf_050C03_40"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/tvPercent"
+                        app:layout_constraintEnd_toStartOf="@+id/tvPercent2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tvPercent"
+                        android:id="@+id/tvPercent2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
@@ -632,7 +632,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="56dp" />
+                android:layout_height="126dp" />
         </LinearLayout>
     </ScrollView>
 

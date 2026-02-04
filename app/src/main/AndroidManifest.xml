@@ -84,7 +84,9 @@
         <activity
             android:name="com.loancalculator.finance.manager.activity.calc.PlfAutoLoanActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.loancalculator.finance.manager.activity.calc.PlfMortgagesActivity" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.calc.PlfMortgagesActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
