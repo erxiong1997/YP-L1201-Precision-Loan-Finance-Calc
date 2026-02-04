@@ -42,13 +42,12 @@ class AdapterComparePersonalLoanPlf(
     ) {
         val data = mListDoData[position]
         holder.mPlfBinding.apply {
-            val symbol = mDataCurrencyUnitPlf?.currencySymbol ?: "$"
             tvLoanAmount2.text =
-                "${data.loanAmount}$symbol"
+                "${data.loanAmount}${data.currencySymbol}"
             tvIntersetRate2.text = "${data.interestRate}%"
             tvLoanTerm2.text = "${data.loanTerm} ${mAdapterContext.getString(R.string.plf_month)}"
             tvStartDate2.text = TimeDatePlfUtils.getTimeDateOnePlf(data.startDate)
-            tvMonthPayment2.text = "${data.monthlyPayment}${symbol}"
+            tvMonthPayment2.text = "${data.monthlyPayment}${data.currencySymbol}"
 
             val totalPay = data.monthlyPayment * data.loanTerm
 

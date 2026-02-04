@@ -6,6 +6,7 @@ import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
 import com.loancalculator.finance.manager.databinding.ActivityCalculateResultPlfBinding
+import com.loancalculator.finance.manager.databinding.ActivityCalculateResultTwoPlfBinding
 import com.loancalculator.finance.manager.formatToSmartString
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
@@ -13,7 +14,7 @@ import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
 
-class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlfBinding>(
+class PlfCalculateResultTwoActivity : PlfBindingActivity<ActivityCalculateResultTwoPlfBinding>(
     mBarTextWhite = false
 ) {
     private var mTilPersonalLoanDao = mPlfLoanRoom.mTilPersonalLoanDao()
@@ -29,17 +30,6 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
             mPlcBinding.tvStartDate2.text = TimeDatePlfUtils.getTimeDateOnePlf(data.startDate)
             mPlcBinding.tvMonthPayment2.text = "${data.monthlyPayment}${data.currencySymbol}"
 
-            val totalPay = data.monthlyPayment * data.loanTerm
-
-            mPlcBinding.tvTotalPayment2.text = totalPay.formatToSmartString()
-            mPlcBinding.tvTotalInterestPayable2.text =
-                (totalPay - data.loanAmount).formatToSmartString()
-            mPlcBinding.tvPayingOffDate2.text =
-                TimeDatePlfUtils.getTimeDateOnePlf(
-                    TimeDatePlfUtils.getOverDatePlf(
-                        data.loanTerm.toLong(), data.startDate
-                    )
-                )
             val dataIndexId = mTilPersonalLoanDao.insertContent(data)
             if (dataIndexId != -1L) {
                 data.dataIndexId = dataIndexId
@@ -56,9 +46,6 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
                 }
             }
         }
-        mPlcBinding.tvAmortizationTable.setSafeListener {
-
-        }
         mPlcBinding.tvShare.setSafeListener {
 
         }
@@ -67,7 +54,7 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
         }
     }
 
-    override fun getLayoutValue(): ActivityCalculateResultPlfBinding {
-        return ActivityCalculateResultPlfBinding.inflate(layoutInflater)
+    override fun getLayoutValue(): ActivityCalculateResultTwoPlfBinding {
+        return ActivityCalculateResultTwoPlfBinding.inflate(layoutInflater)
     }
 }

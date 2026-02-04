@@ -6,11 +6,15 @@ import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.adapter.AdapterComparePersonalLoanPlf
 import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
 import com.loancalculator.finance.manager.databinding.ActivityComparePersonalLoanPlfBinding
+import com.loancalculator.finance.manager.room.mPlfLoanRoom
+import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 
 class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersonalLoanPlfBinding>() {
     private lateinit var mAdapterComparePersonalLoanPlf: AdapterComparePersonalLoanPlf
     private val mListData = mutableListOf<DataPersonalLoanPlf>()
     private var mCompareType = ""
+    private var mTilPersonalLoanDao = mPlfLoanRoom.mTilPersonalLoanDao()
+
     override fun beginViewAndDoLtd() {
         intent?.let {
             mCompareType = it.getStringExtra("compareType") ?: ""
@@ -20,6 +24,9 @@ class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersona
                         getString(R.string.plf_compare_2),
                         getString(R.string.plf_personal_loan)
                     )
+                    mTilPersonalLoanDao.getListByLoanType(LoanTypePlf.PERSONAL).let {
+                        mListData.addAll(it)
+                    }
                 }
 
                 "businessLoan" -> {

@@ -18,11 +18,13 @@ class DataPersonalLoanPlf() : TilBaseData() {
     //类型 personalLoan businessLoan mortgages autoLoan
     var loanType: String = ""
 
-    //是否加入摊还表 yes no
+    //是否加入对比表 yes no
     var addAmortizationTable = "no"
 
-    //摊还表的名称
+    //对比表的名称
     var aTableName = ""
+    //货币符号
+    var currencySymbol = ""
 
     //贷款金额
     var loanAmount: Int = 0
