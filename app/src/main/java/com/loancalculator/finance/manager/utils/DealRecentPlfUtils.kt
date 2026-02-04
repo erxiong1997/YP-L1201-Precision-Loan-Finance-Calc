@@ -1,5 +1,6 @@
 package com.loancalculator.finance.manager.utils
 
+import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
 import com.loancalculator.finance.manager.data.DataUtcSelectPlf
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -60,5 +61,38 @@ object DealRecentPlfUtils {
         } catch (_: Exception) {
         }
         return curList
+    }
+
+    //货币的选择
+    const val PLF_CURRENCY_UNIT_VALUE = "plfCurrencyUnitValue"
+
+
+    fun addCurrencyUnitRecent(dataRecentInfo: DataCurrencyUnitPlf?) {
+        if (dataRecentInfo == null) return
+        try {
+            val moshi = Moshi.Builder().build()
+            val adapter = moshi.adapter(DataCurrencyUnitPlf::class.java)
+
+            DataManagerLtdUtils.setDataKeyPlf(
+                PLF_CURRENCY_UNIT_VALUE,
+                adapter.toJson(dataRecentInfo)
+            )
+        } catch (_: Exception) {
+        }
+    }
+
+    fun getCurrencyUnitRecent(): DataCurrencyUnitPlf? {
+        try {
+            val recordData = DataManagerLtdUtils.getDataKeyPlf(PLF_CURRENCY_UNIT_VALUE, "")
+            val moshi = Moshi.Builder().build()
+            val adapter = moshi.adapter(DataCurrencyUnitPlf::class.java)
+            if (recordData.isNotEmpty()) {
+                adapter.fromJson(recordData)?.let {
+                    return it
+                }
+            }
+        } catch (_: Exception) {
+        }
+        return null
     }
 }

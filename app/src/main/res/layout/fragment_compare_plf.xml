@@ -68,7 +68,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/plf_compare_des_personal"
                 android:textColor="@color/plf_050C03_30"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 app:layout_constraintTop_toBottomOf="@+id/tvPersonalLoan1" />
 
             <TextView
@@ -131,7 +131,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/plf_compare_des_business"
                 android:textColor="@color/plf_050C03_30"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 app:layout_constraintTop_toBottomOf="@+id/tvBusinessLoan1" />
 
             <TextView
@@ -202,7 +202,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/plf_compare_des_mortgages"
                 android:textColor="@color/plf_050C03_30"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 app:layout_constraintTop_toBottomOf="@+id/tvMortgages1" />
 
             <TextView
@@ -265,7 +265,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/plf_compare_des_auto_loan"
                 android:textColor="@color/plf_050C03_30"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 app:layout_constraintTop_toBottomOf="@+id/tvAutoLoanLoan1" />
 
             <TextView

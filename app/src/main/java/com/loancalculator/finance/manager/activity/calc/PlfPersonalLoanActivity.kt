@@ -19,9 +19,11 @@ import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
 import com.loancalculator.finance.manager.databinding.ActivityPersonalLoanPlfBinding
 import com.loancalculator.finance.manager.plfPxDp
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
+import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
 import java.util.Calendar
 
@@ -34,6 +36,7 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
                 mPlcBinding.tvCurrencySymbol.text = mDataCurrencyUnitPlf?.currencySymbol
                 mPlcBinding.ivCurrencyFlag.load(mDataCurrencyUnitPlf?.currencyDrawable)
                 mPlcBinding.tvCurrencyName.text = mDataCurrencyUnitPlf?.currencyUnit
+                DealRecentPlfUtils.addCurrencyUnitRecent(mDataCurrencyUnitPlf)
             }
         }
 
@@ -44,6 +47,12 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
 
         mPlcBinding.tvStartDate.text =
             TimeDatePlfUtils.getTimeDateOnePlf(System.currentTimeMillis())
+        mDataCurrencyUnitPlf = DealRecentPlfUtils.getCurrencyUnitRecent()
+        mDataCurrencyUnitPlf?.let {
+            mPlcBinding.tvCurrencySymbol.text = mDataCurrencyUnitPlf?.currencySymbol
+            mPlcBinding.ivCurrencyFlag.load(mDataCurrencyUnitPlf?.currencyDrawable)
+            mPlcBinding.tvCurrencyName.text = mDataCurrencyUnitPlf?.currencyUnit
+        }
         mPlcBinding.llCurrencyUnit.setSafeListener {
             mCurrencySelectLauncher.launch(Intent(this, PlfCurrencyUnitActivity::class.java))
         }
@@ -152,6 +161,7 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
             term *= 12
         }
         val dataPersonalLoanPlf = DataPersonalLoanPlf().apply {
+            loanType = LoanTypePlf.PERSONAL
             loanAmount = amount
             interestRate = rate
             loanTerm = term

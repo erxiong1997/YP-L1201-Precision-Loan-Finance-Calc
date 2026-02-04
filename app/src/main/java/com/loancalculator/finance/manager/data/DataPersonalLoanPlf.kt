@@ -15,8 +15,20 @@ class DataPersonalLoanPlf() : TilBaseData() {
     @PrimaryKey(autoGenerate = true)
     var dataIndexId: Long = 0L
 
+    //类型 personalLoan businessLoan mortgages autoLoan
+    var loanType: String = ""
+
+    //是否加入摊还表 yes no
+    var addAmortizationTable = "no"
+
+    //摊还表的名称
+    var aTableName = ""
+
     //贷款金额
     var loanAmount: Int = 0
+
+    //首次支付的房款
+    var firstAmount: Int = 0
 
     //贷款年利率
     var interestRate: Double = 0.0
@@ -32,6 +44,18 @@ class DataPersonalLoanPlf() : TilBaseData() {
 
     //添加日期
     var addDate: Long = System.currentTimeMillis()
+
+    //物业税
+    var propertyTax: Int = 0
+
+    //PMI
+    var pmiMoney: Int = 0
+
+    //房主保险
+    var homeownersInsurance: Int = 0
+
+    //业委会费用
+    var hoaMoney: Int = 0
 
     var tempLong1: Long = 0
     var tempLong2: Long = 0

@@ -1,5 +1,8 @@
 package com.loancalculator.finance.manager.data
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class DataCurrencyUnitPlf(
     val currencyDrawable: Int,
     val currencyUnit: String,

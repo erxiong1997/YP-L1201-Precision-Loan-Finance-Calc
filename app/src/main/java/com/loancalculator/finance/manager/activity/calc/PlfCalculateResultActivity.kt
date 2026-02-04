@@ -7,15 +7,17 @@ import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
 import com.loancalculator.finance.manager.databinding.ActivityCalculateResultPlfBinding
 import com.loancalculator.finance.manager.formatToSmartString
+import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
-import java.math.BigDecimal
 
 class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlfBinding>(
     mBarTextWhite = false
 ) {
+    private var mTilPersonalLoanDao = mPlfLoanRoom.mTilPersonalLoanDao()
+
     @SuppressLint("SetTextI18n")
     override fun beginViewAndDoLtd() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_calculate_result)
@@ -39,10 +41,21 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
                         data.loanTerm.toLong(), data.startDate
                     )
                 )
+            val dataIndexId = mTilPersonalLoanDao.insertContent(data)
+            if (dataIndexId != -1L) {
+                data.dataIndexId = dataIndexId
+            }else{
+                data.dataIndexId = -1L
+            }
         }
 
         mPlcBinding.tvAddCompareList.setSafeListener {
-
+            mDataPersonalLoanPlf?.let {
+                if (it.dataIndexId > -1L) {
+                    it.addAmortizationTable = "yes"
+                    mTilPersonalLoanDao.updateContent(it)
+                }
+            }
         }
         mPlcBinding.tvAmortizationTable.setSafeListener {
 

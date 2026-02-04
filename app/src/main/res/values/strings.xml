@@ -23,6 +23,7 @@
     <string name="plf_interest_rate">Interest Rate</string>
     <string name="plf_home">Home</string>
     <string name="plf_compare">Compare</string>
+    <string name="plf_compare_2">Compare %s</string>
     <string name="plf_mine">Mine</string>
     <string name="plf_business_loan">Business Loan</string>
     <string name="plf_mortgages">Mortgages</string>
@@ -77,5 +78,6 @@
     <string name="plf_cancel">Cancel</string>
     <string name="plf_Yes">Yes</string>
     <string name="plf_please_confirm_whether_delete_clock">Please confirm whether you want to delete it. You can add it again using "%s" after deletion.</string>
+    <string name="plf_delete">Delete</string>
     <string name="plf_"></string>
 </resources>
