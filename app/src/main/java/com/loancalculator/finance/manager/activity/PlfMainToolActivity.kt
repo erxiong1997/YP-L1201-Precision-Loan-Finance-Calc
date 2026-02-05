@@ -57,8 +57,8 @@ class PlfMainToolActivity : PlfBindingActivity<ActivityMainPlfBinding>() {
         mFragmentList.add(FragmentMinePlf.newInstance(mFragmentValueList[3]))
 
         mPlcBinding.tilViewPager.offscreenPageLimit = 4
-        (mPlcBinding.tilViewPager.getChildAt(0) as? RecyclerView)?.overScrollMode =
-            RecyclerView.OVER_SCROLL_NEVER
+//        (mPlcBinding.tilViewPager.getChildAt(0) as? RecyclerView)?.overScrollMode =
+//            RecyclerView.OVER_SCROLL_NEVER
         mPlcBinding.tilViewPager.adapter =
             object : FragmentStateAdapter(supportFragmentManager, lifecycle) {
                 override fun getItemCount() = mFragmentList.size

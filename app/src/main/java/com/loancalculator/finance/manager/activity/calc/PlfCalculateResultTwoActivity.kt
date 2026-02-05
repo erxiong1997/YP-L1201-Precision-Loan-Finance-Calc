@@ -28,7 +28,11 @@ class PlfCalculateResultTwoActivity : PlfBindingActivity<ActivityCalculateResult
             mPlcBinding.tvLoanAmount2.text =
                 "${data.loanAmount}${data.currencySymbol}"
             mPlcBinding.tvIntersetRate2.text = "${data.interestRate}%"
-            mPlcBinding.tvLoanTerm2.text = "${data.loanTerm} ${getString(R.string.plf_month)}"
+            mPlcBinding.tvLoanTerm2.text = if (data.loanTermUnit == "month") {
+                "${data.loanTerm} ${getString(R.string.plf_month)}"
+            } else {
+                "${data.loanTerm} ${getString(R.string.plf_year)}"
+            }
             mPlcBinding.tvStartDate2.text = TimeDatePlfUtils.getTimeDateOnePlf(data.startDate)
             mPlcBinding.tvMonthPayment2.text = "${data.monthlyPayment}${data.currencySymbol}"
 

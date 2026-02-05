@@ -38,6 +38,8 @@ class DataPersonalLoanPlf() : TilBaseData() {
 
     //表示多少个月
     var loanTerm: Int = 0
+    //
+    var loanTermUnit: String = ""
 
     //开始日期
     var startDate: Long = 0

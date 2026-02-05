@@ -37,7 +37,7 @@ class PlfBusinessLoanActivity : PlfBindingActivity<ActivityBusinessLoanPlfBindin
     //month year
     private var mMonthYear = "month"
     override fun beginViewAndDoLtd() {
-        mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_personal_loan)
+        mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_business_loan)
 
         mDataCurrencyUnitPlf = DealRecentPlfUtils.getCurrencyUnitRecent()
         mDataCurrencyUnitPlf?.let {
@@ -139,6 +139,7 @@ class PlfBusinessLoanActivity : PlfBindingActivity<ActivityBusinessLoanPlfBindin
             mPlcBinding.tvInterestRateError.visibility = View.GONE
         }
         var term = mPlcBinding.etLoanTerm.text.toString().trim().toIntOrNull() ?: 0
+        val term2 = term
         if (term <= 0) {
             mPlcBinding.tvLoanTermError.visibility = View.VISIBLE
             return
@@ -152,11 +153,12 @@ class PlfBusinessLoanActivity : PlfBindingActivity<ActivityBusinessLoanPlfBindin
             loanType = LoanTypePlf.BUSINESS
             loanAmount = amount
             interestRate = rate
-            loanTerm = term
+            loanTerm = term2
+            loanTermUnit = mMonthYear
             startDate = System.currentTimeMillis()
             currencySymbol = mDataCurrencyUnitPlf?.currencySymbol ?: "$"
         }
-        val (a, b) = ToolsLoanMonthDetailUtils.calculateAmortization(amount, rate / 100, term)
+        val (a, b) = ToolsLoanMonthDetailUtils.calculateAmortization(amount, rate / 100, term2)
         dataPersonalLoanPlf.monthlyPayment = a
         dataPersonalLoanPlf.mLoanMonthDetailList = b
         mDataPersonalLoanPlf = dataPersonalLoanPlf

@@ -149,6 +149,7 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
             mPlcBinding.tvInterestRateError.visibility = View.GONE
         }
         var term = mPlcBinding.etLoanTerm.text.toString().trim().toIntOrNull() ?: 0
+        val term2 = term
         if (term <= 0) {
             mPlcBinding.tvLoanTermError.visibility = View.VISIBLE
             return
@@ -162,7 +163,8 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
             loanType = LoanTypePlf.PERSONAL
             loanAmount = amount
             interestRate = rate
-            loanTerm = term
+            loanTerm = term2
+            loanTermUnit = mMonthYear
             startDate = if (mCurStartDateTime == 0L) {
                 System.currentTimeMillis()
             } else {
@@ -170,7 +172,7 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
             }
             currencySymbol = mDataCurrencyUnitPlf?.currencySymbol ?: "$"
         }
-        val (a, b) = ToolsLoanMonthDetailUtils.calculateAmortization(amount, rate / 100, term)
+        val (a, b) = ToolsLoanMonthDetailUtils.calculateAmortization(amount, rate / 100, term2)
         dataPersonalLoanPlf.monthlyPayment = a
         dataPersonalLoanPlf.mLoanMonthDetailList = b
         mDataPersonalLoanPlf = dataPersonalLoanPlf

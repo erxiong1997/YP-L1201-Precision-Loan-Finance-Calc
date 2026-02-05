@@ -48,6 +48,7 @@
     <string name="plf_world_clock_des">Track current time in multiple cities</string>
     <string name="plf_reset_fields">Reset Fields</string>
     <string name="plf_calculate">Calculate</string>
+    <string name="plf_calculator">Calculator</string>
     <string name="plf_currency_unit">Currency Unit</string>
     <string name="plf_enter_your_loan_amount">Enter your loan amount in this field</string>
     <string name="plf_remember_enter_interest">Remember to enter the interest rate annually(yearly)</string>
@@ -96,5 +97,8 @@ but the higher the interest.</string>
     <string name="plf_pmi">PMI</string>
     <string name="plf_hoa_fees">HOA Fees</string>
     <string name="plf_home_insurance">Home Insurance</string>
+    <string name="plf_select_all">Select All</string>
+    <string name="plf_interest">Interest</string>
+    <string name="plf_duration">Duration</string>
     <string name="plf_"></string>
 </resources>

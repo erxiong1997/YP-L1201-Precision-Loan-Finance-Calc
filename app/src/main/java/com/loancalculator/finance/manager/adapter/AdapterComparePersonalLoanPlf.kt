@@ -50,11 +50,19 @@ class AdapterComparePersonalLoanPlf(
             tvLoanAmount2.text =
                 "${data.loanAmount}${data.currencySymbol}"
             tvIntersetRate2.text = "${data.interestRate}%"
-            tvLoanTerm2.text = "${data.loanTerm} ${mAdapterContext.getString(R.string.plf_month)}"
+            tvLoanTerm2.text = if (data.loanTermUnit == "month") {
+                "${data.loanTerm} ${mAdapterContext.getString(R.string.plf_month)}"
+            } else {
+                "${data.loanTerm} ${mAdapterContext.getString(R.string.plf_year)}"
+            }
             tvStartDate2.text = TimeDatePlfUtils.getTimeDateOnePlf(data.startDate)
             tvMonthPayment2.text = "${data.monthlyPayment}${data.currencySymbol}"
 
-            val totalPay = data.monthlyPayment * data.loanTerm
+            val totalPay = data.monthlyPayment * if (data.loanTermUnit == "month") {
+                data.loanTerm
+            } else {
+                data.loanTerm * 12
+            }
 
             tvTotalPayment2.text = totalPay.formatToFixString()
             tvTotalInterestPayable2.text =

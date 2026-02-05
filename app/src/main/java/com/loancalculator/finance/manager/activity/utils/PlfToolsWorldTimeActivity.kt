@@ -105,7 +105,7 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
                 })
             }
         }
-        if (noUpdate) {
+        if (!noUpdate) {
             mAdapterUtcSaveItemPlf.notifyDataSetChanged()
         }
     }
