@@ -80,35 +80,3 @@ object ToolsTemperatureUnitUtils {
         }
     }
 }
-
-// 使用示例
-fun main() {
-    // 示例1：输入 25°C，转换为所有单位
-    val celsiusValue = 25.0
-    println("输入: $celsiusValue ${TemperatureUnit.CELSIUS.symbol}")
-    ToolsTemperatureUnitUtils.convertToAllUnits(celsiusValue, TemperatureUnit.CELSIUS)
-        .forEach { (unit, result) ->
-            println("${unit.displayName.padEnd(12)}: $result ${unit.symbol}")
-        }
-
-    println("\n-------------------\n")
-
-    // 示例2：输入 98.6°F 转换为其他单位
-    val fahrenheitValue = 98.6
-    println("输入: $fahrenheitValue ${TemperatureUnit.FAHRENHEIT.symbol} (人体正常体温)")
-    ToolsTemperatureUnitUtils.convertToAllUnits(fahrenheitValue, TemperatureUnit.FAHRENHEIT)
-        .forEach { (unit, result) ->
-            println("${unit.displayName.padEnd(12)}: $result ${unit.symbol}")
-        }
-
-    println("\n-------------------\n")
-
-    // 示例3：单次转换
-    val kelvinValue = 310.15
-    val toFahrenheit = ToolsTemperatureUnitUtils.convert(
-        kelvinValue,
-        TemperatureUnit.KELVIN,
-        TemperatureUnit.FAHRENHEIT
-    )
-    println("$kelvinValue K = $toFahrenheit °F")
-}

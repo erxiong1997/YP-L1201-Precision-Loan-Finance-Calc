@@ -1,5 +1,6 @@
 package com.loancalculator.finance.manager.utils
 
+import com.loancalculator.finance.manager.formatToFixString
 import kotlin.math.roundToInt
 
 /**
@@ -18,7 +19,7 @@ enum class LengthUnit(val symbol: String, val displayName: String, val toMeterFa
 /**
  * 长度转换工具类
  */
-object LengthConverter {
+object ToolsLengthConvertUtils {
 
     /**
      * 将输入值从 fromUnit 转换为 toUnit
@@ -30,10 +31,12 @@ object LengthConverter {
      */
     fun convert(
         value: Double,
-        fromUnit: LengthUnit,
-        toUnit: LengthUnit,
+        fromUnit: LengthUnit?,
+        toUnit: LengthUnit?,
         decimalPlaces: Int = 2
     ): String {
+        if (fromUnit == null) return ""
+        if (toUnit == null) return ""
         if (fromUnit == toUnit) {
             return format(value, decimalPlaces)
         }
@@ -55,7 +58,7 @@ object LengthConverter {
         fromUnit: LengthUnit,
         decimalPlaces: Int = 2
     ): Map<LengthUnit, String> {
-        return LengthUnit.values().associateWith { unit ->
+        return LengthUnit.entries.associateWith { unit ->
             convert(value, fromUnit, unit, decimalPlaces)
         }
     }
@@ -67,30 +70,4 @@ object LengthConverter {
             "%.${decimalPlaces}f".format(value)
         }
     }
-}
-
-// 使用示例
-fun main() {
-    // 示例1：输入 1 km，转换为所有单位
-    val kmValue = 1.0
-    println("输入: $kmValue ${LengthUnit.KILOMETER.symbol}")
-    LengthConverter.convertToAllUnits(kmValue, LengthUnit.KILOMETER).forEach { (unit, result) ->
-        println("${unit.displayName.padEnd(15)} (${unit.symbol}): $result ${unit.symbol}")
-    }
-
-    println("\n-------------------\n")
-
-    // 示例2：输入 250 cm，转换为其他单位
-    val cmValue = 250.0
-    println("输入: $cmValue ${LengthUnit.CENTIMETER.symbol} (相当于 2.5米)")
-    LengthConverter.convertToAllUnits(cmValue, LengthUnit.CENTIMETER).forEach { (unit, result) ->
-        println("${unit.displayName.padEnd(15)} (${unit.symbol}): $result ${unit.symbol}")
-    }
-
-    println("\n-------------------\n")
-
-    // 示例3：单次转换 - 1 米 = ? 毫米
-    val meterValue = 1.0
-    val toMm = LengthConverter.convert(meterValue, LengthUnit.METER, LengthUnit.MILLIMETER, 0)
-    println("$meterValue ${LengthUnit.METER.symbol} = $toMm ${LengthUnit.MILLIMETER.symbol}")
 }

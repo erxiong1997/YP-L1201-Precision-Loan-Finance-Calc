@@ -3,6 +3,8 @@ package com.loancalculator.finance.manager.utils.value
 import com.loancalculator.finance.manager.PlfDealApplication
 import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
 import com.loancalculator.finance.manager.data.DataToolsTemperature
+import com.loancalculator.finance.manager.utils.LengthUnit
+import com.loancalculator.finance.manager.utils.MassUnit
 import com.loancalculator.finance.manager.utils.SpeedUnit
 import com.loancalculator.finance.manager.utils.TemperatureUnit
 import java.io.File
@@ -39,6 +41,26 @@ object ParamsLtdUtils {
         SpeedUnit.MH,
         SpeedUnit.INS,
         SpeedUnit.MACH,
+    )
+
+    //重量的单位和名称
+    val mMassUnitList = listOf(
+        MassUnit.QUINTAL,
+        MassUnit.CARAT,
+        MassUnit.TON,
+        MassUnit.MILLIGRAM,
+        MassUnit.KILOGRAM,
+        MassUnit.GRAM,
+    )
+    //长度的单位和名称
+    val mLengthUnitList = listOf(
+        LengthUnit.KILOMETER,
+        LengthUnit.HECTOMETER,
+        LengthUnit.DECAMETER,
+        LengthUnit.METER,
+        LengthUnit.DECIMETER,
+        LengthUnit.CENTIMETER,
+        LengthUnit.MILLIMETER,
     )
 
     val mWorldTimeUtcList by lazy {

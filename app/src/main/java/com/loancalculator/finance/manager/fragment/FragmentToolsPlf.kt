@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.loancalculator.finance.manager.activity.PlfRootActivity
+import com.loancalculator.finance.manager.activity.utils.PlfToolsLengthConvertActivity
+import com.loancalculator.finance.manager.activity.utils.PlfToolsMassConvertActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsSpeedConvertActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsTemperatureActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsWorldTimeActivity
@@ -35,13 +37,13 @@ class FragmentToolsPlf : RootPlfFragment<FragmentToolsPlfBinding>() {
             startActivity(Intent(rootActivity, PlfToolsTemperatureActivity::class.java))
         }
         mPlfBinding.clMassConvert.setSafeListener {
-
+            startActivity(Intent(rootActivity, PlfToolsMassConvertActivity::class.java))
         }
         mPlfBinding.clSpeedConvert.setSafeListener {
             startActivity(Intent(rootActivity, PlfToolsSpeedConvertActivity::class.java))
         }
         mPlfBinding.clLengthConvert.setSafeListener {
-
+            startActivity(Intent(rootActivity, PlfToolsLengthConvertActivity::class.java))
         }
         mPlfBinding.clWorldClock.setSafeListener {
             startActivity(Intent(rootActivity, PlfToolsWorldTimeActivity::class.java))

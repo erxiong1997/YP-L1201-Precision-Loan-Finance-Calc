@@ -29,10 +29,12 @@ object ToolsMassUnitUtils {
      */
     fun convert(
         value: Double,
-        fromUnit: MassUnit,
-        toUnit: MassUnit,
+        fromUnit: MassUnit?,
+        toUnit: MassUnit?,
         decimalPlaces: Int = 2
     ): String {
+        if (fromUnit == null) return ""
+        if (toUnit == null) return ""
         if (fromUnit == toUnit) {
             return format(value, decimalPlaces)
         }
@@ -66,30 +68,4 @@ object ToolsMassUnitUtils {
             "%.${decimalPlaces}f".format(value)
         }
     }
-}
-
-// 使用示例
-fun main() {
-    // 示例1：输入 1 kg，转换为所有单位
-    val kgValue = 1.0
-    println("输入: $kgValue kg")
-    ToolsMassUnitUtils.convertToAllUnits(kgValue, MassUnit.KILOGRAM).forEach { (unit, result) ->
-        println("${unit.displayName.padEnd(12)} (${unit.symbol}): $result ${unit.symbol}")
-    }
-
-    println("\n-------------------\n")
-
-    // 示例2：输入 500 ct (克拉)，转换为其他单位
-    val caratValue = 500.0
-    println("输入: $caratValue ct (相当于 100g)")
-    ToolsMassUnitUtils.convertToAllUnits(caratValue, MassUnit.CARAT).forEach { (unit, result) ->
-        println("${unit.displayName.padEnd(12)} (${unit.symbol}): $result ${unit.symbol}")
-    }
-
-    println("\n-------------------\n")
-
-    // 示例3：单次转换 - 1 吨 = ? 千克
-    val tonValue = 1.0
-    val toKg = ToolsMassUnitUtils.convert(tonValue, MassUnit.TON, MassUnit.KILOGRAM)
-    println("$tonValue ${MassUnit.TON.symbol} = $toKg ${MassUnit.KILOGRAM.symbol}")
 }
