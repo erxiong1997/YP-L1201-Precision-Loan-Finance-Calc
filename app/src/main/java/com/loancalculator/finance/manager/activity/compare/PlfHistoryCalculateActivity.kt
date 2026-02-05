@@ -23,7 +23,8 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
                 (fg1 as? FragmentHistoryCalculatorPlf)?.initSelectStatus(mDeleteModel)
             }
             if (mPlcBinding.tilViewPager.currentItem == 1) {
-
+                val fg1 = mFragmentList[1]
+                (fg1 as? FragmentHistoryInvestmentPlf)?.initSelectStatus(mDeleteModel)
             }
         } else {
             super.doBackPressed()
@@ -57,7 +58,8 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
                 (fg1 as? FragmentHistoryCalculatorPlf)?.initSelectStatus(mDeleteModel)
             }
             if (mPlcBinding.tilViewPager.currentItem == 1) {
-
+                val fg1 = mFragmentList[1]
+                (fg1 as? FragmentHistoryInvestmentPlf)?.initSelectStatus(mDeleteModel)
             }
         }
         mPlcBinding.topSetPlf.tvSelectAll.setSafeListener {
@@ -67,7 +69,8 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
                 (fg1 as? FragmentHistoryCalculatorPlf)?.changeSelectStatus(it.isSelected)
             }
             if (mPlcBinding.tilViewPager.currentItem == 1) {
-
+                val fg1 = mFragmentList[1]
+                (fg1 as? FragmentHistoryInvestmentPlf)?.changeSelectStatus(it.isSelected)
             }
         }
     }
@@ -114,6 +117,9 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
         if (!changeItem) {
             val fg1 = mFragmentList[0]
             (fg1 as? FragmentHistoryCalculatorPlf)?.initSelectStatus(mDeleteModel)
+
+            val fg2 = mFragmentList[1]
+            (fg2 as? FragmentHistoryInvestmentPlf)?.initSelectStatus(mDeleteModel)
         }
     }
 

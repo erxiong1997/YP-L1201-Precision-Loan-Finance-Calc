@@ -151,16 +151,13 @@ class PlfRecurringDepositActivity : PlfBindingActivity<ActivityRecurringDepositP
         } else {
             mPlcBinding.tvInterestRateError.visibility = View.GONE
         }
-        var term = mPlcBinding.etTenure.text.toString().trim().toIntOrNull() ?: 0
+        val term = mPlcBinding.etTenure.text.toString().trim().toIntOrNull() ?: 0
         val term2 = term
         if (term <= 0) {
             mPlcBinding.tvTenureError.visibility = View.VISIBLE
             return
         } else {
             mPlcBinding.tvTenureError.visibility = View.GONE
-        }
-        if (mMonthYear == "year") {
-            term *= 12
         }
         val dataPersonalLoanPlf = DataPersonalLoanPlf().apply {
             loanType = LoanTypePlf.RD
@@ -175,10 +172,6 @@ class PlfRecurringDepositActivity : PlfBindingActivity<ActivityRecurringDepositP
             }
             currencySymbol = mDataCurrencyUnitPlf?.currencySymbol ?: "$"
         }
-        //总金额 总利息
-        val (a, b) = ToolsLoanMonthDetailUtils.calculateMonthlyInvestment(amount, rate / 100, term)
-        dataPersonalLoanPlf.totalInvestmentInterest = a
-        dataPersonalLoanPlf.totalInterest = b
 
         mDataPersonalLoanPlf = dataPersonalLoanPlf
         startActivity(Intent(this, PlfInvestmentResultActivity::class.java))

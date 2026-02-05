@@ -36,7 +36,7 @@ class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
                         } else {
 //                            mPlcBinding.progressStart.progress += 1
 //                            mPlcBinding.progressStart.progress += 5
-                            mPlcBinding.progressStart.progress += 9
+                            mPlcBinding.progressStart.progress += 19
                             sendEmptyMessageDelayed(6382, 156)
                         }
                     }

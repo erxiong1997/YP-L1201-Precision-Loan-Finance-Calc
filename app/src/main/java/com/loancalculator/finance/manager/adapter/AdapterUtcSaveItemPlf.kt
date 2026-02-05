@@ -39,7 +39,7 @@ class AdapterUtcSaveItemPlf(
         holder: HolderItem,
         position: Int
     ) {
-        val data = mListDoData[position]
+        val data = mListDoData[holder.absoluteAdapterPosition]
         holder.mPlfBinding.apply {
             tvCurUtc.text = data.utcPlf
             tvCurTime.text = data.mCurTime

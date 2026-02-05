@@ -80,6 +80,7 @@ class FragmentHomePlf : RootPlfFragment<FragmentHomePlfBinding>() {
         mPlfBinding.ivMore.setSafeListener {
             startActivity(Intent(rootActivity, PlfHistoryCalculateActivity::class.java))
         }
+        setPlfRecyclerView(rootActivity)
     }
 
     override fun onResume() {
@@ -87,7 +88,7 @@ class FragmentHomePlf : RootPlfFragment<FragmentHomePlfBinding>() {
         lifecycleScope.launch(Dispatchers.Main) {
             delay(64)
             (activity as? PlfRootActivity)?.let {
-                setPlfRecyclerView(it)
+
             }
         }
     }
@@ -134,8 +135,12 @@ class FragmentHomePlf : RootPlfFragment<FragmentHomePlfBinding>() {
                     )
                 }
             }
-            mPlfBinding.rvRvView.layoutManager = LinearLayoutManager(rootActivity)
-            mPlfBinding.rvRvView.adapter = mAdapterHistoryCalculatorPlf
+        }
+        mPlfBinding.rvRvView.layoutManager = LinearLayoutManager(rootActivity)
+        mPlfBinding.rvRvView.adapter = mAdapterHistoryCalculatorPlf
+        if (mListData.isNotEmpty()) {
+            mPlfBinding.llHistory.visibility = View.VISIBLE
+            mPlfBinding.rvRvView.visibility = View.VISIBLE
         }
     }
 
@@ -147,10 +152,15 @@ class FragmentHomePlf : RootPlfFragment<FragmentHomePlfBinding>() {
     fun managerHome(eventManagerHome: EventManagerHome) {
         when (eventManagerHome.managerType) {
             "updateHistory" -> {
+                if (!::mAdapterHistoryCalculatorPlf.isInitialized) return
                 val list = mTilPersonalLoanDao.getLatestItems(4)
                 mListData.clear()
                 mListData.addAll(list)
                 mAdapterHistoryCalculatorPlf.notifyDataSetChanged()
+                if (mListData.isNotEmpty()) {
+                    mPlfBinding.llHistory.visibility = View.VISIBLE
+                    mPlfBinding.rvRvView.visibility = View.VISIBLE
+                }
             }
         }
     }

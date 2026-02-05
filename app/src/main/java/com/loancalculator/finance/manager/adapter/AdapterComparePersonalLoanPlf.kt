@@ -45,7 +45,7 @@ class AdapterComparePersonalLoanPlf(
         holder: HolderItem,
         position: Int
     ) {
-        val data = mListDoData[position]
+        val data = mListDoData[holder.absoluteAdapterPosition]
         holder.mPlfBinding.apply {
             tvTableName.text = data.aTableName
             tvLoanAmount2.text =

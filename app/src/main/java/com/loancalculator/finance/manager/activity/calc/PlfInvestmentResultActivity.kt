@@ -2,21 +2,16 @@ package com.loancalculator.finance.manager.activity.calc
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.widget.Toast
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
-import com.loancalculator.finance.manager.databinding.ActivityCalculateResultPlfBinding
 import com.loancalculator.finance.manager.databinding.ActivityInvestmentResultPlfBinding
-import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
-import com.loancalculator.finance.manager.showToastIDPlf
 import com.loancalculator.finance.manager.utils.ShareResultPdfPlfUtil
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
+import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
-import com.loancalculator.finance.manager.utils.dialog.DialogAddCompareName
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
 
 class PlfInvestmentResultActivity : PlfBindingActivity<ActivityInvestmentResultPlfBinding>(
     mBarTextWhite = false
@@ -31,6 +26,19 @@ class PlfInvestmentResultActivity : PlfBindingActivity<ActivityInvestmentResultP
         }
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_calculate_result)
         mDataPersonalLoanPlf?.let { data ->
+            //总金额 总利息
+            var term = data.loanTerm
+            if (data.loanTermUnit == "year") {
+                term *= 12
+            }
+            val (a, b) = ToolsLoanMonthDetailUtils.calculateMonthlyInvestment(
+                data.loanAmount,
+                data.interestRate / 100,
+                term
+            )
+            data.totalInvestmentInterest = a
+            data.totalInterest = b
+
             mPlcBinding.tvInvestmentAmount2.text =
                 "${data.loanAmount}${data.currencySymbol}"
             mPlcBinding.tvIntersetRate2.text = "${data.interestRate}%"

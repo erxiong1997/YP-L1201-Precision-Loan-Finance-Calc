@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
-import com.loancalculator.finance.manager.data.DataPlfLanguage
 import com.loancalculator.finance.manager.databinding.ItemHistoryCalculatorPlfBinding
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
@@ -41,7 +40,7 @@ class AdapterHistoryCalculatorPlf(
         holder: HolderItem,
         position: Int
     ) {
-        val data = mListDoData[position]
+        val data = mListDoData[holder.absoluteAdapterPosition]
         holder.mPlfBinding.apply {
             tvItemName.text = when (data.loanType) {
                 LoanTypePlf.PERSONAL -> {
@@ -99,7 +98,7 @@ class AdapterHistoryCalculatorPlf(
             if (vre is String) {
                 when (vre) {
                     "updateStatus" -> {
-                        val data = mListDoData[position]
+                        val data = mListDoData[holder.absoluteAdapterPosition]
                         if (mDeleteModel) {
                             holder.mPlfBinding.tvDetails.visibility = View.GONE
                             holder.mPlfBinding.ivSelect.visibility = View.VISIBLE
@@ -111,7 +110,7 @@ class AdapterHistoryCalculatorPlf(
                     }
 
                     "updateOnce" -> {
-                        val data = mListDoData[position]
+                        val data = mListDoData[holder.absoluteAdapterPosition]
                         holder.mPlfBinding.ivSelect.isSelected = data.fingerSelect
                     }
                 }

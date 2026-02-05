@@ -24,7 +24,7 @@ interface TilPersonalLoanDao : TilBaseDao<DataPersonalLoanPlf> {
         loanType2: String
     ): List<DataPersonalLoanPlf>
 
-    @Query("SELECT * FROM data_personal_loan_plf WHERE loanType == :loanType1 AND loanType == :loanType2 ORDER BY dataIndexId DESC")
+    @Query("SELECT * FROM data_personal_loan_plf WHERE loanType == :loanType1 OR loanType == :loanType2 ORDER BY dataIndexId DESC")
     fun getAllListInvestment(
         loanType1: String,
         loanType2: String
