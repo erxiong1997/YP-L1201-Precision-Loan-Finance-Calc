@@ -42,6 +42,9 @@ class DataPersonalLoanPlf() : TilBaseData() {
     //
     var loanTermUnit: String = ""
 
+    //复利次数
+    var numberInvestment: Int = 0
+
     //开始日期
     var startDate: Long = 0
 
@@ -76,6 +79,7 @@ class DataPersonalLoanPlf() : TilBaseData() {
 
     @Ignore
     var totalInvestmentInterest: Double = 0.0
+
     //投资产生的利息
     @Ignore
     var totalInterest: Double = 0.0

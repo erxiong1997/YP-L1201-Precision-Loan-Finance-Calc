@@ -2,6 +2,9 @@
     <string name="app_name" translatable="false">Precision Loan Finance Calc</string>
     <string name="app_name2" translatable="false">Precision\n Loan Finance Calc</string>
     <string name="app_zero" translatable="false">0</string>
+    <string name="app_1" translatable="false">1</string>
+    <string name="app_4" translatable="false">4</string>
+    <string name="app_12" translatable="false">12</string>
     <string name="app_percent" translatable="false">%</string>
 
     <string name="plf_number_1" translatable="false">0123456789</string>
@@ -168,5 +171,7 @@ but the higher the interest.</string>
     <string name="plf_end_date">End Date</string>
     <string name="plf_share_pdf">Share PDF</string>
     <string name="plf_sharing_failed">Sharing failed!</string>
+    <string name="plf_number_of_compound">Number of compound interest</string>
+    <string name="plf_number_of_times_interest">Number of times interest is calculated</string>
     <string name="plf_"></string>
 </resources>

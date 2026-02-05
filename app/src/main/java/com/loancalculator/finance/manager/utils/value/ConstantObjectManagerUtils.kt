@@ -21,6 +21,6 @@ object LoanTypePlf {
     const val BUSINESS = "businessLoan"
     const val MORTGAGES = "mortgages"
     const val AUTO = "autoLoan"
-    const val RD = "fd"
-    const val FD = "rd"
+    const val RD = "rd"
+    const val FD = "fd"
 }

@@ -10,6 +10,7 @@ import com.loancalculator.finance.manager.activity.calc.PlfAutoLoanActivity
 import com.loancalculator.finance.manager.activity.calc.PlfBusinessLoanActivity
 import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultActivity
 import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultTwoActivity
+import com.loancalculator.finance.manager.activity.calc.PlfFixedDepositActivity
 import com.loancalculator.finance.manager.activity.calc.PlfInvestmentResultActivity
 import com.loancalculator.finance.manager.activity.calc.PlfMortgagesActivity
 import com.loancalculator.finance.manager.activity.calc.PlfPersonalLoanActivity
@@ -72,7 +73,7 @@ class FragmentHomePlf : RootPlfFragment<FragmentHomePlfBinding>() {
             startActivity(Intent(rootActivity, PlfRecurringDepositActivity::class.java))
         }
         mPlfBinding.llFixedDeposit.setSafeListener {
-
+            startActivity(Intent(rootActivity, PlfFixedDepositActivity::class.java))
         }
         mPlfBinding.tvMore.setSafeListener {
             startActivity(Intent(rootActivity, PlfHistoryCalculateActivity::class.java))

@@ -93,6 +93,9 @@
         <activity
             android:name="com.loancalculator.finance.manager.activity.calc.PlfInvestmentResultActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.calc.PlfFixedDepositActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -70,7 +70,7 @@
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="16dp"
                 android:drawablePadding="4dp"
-                android:text="@string/plf_loan_amount"
+                android:text="@string/plf_investment_amount"
                 android:textColor="@color/plf_050C03"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="2dp"
-                android:text="@string/plf_enter_your_loan_amount"
+                android:text="@string/plf_monthly_fixed_investment"
                 android:textColor="@color/plf_050C03"
                 android:textSize="12sp" />
 
@@ -93,14 +93,14 @@
                 android:background="@drawable/plf_shape_12dp_eff8f4">
 
                 <EditText
-                    android:id="@+id/etLoanAmount"
+                    android:id="@+id/etInvestmentAmount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="12dp"
                     android:background="@null"
                     android:digits="@string/plf_number_1"
-                    android:hint="@string/plf_loan_amount"
+                    android:hint="@string/plf_investment_amount"
                     android:inputType="number"
                     android:maxLength="7"
                     android:singleLine="true"
@@ -119,11 +119,11 @@
                     android:textColor="@color/plf_050C03"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/ivDeleteLoanAmount"
+                    app:layout_constraintEnd_toStartOf="@+id/ivDeleteInvestmentAmount"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/ivDeleteLoanAmount"
+                    android:id="@+id/ivDeleteInvestmentAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
@@ -134,7 +134,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/tvLoanAmountError"
+                android:id="@+id/tvInvestmentAmountError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
@@ -222,7 +222,7 @@
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="16dp"
                 android:drawablePadding="4dp"
-                android:text="@string/plf_loan_term"
+                android:text="@string/plf_tenure"
                 android:textColor="@color/plf_050C03"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -233,7 +233,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="2dp"
-                android:text="@string/plf_enter_the_loan_term"
+                android:text="@string/plf_fixed_investment_time"
                 android:textColor="@color/plf_050C03"
                 android:textSize="12sp" />
 
@@ -244,13 +244,13 @@
                 android:layout_marginTop="8dp">
 
                 <EditText
-                    android:id="@+id/etLoanTerm"
+                    android:id="@+id/etTenure"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/plf_shape_12dp_eff8f4"
                     android:digits="@string/plf_number_1"
-                    android:hint="@string/plf_loan_term"
+                    android:hint="@string/plf_tenure"
                     android:inputType="number"
                     android:maxLength="3"
                     android:paddingHorizontal="16dp"
@@ -283,7 +283,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/tvLoanTermError"
+                android:id="@+id/tvTenureError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
@@ -292,6 +292,44 @@
                 android:textColor="@color/plf_F22335"
                 android:textSize="12sp"
                 android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="4dp"
+                android:text="@string/plf_number_of_compound"
+                android:textColor="@color/plf_050C03"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/plf_til_input_must_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="2dp"
+                android:text="@string/plf_number_of_times_interest"
+                android:textColor="@color/plf_050C03"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvNumberInvestment"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/plf_shape_12dp_eff8f4"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="14dp"
+                android:src="@drawable/plf_til_input_clear_text"
+                android:text="@string/app_1"
+                android:textColor="@color/plf_050C03"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/plf_til_tools_select_dialog_btn" />
 
             <TextView
                 android:layout_width="wrap_content"

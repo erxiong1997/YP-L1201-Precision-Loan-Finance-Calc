@@ -164,4 +164,40 @@ object ToolsLoanMonthDetailUtils {
         return String.format("%.2f", total).toDouble() to String.format("%.2f", interest).toDouble()
     }
 
+    /**
+     * 计算复利存款/投资的最终金额和利息
+     *
+     * @param principal 初始本金
+     * @param annualRate 年利率（小数形式，例如 0.10 = 10%）
+     * @param years 投资年数（支持小数，例如 3.5 = 3年半）
+     * @param compoundingTimesPerYear 每年复利次数
+     *                                 - 1 = 每年复利一次
+     *                                 - 4 = 每季度复利一次
+     *                                 - 12 = 每月复利一次
+     *                                 - 365 = 每天复利一次
+     * @return Pair<本息总额, 总利息>
+     */
+    @SuppressLint("DefaultLocale")
+    fun calculateCompoundInterest(
+        principal: Int,
+        annualRate: Double,
+        months: Int,
+        compoundingTimesPerYear: Int = 1
+    ): Pair<Double, Double> {
+        // 复利公式：A = P × (1 + r/n)^(n×t)
+        val ratePerPeriod = annualRate / compoundingTimesPerYear          // 每期利率
+        val numberOfPeriods = compoundingTimesPerYear * (months / 12.0)           // 总期数
+
+        // 最终金额
+        val finalAmount = principal * (1 + ratePerPeriod).pow(numberOfPeriods)
+
+        // 总利息 = 最终金额 - 本金
+        val totalInterest = finalAmount - principal
+
+        return Pair(
+            String.format("%.2f", finalAmount).toDouble(),
+            String.format("%.2f", totalInterest).toDouble()
+        )
+    }
+
 }

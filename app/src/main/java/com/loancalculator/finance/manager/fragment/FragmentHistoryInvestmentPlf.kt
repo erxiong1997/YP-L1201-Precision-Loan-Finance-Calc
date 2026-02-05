@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfRootActivity
 import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultActivity
 import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultTwoActivity
@@ -14,6 +15,7 @@ import com.loancalculator.finance.manager.databinding.FragmentHistoryInvestmentP
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
+import com.loancalculator.finance.manager.utils.dialog.DialogDeleteConfirmPlf
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 
 class FragmentHistoryInvestmentPlf : RootPlfFragment<FragmentHistoryInvestmentPlfBinding>() {
@@ -45,14 +47,16 @@ class FragmentHistoryInvestmentPlf : RootPlfFragment<FragmentHistoryInvestmentPl
         getListDataPlf()
 
         mPlfBinding.tvDelete.setSafeListener {
-            for ((index, data) in mListData.withIndex().reversed()) {
-                if (data.fingerSelect) {
-                    mListData.removeAt(index)
-                    mSelectorCount--
-                    mAdapterHistoryCalculatorPlf.notifyItemRemoved(index)
+            DialogDeleteConfirmPlf(rootActivity, getString(R.string.plf_deleteed_no_recovered)) {
+                for ((index, data) in mListData.withIndex().reversed()) {
+                    if (data.fingerSelect) {
+                        mListData.removeAt(index)
+                        mSelectorCount--
+                        mAdapterHistoryCalculatorPlf.notifyItemRemoved(index)
+                    }
                 }
-            }
-            changeDeleteButton()
+                changeDeleteButton()
+            }.show()
         }
     }
 

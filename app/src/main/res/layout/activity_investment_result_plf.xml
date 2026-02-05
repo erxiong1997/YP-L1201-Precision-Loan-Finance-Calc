@@ -117,6 +117,32 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvIntersetRate1" />
 
                 <TextView
+                    android:id="@+id/tvNumberInvestment1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/plf_number_of_compound"
+                    android:textColor="@color/plf_050C03"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTenure1" />
+
+                <TextView
+                    android:id="@+id/tvNumberInvestment2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/plf_050C03"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTenure1" />
+
+                <TextView
                     android:id="@+id/tvStartDate1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -126,7 +152,7 @@
                     android:textColor="@color/plf_050C03"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvTenure1" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvNumberInvestment1" />
 
                 <TextView
                     android:id="@+id/tvStartDate2"
@@ -138,7 +164,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvTenure1" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvNumberInvestment1" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
