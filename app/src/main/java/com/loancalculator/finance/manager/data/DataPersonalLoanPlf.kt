@@ -73,4 +73,10 @@ class DataPersonalLoanPlf() : TilBaseData() {
 
     @Ignore
     var fingerSelect = false
+
+    @Ignore
+    var totalInvestmentInterest: Double = 0.0
+    //投资产生的利息
+    @Ignore
+    var totalInterest: Double = 0.0
 }

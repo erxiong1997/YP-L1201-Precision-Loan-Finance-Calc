@@ -125,4 +125,43 @@ object ToolsLoanMonthDetailUtils {
 
         return fixedPayment to details
     }
+
+
+    /**
+     * 计算定投终值（每月月初投入，当月即开始产生利息）
+     *
+     * @param monthlyAmount 每月定投金额
+     * @param annualRate 年化利率（如 0.10 = 10%）
+     * @param months 总共定投月数
+     * @param scale 小数位精度（默认2位）
+     * @return Pair<总金额, 总利息>
+     */
+    @SuppressLint("DefaultLocale")
+    fun calculateMonthlyInvestment(
+        monthlyAmount: Int,
+        annualRate: Double,
+        months: Int
+    ): Pair<Double, Double> {
+        if (months <= 0) return 0.0 to 0.0
+        if (annualRate <= 0.0) {
+            val totalInvested = monthlyAmount * 1.0 * months
+            return totalInvested to 0.0
+        }
+
+        val monthlyRate = annualRate / 12.0
+        var total = 0.0
+
+        // 第一个月投的钱增长 months 期，最后一个月投的钱增长 1 期
+        for (i in 0 until months) {
+            val periods = months - i
+            val growth = (1.0 + monthlyRate).pow(periods)
+            total += monthlyAmount * growth
+        }
+
+        val totalInvested = monthlyAmount * months
+        val interest = total - totalInvested
+
+        return String.format("%.2f", total).toDouble() to String.format("%.2f", interest).toDouble()
+    }
+
 }

@@ -20,7 +20,7 @@
             android:layout_marginBottom="12dp"
             android:gravity="start"
             android:paddingBottom="10dp"
-            android:text="@string/ltd_policy_message_plf"
+            android:text="@string/plf_policy_message_plf"
             android:textColor="@color/black"
             android:textSize="18sp" />
     </ScrollView>

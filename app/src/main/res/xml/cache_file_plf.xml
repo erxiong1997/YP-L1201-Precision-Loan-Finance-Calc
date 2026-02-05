@@ -7,6 +7,12 @@
         name="external-files-path"
         path="." />
     <files-path
+        name="files-path"
+        path="." />
+    <cache-path
+        name="cache-path"
+        path="." />
+    <files-path
         name="a"
-        path="."/>
+        path="." />
 </paths>

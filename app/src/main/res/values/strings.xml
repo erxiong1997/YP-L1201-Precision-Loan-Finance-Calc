@@ -7,8 +7,65 @@
     <string name="plf_number_1" translatable="false">0123456789</string>
     <string name="plf_number_2" translatable="false">0123456789.</string>
 
-    <string name="ltd_policy_message_plf" translatable="false">
-
+    <string name="plf_policy_message_plf" translatable="false">
+We respect your privacy and designed this app to be used with minimal data.
+\n
+\n
+Information we collect
+\n
+\n
+Data you enter in calculators (loan amount, interest rate, term, etc.): By default, these values are processed on your device for calculation.
+\n
+\n
+Saved scenarios (optional): If you choose to save results, they are stored locally on your device so you can view them later.
+\n\n
+Information we do not collect
+\n\n
+We do not require account registration.
+\n\n
+We do not collect sensitive identifiers such as government ID numbers, bank account numbers, or credit card details.
+\n\n
+Ads and analytics (if enabled)
+\n\n
+The app may use third-party services for advertising and/or basic analytics to understand app performance and improve stability.
+\n\n
+These services may collect limited information such as device identifiers, approximate location (derived from IP, if provided by the ad network), app interactions, and crash logs, depending on your device settings and applicable platform policies.
+\n\n
+How we use information
+\n\n
+To perform calculations and show results
+\n\n
+To provide optional history/saved scenarios
+\n\n
+To improve reliability (e.g., crash diagnostics) and support advertising (if applicable)
+\n\n
+Data sharing
+\n\n
+We do not sell your personal information.
+\n\n
+If third-party SDKs are used (ads/analytics), data may be shared with those providers only for the purposes described above.
+\n\n
+Data retention
+\n\n
+Local saved scenarios remain on your device until you delete them or uninstall the app.
+\n\n
+Third-party providers retain data according to their own policies.
+\n\n
+Security
+\n\n
+We use reasonable measures to protect the app and limit access to stored local data, but no method of storage is 100% secure.
+\n\n
+Children’s privacy
+\n\n
+This app is not intended for children under the age required by local law to consent to data processing. We do not knowingly collect data from children.
+\n\n
+Changes to this policy
+\n\n
+We may update this policy from time to time. Updates will be reflected in the app store listing or within the app.
+\n\n
+Contact
+\n\n
+If you have questions about this policy, contact us at: fortunecat0718@gmail.com
     </string>
 
     <string name="plf_personal_loan">Personal Loan</string>
@@ -57,6 +114,7 @@
     <string name="plf_year">Year</string>
     <string name="plf_start_date_calculation">Start date of calculation</string>
     <string name="plf_loan_information">Loan Information</string>
+    <string name="plf_investment_information">Investment Information</string>
     <string name="plf_result_after_calculation">Result After Calculation</string>
     <string name="plf_add_to_compare_list">Add to compare list</string>
     <string name="plf_amortization_table">Amortization Table</string>
@@ -100,5 +158,15 @@ but the higher the interest.</string>
     <string name="plf_select_all">Select All</string>
     <string name="plf_interest">Interest</string>
     <string name="plf_duration">Duration</string>
+    <string name="plf_investment_amount">Investment Amount</string>
+    <string name="plf_monthly_fixed_investment">Monthly fixed investment amount</string>
+    <string name="plf_tenure">Tenure</string>
+    <string name="plf_fixed_investment_time">Fixed investment time</string>
+    <string name="plf_total_investment">Total Investment</string>
+    <string name="plf_total_interest">Total Interest</string>
+    <string name="plf_total_amount">Total Amount</string>
+    <string name="plf_end_date">End Date</string>
+    <string name="plf_share_pdf">Share PDF</string>
+    <string name="plf_sharing_failed">Sharing failed!</string>
     <string name="plf_"></string>
 </resources>

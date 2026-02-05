@@ -60,6 +60,14 @@ class AdapterHistoryCalculatorPlf(
                     mAdapterContext.getString(R.string.plf_auto_loan)
                 }
 
+                LoanTypePlf.RD -> {
+                    mAdapterContext.getString(R.string.plf_recurring_deposit)
+                }
+
+                LoanTypePlf.FD -> {
+                    mAdapterContext.getString(R.string.plf_fixed_deposit)
+                }
+
                 else -> ""
             }
             tvStartDate.text = TimeDatePlfUtils.getTimeDateOnePlf(data.startDate)

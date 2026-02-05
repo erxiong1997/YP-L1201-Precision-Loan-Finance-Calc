@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/topSetPlf"
+        layout="@layout/layout_top_set_plf" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/tvResetFields"
+        app:layout_constraintTop_toBottomOf="@+id/topSetPlf">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/plf_currency_unit"
+                android:textColor="@color/plf_050C03"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/llCurrencyUnit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/plf_shape_16dp_eff8f4"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="12dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/ivCurrencyFlag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvCurrencyName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/plf_050C03"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/plf_til_next_icon" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="4dp"
+                android:text="@string/plf_investment_amount"
+                android:textColor="@color/plf_050C03"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/plf_til_input_must_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="2dp"
+                android:text="@string/plf_monthly_fixed_investment"
+                android:textColor="@color/plf_050C03"
+                android:textSize="12sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/plf_shape_12dp_eff8f4">
+
+                <EditText
+                    android:id="@+id/etInvestmentAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@null"
+                    android:digits="@string/plf_number_1"
+                    android:hint="@string/plf_investment_amount"
+                    android:inputType="number"
+                    android:maxLength="7"
+                    android:singleLine="true"
+                    android:textColor="@color/plf_050C03"
+                    android:textColorHint="@color/plf_050C03_40"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tvCurrencySymbol"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvCurrencySymbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/plf_050C03"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ivDeleteInvestmentAmount"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivDeleteInvestmentAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:src="@drawable/plf_til_input_clear_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvInvestmentAmountError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/plf_content_error"
+                android:textColor="@color/plf_F22335"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="4dp"
+                android:text="@string/plf_interest_rate"
+                android:textColor="@color/plf_050C03"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/plf_til_input_must_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="2dp"
+                android:text="@string/plf_remember_enter_interest"
+                android:textColor="@color/plf_050C03"
+                android:textSize="12sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/plf_shape_12dp_eff8f4">
+
+                <EditText
+                    android:id="@+id/etInterestRate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:background="@null"
+                    android:digits="@string/plf_number_2"
+                    android:hint="@string/plf_interest_rate"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5"
+                    android:singleLine="true"
+                    android:textColor="@color/plf_050C03"
+                    android:textColorHint="@color/plf_050C03_40"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tvPercent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:src="@drawable/plf_til_input_clear_text"
+                    android:text="@string/app_percent"
+                    android:textColor="@color/plf_050C03"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvInterestRateError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/plf_content_error"
+                android:textColor="@color/plf_F22335"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="4dp"
+                android:text="@string/plf_tenure"
+                android:textColor="@color/plf_050C03"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/plf_til_input_must_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="2dp"
+                android:text="@string/plf_fixed_investment_time"
+                android:textColor="@color/plf_050C03"
+                android:textSize="12sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/etTenure"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/plf_shape_12dp_eff8f4"
+                    android:digits="@string/plf_number_1"
+                    android:hint="@string/plf_tenure"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:paddingHorizontal="16dp"
+                    android:singleLine="true"
+                    android:textColor="@color/plf_050C03"
+                    android:textColorHint="@color/plf_050C03_40"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tvMonthYear"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvMonthYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:background="@drawable/plf_shape_12dp_eff8f4"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="14dp"
+                    android:src="@drawable/plf_til_input_clear_text"
+                    android:text="@string/plf_month"
+                    android:textColor="@color/plf_050C03"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:drawableEndCompat="@drawable/plf_til_tools_select_dialog_btn"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvTenureError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/plf_content_error"
+                android:textColor="@color/plf_F22335"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="4dp"
+                android:text="@string/plf_start_date"
+                android:textColor="@color/plf_050C03"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="2dp"
+                android:text="@string/plf_start_date_calculation"
+                android:textColor="@color/plf_050C03"
+                android:textSize="12sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clStartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/plf_shape_12dp_eff8f4"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvStartDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:textColor="@color/plf_050C03"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ivStartDate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/plf_til_start_date"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvResetFields"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/plf_pressed_stroke_28dp_1dp_050c03"
+        android:gravity="center"
+        android:paddingVertical="20dp"
+        android:text="@string/plf_reset_fields"
+        android:textColor="@color/plf_050C03"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvCalculate"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCalculate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/plf_pressed_enabled_28dp_0ace86"
+        android:gravity="center"
+        android:paddingVertical="20dp"
+        android:text="@string/plf_calculate"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvResetFields" />
+</androidx.constraintlayout.widget.ConstraintLayout>

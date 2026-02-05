@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.loancalculator.finance.manager.activity.PlfRootActivity
 import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultActivity
 import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultTwoActivity
+import com.loancalculator.finance.manager.activity.calc.PlfInvestmentResultActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsSpeedConvertActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsTemperatureActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsWorldTimeActivity
@@ -136,6 +137,16 @@ class FragmentHistoryCalculatorPlf : RootPlfFragment<FragmentHistoryCalculatorPl
 
                     LoanTypePlf.MORTGAGES -> {
 
+                    }
+
+                    LoanTypePlf.RD, LoanTypePlf.FD -> {
+                        startActivity(
+                            Intent(
+                                rootActivity, PlfInvestmentResultActivity::class.java
+                            ).apply {
+                                putExtra("model", "details")
+                            }
+                        )
                     }
                 }
             }
