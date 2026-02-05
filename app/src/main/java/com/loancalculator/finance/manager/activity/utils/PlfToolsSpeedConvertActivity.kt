@@ -49,7 +49,7 @@ class PlfToolsSpeedConvertActivity :
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_speed_convert)
 
         val data1 = mSpeedUnitList[0]
-        val data2 = mSpeedUnitList[2]
+        val data2 = mSpeedUnitList[3]
         mTopUnitData = data1
         mBottomUnitData = data2
         mPlcBinding.tvSelectTop.text = data1.symbol

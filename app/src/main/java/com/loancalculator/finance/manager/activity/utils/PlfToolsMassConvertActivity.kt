@@ -47,8 +47,8 @@ class PlfToolsMassConvertActivity :
     override fun beginViewAndDoLtd() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_mass_convert)
 
-        val data1 = mMassUnitList[0]
-        val data2 = mMassUnitList[2]
+        val data1 = mMassUnitList[4]
+        val data2 = mMassUnitList[5]
         mTopUnitData = data1
         mBottomUnitData = data2
         mPlcBinding.tvSelectTop.text = data1.displayName

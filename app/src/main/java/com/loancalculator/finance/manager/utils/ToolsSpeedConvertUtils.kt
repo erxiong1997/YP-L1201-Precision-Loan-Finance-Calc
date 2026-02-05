@@ -70,6 +70,7 @@ object ToolsSpeedConverterUtils {
                 value.toString()
             } else {
                 "%.${decimalPlaces}f".format(value)
+                value.toString()
             }
         }
     }

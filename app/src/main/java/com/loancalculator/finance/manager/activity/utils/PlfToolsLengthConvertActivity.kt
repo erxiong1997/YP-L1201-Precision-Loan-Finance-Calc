@@ -48,7 +48,7 @@ class PlfToolsLengthConvertActivity :
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_length_convert)
 
         val data1 = mLengthUnitList[0]
-        val data2 = mLengthUnitList[2]
+        val data2 = mLengthUnitList[3]
         mTopUnitData = data1
         mBottomUnitData = data2
         mPlcBinding.tvSelectTop.text = data1.displayName

@@ -66,6 +66,7 @@ object ToolsMassUnitUtils {
             value.roundToInt().toString()
         } else {
             "%.${decimalPlaces}f".format(value)
+            value.toString()
         }
     }
 }

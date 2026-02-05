@@ -95,6 +95,7 @@
             android:text="@string/plf_temperature"
             android:textColor="@color/plf_050C03"
             android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivImage2"
             app:layout_constraintTop_toTopOf="parent" />
