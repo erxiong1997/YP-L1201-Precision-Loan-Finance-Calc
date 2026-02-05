@@ -3,14 +3,26 @@ package com.loancalculator.finance.manager.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.loancalculator.finance.manager.activity.PlfRootActivity
 import com.loancalculator.finance.manager.activity.calc.PlfAutoLoanActivity
 import com.loancalculator.finance.manager.activity.calc.PlfBusinessLoanActivity
+import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultActivity
+import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultTwoActivity
 import com.loancalculator.finance.manager.activity.calc.PlfMortgagesActivity
 import com.loancalculator.finance.manager.activity.calc.PlfPersonalLoanActivity
 import com.loancalculator.finance.manager.activity.compare.PlfHistoryCalculateActivity
+import com.loancalculator.finance.manager.adapter.AdapterHistoryCalculatorPlf
+import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
+import com.loancalculator.finance.manager.data.EventManagerHome
 import com.loancalculator.finance.manager.databinding.FragmentHomePlfBinding
+import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
+import com.loancalculator.finance.manager.utils.value.LoanTypePlf
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class FragmentHomePlf : RootPlfFragment<FragmentHomePlfBinding>() {
     companion object {
@@ -25,11 +37,19 @@ class FragmentHomePlf : RootPlfFragment<FragmentHomePlfBinding>() {
         }
     }
 
+    private lateinit var mAdapterHistoryCalculatorPlf: AdapterHistoryCalculatorPlf
+    private val mListData = mutableListOf<DataPersonalLoanPlf>()
+
+    private var mTilPersonalLoanDao = mPlfLoanRoom.mTilPersonalLoanDao()
+
     override fun startCreateContent(
         rootActivity: PlfRootActivity,
         view: View,
         bundle: Bundle?
     ) {
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
         mPlfBinding.tvPersonalLoan.setSafeListener {
             startActivity(Intent(rootActivity, PlfPersonalLoanActivity::class.java))
         }
@@ -47,6 +67,67 @@ class FragmentHomePlf : RootPlfFragment<FragmentHomePlfBinding>() {
         }
         mPlfBinding.ivMore.setSafeListener {
             startActivity(Intent(rootActivity, PlfHistoryCalculateActivity::class.java))
+        }
+
+        setPlfRecyclerView(rootActivity)
+    }
+
+    override fun setPlfRecyclerView(rootActivity: PlfRootActivity) {
+        val list = mTilPersonalLoanDao.getLatestItems(4)
+        mListData.clear()
+        mListData.addAll(list)
+        mAdapterHistoryCalculatorPlf = AdapterHistoryCalculatorPlf(false, rootActivity, mListData) {
+            val data = mListData[it]
+            when (data.loanType) {
+                LoanTypePlf.PERSONAL, LoanTypePlf.AUTO -> {
+                    mDataPersonalLoanPlf = data
+                    startActivity(
+                        Intent(
+                            rootActivity,
+                            PlfCalculateResultActivity::class.java
+                        ).apply {
+                            putExtra("model", "details")
+                        })
+                }
+
+                LoanTypePlf.BUSINESS -> {
+                    mDataPersonalLoanPlf = data
+                    startActivity(
+                        Intent(
+                            rootActivity, PlfCalculateResultTwoActivity::class.java
+                        ).apply { putExtra("model", "details") }
+                    )
+                }
+
+                LoanTypePlf.MORTGAGES -> {
+
+                }
+            }
+        }
+        mPlfBinding.rvRvView.layoutManager = LinearLayoutManager(rootActivity)
+        mPlfBinding.rvRvView.adapter = mAdapterHistoryCalculatorPlf
+    }
+
+    private fun getListDataPlf() {
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun managerHome(eventManagerHome: EventManagerHome) {
+        when (eventManagerHome.managerType) {
+            "updateHistory" -> {
+                val list = mTilPersonalLoanDao.getLatestItems(4)
+                mListData.clear()
+                mListData.addAll(list)
+                mAdapterHistoryCalculatorPlf.notifyDataSetChanged()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this)
         }
     }
 

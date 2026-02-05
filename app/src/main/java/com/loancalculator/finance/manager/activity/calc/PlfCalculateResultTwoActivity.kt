@@ -20,9 +20,13 @@ class PlfCalculateResultTwoActivity : PlfBindingActivity<ActivityCalculateResult
     mBarTextWhite = false
 ) {
     private var mTilPersonalLoanDao = mPlfLoanRoom.mTilPersonalLoanDao()
+    private var mViewModel = ""
 
     @SuppressLint("SetTextI18n")
     override fun beginViewAndDoLtd() {
+        intent?.let {
+            mViewModel = it.getStringExtra("model") ?: ""
+        }
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_calculate_result)
         mDataPersonalLoanPlf?.let { data ->
             mPlcBinding.tvLoanAmount2.text =
@@ -36,11 +40,13 @@ class PlfCalculateResultTwoActivity : PlfBindingActivity<ActivityCalculateResult
             mPlcBinding.tvStartDate2.text = TimeDatePlfUtils.getTimeDateOnePlf(data.startDate)
             mPlcBinding.tvMonthPayment2.text = "${data.monthlyPayment}${data.currencySymbol}"
 
-            val dataIndexId = mTilPersonalLoanDao.insertContent(data)
-            if (dataIndexId != -1L) {
-                data.dataIndexId = dataIndexId
-            } else {
-                data.dataIndexId = -1L
+            if (mViewModel != "details") {
+                val dataIndexId = mTilPersonalLoanDao.insertContent(data)
+                if (dataIndexId != -1L) {
+                    data.dataIndexId = dataIndexId
+                } else {
+                    data.dataIndexId = -1L
+                }
             }
         }
 

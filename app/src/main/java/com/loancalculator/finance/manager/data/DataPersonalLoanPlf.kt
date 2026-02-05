@@ -15,7 +15,7 @@ class DataPersonalLoanPlf() : TilBaseData() {
     @PrimaryKey(autoGenerate = true)
     var dataIndexId: Long = 0L
 
-    //类型 personalLoan businessLoan mortgages autoLoan
+    //类型 personalLoan businessLoan mortgages autoLoan rd fd
     var loanType: String = ""
 
     //是否加入对比表 yes no
@@ -38,6 +38,7 @@ class DataPersonalLoanPlf() : TilBaseData() {
 
     //表示多少个月
     var loanTerm: Int = 0
+
     //
     var loanTermUnit: String = ""
 
@@ -69,4 +70,7 @@ class DataPersonalLoanPlf() : TilBaseData() {
 
     @Ignore
     var mLoanMonthDetailList: List<LoanMonthDetail>? = null
+
+    @Ignore
+    var fingerSelect = false
 }

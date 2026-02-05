@@ -3,6 +3,7 @@ package com.loancalculator.finance.manager.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.loancalculator.finance.manager.R
@@ -13,6 +14,7 @@ import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 
 class AdapterHistoryCalculatorPlf(
+    var mDeleteModel: Boolean,
     private val mAdapterContext: Context,
     private val mListDoData: MutableList<DataPersonalLoanPlf>,
     private val tilFunBack: (Int) -> Unit
@@ -70,6 +72,42 @@ class AdapterHistoryCalculatorPlf(
                 }
             }"
             tvAmount.text = "${data.loanAmount}${data.currencySymbol}"
+            if (mDeleteModel) {
+                tvDetails.visibility = View.GONE
+                ivSelect.visibility = View.VISIBLE
+            } else {
+                tvDetails.visibility = View.VISIBLE
+                ivSelect.visibility = View.GONE
+            }
+            ivSelect.isSelected = data.fingerSelect
+        }
+    }
+
+    override fun onBindViewHolder(holder: HolderItem, position: Int, payloads: List<Any?>) {
+        if (payloads.isEmpty()) {
+            super.onBindViewHolder(holder, position, payloads)
+        } else {
+            val vre = payloads[0]
+            if (vre is String) {
+                when (vre) {
+                    "updateStatus" -> {
+                        val data = mListDoData[position]
+                        if (mDeleteModel) {
+                            holder.mPlfBinding.tvDetails.visibility = View.GONE
+                            holder.mPlfBinding.ivSelect.visibility = View.VISIBLE
+                        } else {
+                            holder.mPlfBinding.tvDetails.visibility = View.VISIBLE
+                            holder.mPlfBinding.ivSelect.visibility = View.GONE
+                        }
+                        holder.mPlfBinding.ivSelect.isSelected = data.fingerSelect
+                    }
+
+                    "updateOnce" -> {
+                        val data = mListDoData[position]
+                        holder.mPlfBinding.ivSelect.isSelected = data.fingerSelect
+                    }
+                }
+            }
         }
     }
 

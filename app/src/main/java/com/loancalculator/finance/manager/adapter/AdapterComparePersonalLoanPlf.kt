@@ -47,6 +47,7 @@ class AdapterComparePersonalLoanPlf(
     ) {
         val data = mListDoData[position]
         holder.mPlfBinding.apply {
+            tvTableName.text = data.aTableName
             tvLoanAmount2.text =
                 "${data.loanAmount}${data.currencySymbol}"
             tvIntersetRate2.text = "${data.interestRate}%"

@@ -17,6 +17,14 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
         if (mDeleteModel) {
             mPlcBinding.topSetPlf.ivDeleteHistory.visibility = View.VISIBLE
             mPlcBinding.topSetPlf.tvSelectAll.visibility = View.GONE
+            mDeleteModel = false
+            if (mPlcBinding.tilViewPager.currentItem == 0) {
+                val fg1 = mFragmentList[0]
+                (fg1 as? FragmentHistoryCalculatorPlf)?.initSelectStatus(mDeleteModel)
+            }
+            if (mPlcBinding.tilViewPager.currentItem == 1) {
+
+            }
         } else {
             super.doBackPressed()
         }
@@ -43,9 +51,24 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
         mPlcBinding.topSetPlf.ivDeleteHistory.setSafeListener {
             it.visibility = View.INVISIBLE
             mPlcBinding.topSetPlf.tvSelectAll.visibility = View.VISIBLE
+            mDeleteModel = true
+            if (mPlcBinding.tilViewPager.currentItem == 0) {
+                val fg1 = mFragmentList[0]
+                (fg1 as? FragmentHistoryCalculatorPlf)?.initSelectStatus(mDeleteModel)
+            }
+            if (mPlcBinding.tilViewPager.currentItem == 1) {
+
+            }
         }
         mPlcBinding.topSetPlf.tvSelectAll.setSafeListener {
+            it.isSelected = !it.isSelected
+            if (mPlcBinding.tilViewPager.currentItem == 0) {
+                val fg1 = mFragmentList[0]
+                (fg1 as? FragmentHistoryCalculatorPlf)?.changeSelectStatus(it.isSelected)
+            }
+            if (mPlcBinding.tilViewPager.currentItem == 1) {
 
+            }
         }
     }
 
@@ -88,6 +111,10 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
         }
         mPlcBinding.tvCalculator.isSelected = position == 0
         mPlcBinding.tvInvestment.isSelected = position == 1
+        if (!changeItem) {
+            val fg1 = mFragmentList[0]
+            (fg1 as? FragmentHistoryCalculatorPlf)?.initSelectStatus(mDeleteModel)
+        }
     }
 
     override fun getLayoutValue(): ActivityHistoryCalculatePlfBinding {

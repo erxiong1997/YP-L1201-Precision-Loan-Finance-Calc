@@ -10,7 +10,9 @@ class ConstantObjectManagerUtils {
     LoanTypePlf.PERSONAL,
     LoanTypePlf.BUSINESS,
     LoanTypePlf.MORTGAGES,
-    LoanTypePlf.AUTO
+    LoanTypePlf.AUTO,
+    LoanTypePlf.RD,
+    LoanTypePlf.FD
 )
 annotation class LoanTypePlfDef
 
@@ -19,4 +21,6 @@ object LoanTypePlf {
     const val BUSINESS = "businessLoan"
     const val MORTGAGES = "mortgages"
     const val AUTO = "autoLoan"
+    const val RD = "fd"
+    const val FD = "rd"
 }

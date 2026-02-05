@@ -6,6 +6,8 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.loancalculator.finance.manager.activity.PlfRootActivity
+import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultActivity
+import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultTwoActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsSpeedConvertActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsTemperatureActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsWorldTimeActivity
@@ -15,6 +17,8 @@ import com.loancalculator.finance.manager.databinding.FragmentHistoryCalculatorP
 import com.loancalculator.finance.manager.databinding.FragmentToolsPlfBinding
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
+import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,8 +38,10 @@ class FragmentHistoryCalculatorPlf : RootPlfFragment<FragmentHistoryCalculatorPl
 
     private var mTilPersonalLoanDao = mPlfLoanRoom.mTilPersonalLoanDao()
 
-    private var mAdapterHistoryCalculatorPlf: AdapterHistoryCalculatorPlf? = null
+    private lateinit var mAdapterHistoryCalculatorPlf: AdapterHistoryCalculatorPlf
     private val mListData = mutableListOf<DataPersonalLoanPlf>()
+
+    private var mCurDeleteModel = false
 
     override fun startCreateContent(
         rootActivity: PlfRootActivity,
@@ -44,19 +50,124 @@ class FragmentHistoryCalculatorPlf : RootPlfFragment<FragmentHistoryCalculatorPl
     ) {
         setPlfRecyclerView(rootActivity)
         getListDataPlf()
+
+        mPlfBinding.tvDelete.setSafeListener {
+            for ((index, data) in mListData.withIndex().reversed()) {
+                if (data.fingerSelect) {
+                    mListData.removeAt(index)
+                    mSelectorCount--
+                    mAdapterHistoryCalculatorPlf.notifyItemRemoved(index)
+                }
+            }
+            changeDeleteButton()
+        }
+    }
+
+    private var mSelectorCount = 0
+
+    fun initSelectStatus(openDelete: Boolean) {
+        if (openDelete == mCurDeleteModel) {
+            return
+        }
+        mCurDeleteModel = openDelete
+        if (mListData.isEmpty()) return
+        mListData.forEach {
+            it.fingerSelect = false
+        }
+        mSelectorCount = 0
+        mAdapterHistoryCalculatorPlf.mDeleteModel = openDelete
+        mAdapterHistoryCalculatorPlf.notifyItemRangeChanged(0, mListData.size, "updateStatus")
+        mPlfBinding.tvDelete.visibility = View.GONE
+    }
+
+    fun changeSelectStatus(fingerSelect: Boolean) {
+        if (mListData.isEmpty()) return
+        mListData.forEach {
+            it.fingerSelect = fingerSelect
+        }
+        if (fingerSelect) {
+            mSelectorCount = mListData.size
+        } else {
+            mSelectorCount = 0
+        }
+        mAdapterHistoryCalculatorPlf.mDeleteModel = true
+        mAdapterHistoryCalculatorPlf.notifyItemRangeChanged(0, mListData.size, "updateStatus")
+        changeDeleteButton()
     }
 
     override fun setPlfRecyclerView(rootActivity: PlfRootActivity) {
-
-        mAdapterHistoryCalculatorPlf = AdapterHistoryCalculatorPlf(rootActivity, mListData) {
+        val list = mTilPersonalLoanDao.getAllListCalculator(LoanTypePlf.RD, LoanTypePlf.FD)
+        mListData.clear()
+        mListData.addAll(list)
+        mAdapterHistoryCalculatorPlf = AdapterHistoryCalculatorPlf(false, rootActivity, mListData) {
             val data = mListData[it]
+            if (mCurDeleteModel) {
+                data.fingerSelect = !data.fingerSelect
+                if (data.fingerSelect) {
+                    mSelectorCount++
+                } else {
+                    mSelectorCount--
+                }
+                mAdapterHistoryCalculatorPlf.notifyItemChanged(it)
+                changeDeleteButton()
+            } else {
+                when (data.loanType) {
+                    LoanTypePlf.PERSONAL, LoanTypePlf.AUTO -> {
+                        mDataPersonalLoanPlf = data
+                        startActivity(
+                            Intent(
+                                rootActivity,
+                                PlfCalculateResultActivity::class.java
+                            ).apply {
+                                putExtra("model", "details")
+                            })
+                    }
+
+                    LoanTypePlf.BUSINESS -> {
+                        mDataPersonalLoanPlf = data
+                        startActivity(
+                            Intent(
+                                rootActivity, PlfCalculateResultTwoActivity::class.java
+                            ).apply {
+                                putExtra("model", "details")
+                            }
+                        )
+                    }
+
+                    LoanTypePlf.MORTGAGES -> {
+
+                    }
+                }
+            }
         }
         mPlfBinding.rvRvView.layoutManager = LinearLayoutManager(rootActivity)
         mPlfBinding.rvRvView.adapter = mAdapterHistoryCalculatorPlf
+        if (mListData.isEmpty()) {
+            mPlfBinding.rvRvView.visibility = View.GONE
+            mPlfBinding.clNoData.visibility = View.VISIBLE
+        } else {
+            mPlfBinding.rvRvView.visibility = View.VISIBLE
+            mPlfBinding.clNoData.visibility = View.GONE
+        }
     }
 
     private fun getListDataPlf() {
 
+    }
+
+    private fun changeDeleteButton() {
+        if (mListData.isEmpty()) {
+            mPlfBinding.tvDelete.visibility = View.GONE
+            mPlfBinding.rvRvView.visibility = View.GONE
+            mPlfBinding.clNoData.visibility = View.VISIBLE
+            return
+        }
+        mPlfBinding.tvDelete.visibility = View.VISIBLE
+        if (mSelectorCount == 0) {
+            mPlfBinding.tvDelete.isEnabled = false
+        } else {
+            mPlfBinding.tvDelete.isEnabled = true
+        }
     }
 
     override fun getLayoutValue(): FragmentHistoryCalculatorPlfBinding {

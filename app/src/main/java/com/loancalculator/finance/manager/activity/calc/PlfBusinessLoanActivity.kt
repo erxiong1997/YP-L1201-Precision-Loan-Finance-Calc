@@ -14,6 +14,7 @@ import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity
 import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
+import com.loancalculator.finance.manager.data.EventManagerHome
 import com.loancalculator.finance.manager.databinding.ActivityBusinessLoanPlfBinding
 import com.loancalculator.finance.manager.plfPxDp
 import com.loancalculator.finance.manager.setSafeListener
@@ -22,6 +23,7 @@ import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
+import org.greenrobot.eventbus.EventBus
 
 class PlfBusinessLoanActivity : PlfBindingActivity<ActivityBusinessLoanPlfBinding>() {
     private val mCurrencySelectLauncher =
@@ -158,11 +160,14 @@ class PlfBusinessLoanActivity : PlfBindingActivity<ActivityBusinessLoanPlfBindin
             startDate = System.currentTimeMillis()
             currencySymbol = mDataCurrencyUnitPlf?.currencySymbol ?: "$"
         }
-        val (a, b) = ToolsLoanMonthDetailUtils.calculateAmortization(amount, rate / 100, term2)
+        val (a, b) = ToolsLoanMonthDetailUtils.calculateAmortization(amount, rate / 100, term)
         dataPersonalLoanPlf.monthlyPayment = a
         dataPersonalLoanPlf.mLoanMonthDetailList = b
         mDataPersonalLoanPlf = dataPersonalLoanPlf
-        startActivity(Intent(this, PlfCalculateResultActivity::class.java))
+        startActivity(Intent(this, PlfCalculateResultTwoActivity::class.java))
+        EventBus.getDefault().post(EventManagerHome("updateHistory").apply {
+            this.mDataPersonalLoanPlf = dataPersonalLoanPlf
+        })
     }
 
     private fun clearAllValue() {
