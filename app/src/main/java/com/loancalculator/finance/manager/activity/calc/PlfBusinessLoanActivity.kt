@@ -165,9 +165,6 @@ class PlfBusinessLoanActivity : PlfBindingActivity<ActivityBusinessLoanPlfBindin
         dataPersonalLoanPlf.mLoanMonthDetailList = b
         mDataPersonalLoanPlf = dataPersonalLoanPlf
         startActivity(Intent(this, PlfCalculateResultTwoActivity::class.java))
-        EventBus.getDefault().post(EventManagerHome("updateHistory").apply {
-            this.mDataPersonalLoanPlf = dataPersonalLoanPlf
-        })
     }
 
     private fun clearAllValue() {

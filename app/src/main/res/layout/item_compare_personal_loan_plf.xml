@@ -20,11 +20,13 @@
         android:layout_marginEnd="12dp"
         android:ellipsize="end"
         android:maxLines="3"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tvDeleteTable"
         app:layout_constraintEnd_toStartOf="@+id/tvDeleteTable"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvDeleteTable" />
-
 
     <TextView
         android:id="@+id/tvDeleteTable"

@@ -25,6 +25,10 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
                             if (data.isNotEmpty()) {
                                 val (a, b) = TimeDatePlfUtils.getCurrentTimeInZoneOffset(data)
                                 val s = a.split(":")[0].toInt()
+                                if (mShowEmpty){
+                                    mShowEmpty = false
+                                }
+                                mListData.clear()
                                 mListData.add(0, DataUtcSelectPlf(data, b).apply {
                                     mCurTime = a
                                     amOrPm = if (s > 12) {
@@ -45,6 +49,8 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
     private lateinit var mAdapterUtcSaveItemPlf: AdapterUtcSaveItemPlf
     private val mListData = mutableListOf<DataUtcSelectPlf>()
 
+    private var mShowEmpty = false
+
     override fun beginViewAndDoLtd() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_world_clock)
         setPlfRecyclerView()
@@ -57,8 +63,10 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
         mListData.clear()
         DealRecentPlfUtils.getWorldTimeUtcRecent(mListData)
         if (mListData.isEmpty()) {
+            mShowEmpty = true
             fillEmptyList(true)
         }
+        mShowEmpty = false
         mAdapterUtcSaveItemPlf = AdapterUtcSaveItemPlf(this, mListData, {
             //long click
             val data = mListData[it]
@@ -70,8 +78,10 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
             ) {
                 mListData.removeAt(it)
                 if (mListData.isEmpty()) {
+                    mShowEmpty = true
                     fillEmptyList(false)
                 } else {
+                    mShowEmpty = false
                     mAdapterUtcSaveItemPlf.notifyItemRemoved(it)
                 }
                 DealRecentPlfUtils.addWorldTimeUtcRecent(mListData)

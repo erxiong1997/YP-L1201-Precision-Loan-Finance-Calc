@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
+import com.loancalculator.finance.manager.data.EventManagerHome
 import com.loancalculator.finance.manager.databinding.ActivityInvestmentResultPlfBinding
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
@@ -15,6 +16,7 @@ import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
+import org.greenrobot.eventbus.EventBus
 
 class PlfInvestmentResultActivity : PlfBindingActivity<ActivityInvestmentResultPlfBinding>(
     mBarTextWhite = false
@@ -89,6 +91,11 @@ class PlfInvestmentResultActivity : PlfBindingActivity<ActivityInvestmentResultP
                 } else {
                     data.dataIndexId = -1L
                 }
+                mPlcBinding.root.postDelayed({
+                    EventBus.getDefault().post(EventManagerHome("updateHistory").apply {
+                        this.mDataPersonalLoanPlf = data
+                    })
+                }, 240)
             }
         }
 

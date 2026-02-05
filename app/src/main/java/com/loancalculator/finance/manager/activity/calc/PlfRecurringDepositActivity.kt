@@ -175,9 +175,6 @@ class PlfRecurringDepositActivity : PlfBindingActivity<ActivityRecurringDepositP
 
         mDataPersonalLoanPlf = dataPersonalLoanPlf
         startActivity(Intent(this, PlfInvestmentResultActivity::class.java))
-        EventBus.getDefault().post(EventManagerHome("updateHistory").apply {
-            this.mDataPersonalLoanPlf = dataPersonalLoanPlf
-        })
     }
 
     private fun clearAllValue() {

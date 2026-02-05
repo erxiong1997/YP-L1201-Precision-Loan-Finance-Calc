@@ -179,9 +179,6 @@ class PlfAutoLoanActivity : PlfBindingActivity<ActivityAutoLoanPlfBinding>(
         dataPersonalLoanPlf.mLoanMonthDetailList = b
         mDataPersonalLoanPlf = dataPersonalLoanPlf
         startActivity(Intent(this, PlfCalculateResultActivity::class.java))
-        EventBus.getDefault().post(EventManagerHome("updateHistory").apply {
-            this.mDataPersonalLoanPlf = dataPersonalLoanPlf
-        })
     }
 
     private fun clearAllValue() {

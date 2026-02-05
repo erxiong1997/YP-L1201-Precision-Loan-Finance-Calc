@@ -36,20 +36,29 @@ class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersona
                         getString(R.string.plf_compare_2),
                         getString(R.string.plf_business_loan)
                     )
+                    mTilPersonalLoanDao.getListByLoanType(LoanTypePlf.BUSINESS).let {
+                        mListData.addAll(it)
+                    }
                 }
 
                 "mortgages" -> {
                     mPlcBinding.topSetPlf.tvTitleAll.text = String.format(
                         getString(R.string.plf_compare_2),
-                        getString(R.string.plf_personal_loan)
+                        getString(R.string.plf_mortgages)
                     )
+                    mTilPersonalLoanDao.getListByLoanType(LoanTypePlf.MORTGAGES).let {
+                        mListData.addAll(it)
+                    }
                 }
 
                 "autoLoan" -> {
                     mPlcBinding.topSetPlf.tvTitleAll.text = String.format(
                         getString(R.string.plf_compare_2),
-                        getString(R.string.plf_business_loan)
+                        getString(R.string.plf_auto_loan)
                     )
+                    mTilPersonalLoanDao.getListByLoanType(LoanTypePlf.AUTO).let {
+                        mListData.addAll(it)
+                    }
                 }
             }
         }
