@@ -18,7 +18,6 @@ import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity
 import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
-import com.loancalculator.finance.manager.data.EventManagerHome
 import com.loancalculator.finance.manager.databinding.ActivityMortgagesPlfBinding
 import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.plfPxDp
@@ -27,8 +26,7 @@ import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
-import org.greenrobot.eventbus.EventBus
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 
 class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
     mBarTextWhite = false
@@ -49,7 +47,7 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
     private var mEditIngTwo = false
 
     init {
-        mHandlerLtd = object : Handler(Looper.getMainLooper()) {
+        mHandlerPlf = object : Handler(Looper.getMainLooper()) {
             override fun handleMessage(msg: Message) {
                 when (msg.what) {
                     1189 -> {
@@ -82,7 +80,7 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
         }
     }
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_mortgages)
 
         mDataCurrencyUnitPlf = DealRecentPlfUtils.getCurrencyUnitRecent()
@@ -160,8 +158,8 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
                     mEditIng = false
                 } else {
                     mEditIng = true
-                    mHandlerLtd?.removeCallbacksAndMessages(null)
-                    mHandlerLtd?.sendEmptyMessageDelayed(1189, 64)
+                    mHandlerPlf?.removeCallbacksAndMessages(null)
+                    mHandlerPlf?.sendEmptyMessageDelayed(1189, 64)
                 }
             }
         }
@@ -174,8 +172,8 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
                     mEditIng = false
                 } else {
                     mEditIng = true
-                    mHandlerLtd?.removeCallbacksAndMessages(null)
-                    mHandlerLtd?.sendEmptyMessageDelayed(1190, 64)
+                    mHandlerPlf?.removeCallbacksAndMessages(null)
+                    mHandlerPlf?.sendEmptyMessageDelayed(1190, 64)
                 }
             }
         }

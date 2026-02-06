@@ -15,19 +15,14 @@ import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity
 import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
-import com.loancalculator.finance.manager.data.EventManagerHome
 import com.loancalculator.finance.manager.databinding.ActivityFixedDepositPlfBinding
-import com.loancalculator.finance.manager.databinding.ActivityPersonalLoanPlfBinding
-import com.loancalculator.finance.manager.databinding.ActivityRecurringDepositPlfBinding
 import com.loancalculator.finance.manager.plfPxDp
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
-import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
-import org.greenrobot.eventbus.EventBus
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 import java.util.Calendar
 
 class PlfFixedDepositActivity : PlfBindingActivity<ActivityFixedDepositPlfBinding>(
@@ -46,7 +41,7 @@ class PlfFixedDepositActivity : PlfBindingActivity<ActivityFixedDepositPlfBindin
     //month year
     private var mMonthYear = "month"
     private var mNumberInvestment = 1
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_fixed_deposit)
 
         mPlcBinding.tvStartDate.text =

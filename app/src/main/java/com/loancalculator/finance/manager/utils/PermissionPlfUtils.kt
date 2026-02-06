@@ -6,7 +6,7 @@ import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 
-object PermissionLtdUtils {
+object PermissionPlfUtils {
     fun getNotifyStatus(context: Context): Boolean {
         return XXPermissions.isGrantedPermissions(context, Permission.POST_NOTIFICATIONS)
     }

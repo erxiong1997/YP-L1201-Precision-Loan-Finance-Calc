@@ -26,6 +26,6 @@ class DialogDeleteConfirmPlf(
             tilFunBack()
         }
 
-        DialogMangerLtdUtils.changeWindowHalf(window, gravity = Gravity.CENTER)
+        DialogMangerPlfUtils.changeWindowHalf(window, gravity = Gravity.CENTER)
     }
 }

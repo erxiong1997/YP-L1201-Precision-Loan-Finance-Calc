@@ -34,7 +34,7 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
     private val mFragmentList = mutableListOf<RootPlfFragment<*>>()
     private val mFragmentValueList = mutableListOf(1, 2)
     private var mDeleteModel = false
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_history)
         mPlcBinding.tvCalculator.isSelected = true
 

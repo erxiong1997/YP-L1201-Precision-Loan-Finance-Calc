@@ -11,7 +11,7 @@ import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mCurrencyLi
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mRateCurrencyPlf
 
-class PlfCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfBinding>(
+class PlfStartCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfBinding>(
     mBarTextWhite = false
 ) {
     private lateinit var mAdapterCurrencyUnitItemPlf: AdapterCurrencyUnitItemPlf

@@ -102,7 +102,14 @@
         <activity
             android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsMassConvertActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsExchangeRateActivity" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsExchangeRateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.other.PlfStartCurrencyUnitActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.loancalculator.finance.manager.activity.other.PlfStartHelpActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

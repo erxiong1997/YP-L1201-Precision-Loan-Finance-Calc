@@ -13,7 +13,7 @@ import com.loancalculator.finance.manager.adapter.AdapterWorldTimeSelectPlf
 import com.loancalculator.finance.manager.data.DataUtcSelectPlf
 import com.loancalculator.finance.manager.databinding.ActivityWorldTimeSelectPlfBinding
 import com.loancalculator.finance.manager.setSafeListener
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mWorldTimeUtcList
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mWorldTimeUtcList
 
 class PlfWorldTimeSelectActivity : PlfBindingActivity<ActivityWorldTimeSelectPlfBinding>() {
     private lateinit var mAdapterWorldTimeSelectPlf: AdapterWorldTimeSelectPlf
@@ -23,7 +23,7 @@ class PlfWorldTimeSelectActivity : PlfBindingActivity<ActivityWorldTimeSelectPlf
     private var mSelectCount = 0
 
     init {
-        mHandlerLtd = object : Handler(Looper.getMainLooper()) {
+        mHandlerPlf = object : Handler(Looper.getMainLooper()) {
             override fun handleMessage(msg: Message) {
                 when (msg.what) {
                     1189 -> {
@@ -40,7 +40,7 @@ class PlfWorldTimeSelectActivity : PlfBindingActivity<ActivityWorldTimeSelectPlf
         }
     }
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_world_clock)
         setPlfRecyclerView()
         mPlcBinding.etSearch.doAfterTextChanged {
@@ -49,8 +49,8 @@ class PlfWorldTimeSelectActivity : PlfBindingActivity<ActivityWorldTimeSelectPlf
                 mListDoData.addAll(mTotalListDoData)
                 mAdapterWorldTimeSelectPlf.notifyDataSetChanged()
             } else {
-                mHandlerLtd?.removeMessages(1189)
-                mHandlerLtd?.sendEmptyMessageDelayed(1189, 64)
+                mHandlerPlf?.removeMessages(1189)
+                mHandlerPlf?.sendEmptyMessageDelayed(1189, 64)
             }
         }
         mPlcBinding.topSetPlf.ivSelect.visibility = View.INVISIBLE

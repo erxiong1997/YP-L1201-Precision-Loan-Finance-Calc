@@ -8,16 +8,15 @@ import com.loancalculator.finance.manager.PlfDealApplication.Companion.mStartPag
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
 import com.loancalculator.finance.manager.databinding.ActivityStartPlfBinding
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils
 
 class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
-    private var mAgainStartLtd = "no"
+    private var mAgainStartPlf = "no"
     private var mBackGroundShow = false
     private var mBookShowing = false
     private var mAdType = ""
 
     init {
-        mHandlerLtd = object : Handler(Looper.getMainLooper()) {
+        mHandlerPlf = object : Handler(Looper.getMainLooper()) {
             override fun handleMessage(msg: Message) {
                 when (msg.what) {
                     6381 -> {
@@ -45,15 +44,15 @@ class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
         }
     }
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mPlcBinding.progressStart.max = 100
-        mHandlerLtd?.sendEmptyMessageDelayed(6382, 220)
+        mHandlerPlf?.sendEmptyMessageDelayed(6382, 220)
     }
 
     private fun startLtdActivity() {
         if (isFinishing || isDestroyed) return
-        if (!PlfDealApplication.mAppLtdOpen) {
-            mAgainStartLtd = "yes"
+        if (!PlfDealApplication.mAppPlfOpen) {
+            mAgainStartPlf = "yes"
             return
         }
         if (mStartPageFinish) {
@@ -67,15 +66,15 @@ class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
             return
         }
 //        if (DataManagerLtdUtils.getDataKeyPlf(
-//                LTD_SHOW_HIDE_LANGUAGE_START, "showLanguage"
+//                PLF_SHOW_HIDE_LANGUAGE_START, "showLanguage"
 //            ) == "showLanguage"
 //        ) {
-//            if (!DataManagerLtdUtils.getDataKeyPlf(LTD_ENTER_MAIN_RESULT, false)) {
+//            if (!DataManagerLtdUtils.getDataKeyPlf(PLF_ENTER_MAIN_RESULT, false)) {
 //                startActivity(Intent(this, LtdStartLanguageActivity::class.java))
 //                finish()
 //                return
 //            }
-//        }
+////        }
         startActivity(Intent(this, PlfMainToolActivity::class.java).apply {
 
         })
@@ -84,15 +83,15 @@ class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
 
     override fun onResume() {
         super.onResume()
-        if (mAgainStartLtd == "yes") {
-            mAgainStartLtd = "no"
+        if (mAgainStartPlf == "yes") {
+            mAgainStartPlf = "no"
             startLtdActivity()
         } else {
             if (mBackGroundShow) {
                 mBackGroundShow = false
                 mBookShowing = false
-//                mHandlerLtd?.sendEmptyMessage(6384)
-                mHandlerLtd?.sendEmptyMessage(6381)
+//                mHandlerPlf?.sendEmptyMessage(6384)
+                mHandlerPlf?.sendEmptyMessage(6381)
             }
         }
     }

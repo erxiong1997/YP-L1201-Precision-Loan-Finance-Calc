@@ -34,6 +34,6 @@ class DialogAddCompareName(
             }
         }
 
-        DialogMangerLtdUtils.changeWindowHalf(window)
+        DialogMangerPlfUtils.changeWindowHalf(window)
     }
 }

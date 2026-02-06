@@ -25,7 +25,7 @@ class PlfInvestmentResultActivity : PlfBindingActivity<ActivityInvestmentResultP
     private var mViewModel = ""
 
     @SuppressLint("SetTextI18n")
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         intent?.let {
             mViewModel = it.getStringExtra("model") ?: ""
         }

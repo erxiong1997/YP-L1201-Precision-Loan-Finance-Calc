@@ -5,8 +5,8 @@ import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.databinding.ActivitySetPolicyPlfBinding
 
 class PlfSetPolicyActivity : PlfBindingActivity<ActivitySetPolicyPlfBinding>() {
-    override fun beginViewAndDoLtd() {
-        mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_policy_message_plf)
+    override fun beginViewAndDoPlf() {
+        mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_privacy_policy)
     }
 
     override fun getLayoutValue(): ActivitySetPolicyPlfBinding {

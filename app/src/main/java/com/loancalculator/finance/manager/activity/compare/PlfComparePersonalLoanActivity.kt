@@ -19,7 +19,7 @@ class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersona
     private var mCompareType = ""
     private var mTilPersonalLoanDao = mPlfLoanRoom.mTilPersonalLoanDao()
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         intent?.let {
             mCompareType = it.getStringExtra("compareType") ?: ""
             when (mCompareType) {

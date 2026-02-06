@@ -2,7 +2,6 @@ package com.loancalculator.finance.manager.activity.calc
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.widget.Toast
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
@@ -15,7 +14,6 @@ import com.loancalculator.finance.manager.showToastIDPlf
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.dialog.DialogAddCompareName
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
 import org.greenrobot.eventbus.EventBus
 
 class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlfBinding>(
@@ -25,7 +23,7 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
     private var mViewModel = ""
 
     @SuppressLint("SetTextI18n")
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         intent?.let {
             mViewModel = it.getStringExtra("model") ?: ""
         }

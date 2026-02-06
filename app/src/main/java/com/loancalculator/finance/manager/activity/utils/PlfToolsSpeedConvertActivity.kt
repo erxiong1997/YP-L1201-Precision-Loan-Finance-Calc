@@ -10,7 +10,7 @@ import com.loancalculator.finance.manager.databinding.ActivityToolsSpeedConvertP
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.SpeedUnit
 import com.loancalculator.finance.manager.utils.ToolsSpeedConverterUtils
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mSpeedUnitList
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mSpeedUnitList
 
 class PlfToolsSpeedConvertActivity :
     PlfBindingActivity<ActivityToolsSpeedConvertPlfBinding>(mBarTextWhite = false) {
@@ -45,7 +45,7 @@ class PlfToolsSpeedConvertActivity :
     private var mTopUnitData: SpeedUnit? = null
     private var mBottomUnitData: SpeedUnit? = null
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_speed_convert)
 
         val data1 = mSpeedUnitList[0]

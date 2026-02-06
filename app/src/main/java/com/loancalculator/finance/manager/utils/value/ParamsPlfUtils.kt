@@ -4,14 +4,13 @@ import com.loancalculator.finance.manager.PlfDealApplication
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.data.DataCurrencyRatePlf
 import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
-import com.loancalculator.finance.manager.data.DataToolsTemperature
 import com.loancalculator.finance.manager.utils.LengthUnit
 import com.loancalculator.finance.manager.utils.MassUnit
 import com.loancalculator.finance.manager.utils.SpeedUnit
 import com.loancalculator.finance.manager.utils.TemperatureUnit
 import java.io.File
 
-object ParamsLtdUtils {
+object ParamsPlfUtils {
     var mDataCurrencyUnitPlf: DataCurrencyUnitPlf? = null
     var mRateCurrencyPlf: DataCurrencyUnitPlf? = null
 

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.loancalculator.finance.manager.activity.PlfRootActivity
+import com.loancalculator.finance.manager.activity.other.PlfStartHelpActivity
 import com.loancalculator.finance.manager.activity.set.PlfSetLanguageActivity
 import com.loancalculator.finance.manager.activity.set.PlfSetPolicyActivity
 import com.loancalculator.finance.manager.databinding.FragmentMinePlfBinding
@@ -32,7 +33,8 @@ class FragmentMinePlf : RootPlfFragment<FragmentMinePlfBinding>() {
             startActivity(Intent(rootActivity, PlfSetPolicyActivity::class.java))
         }
         mPlfBinding.llLanguage.setSafeListener {
-            startActivity(Intent(rootActivity, PlfSetLanguageActivity::class.java))
+//            startActivity(Intent(rootActivity, PlfSetLanguageActivity::class.java))
+            startActivity(Intent(rootActivity, PlfStartHelpActivity::class.java))
         }
         mPlfBinding.llShare.setSafeListener {
             PlfTotalUtils.shareAppLinkPlf(rootActivity)

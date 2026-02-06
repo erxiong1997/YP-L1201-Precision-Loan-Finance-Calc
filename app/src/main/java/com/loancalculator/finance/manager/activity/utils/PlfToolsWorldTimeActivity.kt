@@ -51,7 +51,7 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
 
     private var mShowEmpty = false
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_world_clock)
         setPlfRecyclerView()
         mPlcBinding.tvAddClock.setSafeListener {

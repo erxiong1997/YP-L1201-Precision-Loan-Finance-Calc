@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.core.content.edit
 import com.loancalculator.finance.manager.PlfDealApplication
 
-object DataManagerLtdUtils {
+object DataManagerPlfUtils {
     private const val SHARED_PREFERENCES_NAME = "PrecisionLoanFiles"
 
     fun setDataKeyPlf(saveKey: String, saveData: Any) {

@@ -9,7 +9,7 @@ import com.loancalculator.finance.manager.databinding.ActivityToolsLenghtConvert
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.LengthUnit
 import com.loancalculator.finance.manager.utils.ToolsLengthConvertUtils
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mLengthUnitList
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mLengthUnitList
 
 class PlfToolsLengthConvertActivity :
     PlfBindingActivity<ActivityToolsLenghtConvertPlfBinding>(mBarTextWhite = false) {
@@ -44,7 +44,7 @@ class PlfToolsLengthConvertActivity :
     private var mTopUnitData: LengthUnit? = null
     private var mBottomUnitData: LengthUnit? = null
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_length_convert)
 
         val data1 = mLengthUnitList[0]

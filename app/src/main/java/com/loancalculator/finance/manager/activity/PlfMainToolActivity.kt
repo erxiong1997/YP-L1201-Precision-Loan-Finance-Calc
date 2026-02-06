@@ -16,7 +16,7 @@ class PlfMainToolActivity : PlfBindingActivity<ActivityMainPlfBinding>() {
     private val mFragmentList = mutableListOf<RootPlfFragment<*>>()
     private val mFragmentValueList = mutableListOf(1, 2, 3, 4)
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
 //        mPlcBinding.tvLoanTwo.setSafeListener {
 //            startActivity(Intent(this, PlfToolsTemperatureActivity::class.java))
 //        }

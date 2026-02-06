@@ -11,7 +11,7 @@ object DealRecentPlfUtils {
 
     fun addWorldTimeUtcRecent(dataRecentInfo: DataUtcSelectPlf) {
         try {
-            val recordData = DataManagerLtdUtils.getDataKeyPlf(PLF_WORLD_TIME_UTC, "")
+            val recordData = DataManagerPlfUtils.getDataKeyPlf(PLF_WORLD_TIME_UTC, "")
             val list = mutableListOf<DataUtcSelectPlf>()
             val moshi = Moshi.Builder().build()
             val type = Types.newParameterizedType(
@@ -24,7 +24,7 @@ object DealRecentPlfUtils {
                 }
             }
             list.add(0, dataRecentInfo)
-            DataManagerLtdUtils.setDataKeyPlf(PLF_WORLD_TIME_UTC, adapter.toJson(list))
+            DataManagerPlfUtils.setDataKeyPlf(PLF_WORLD_TIME_UTC, adapter.toJson(list))
         } catch (_: Exception) {
         }
     }
@@ -37,9 +37,9 @@ object DealRecentPlfUtils {
             )
             val adapter = moshi.adapter<MutableList<DataUtcSelectPlf>>(type)
             if (saveList.isEmpty()) {
-                DataManagerLtdUtils.setDataKeyPlf(PLF_WORLD_TIME_UTC, "")
+                DataManagerPlfUtils.setDataKeyPlf(PLF_WORLD_TIME_UTC, "")
             } else {
-                DataManagerLtdUtils.setDataKeyPlf(PLF_WORLD_TIME_UTC, adapter.toJson(saveList))
+                DataManagerPlfUtils.setDataKeyPlf(PLF_WORLD_TIME_UTC, adapter.toJson(saveList))
             }
         } catch (_: Exception) {
         }
@@ -47,7 +47,7 @@ object DealRecentPlfUtils {
 
     fun getWorldTimeUtcRecent(curList: MutableList<DataUtcSelectPlf>): MutableList<DataUtcSelectPlf> {
         try {
-            val recordData = DataManagerLtdUtils.getDataKeyPlf(PLF_WORLD_TIME_UTC, "")
+            val recordData = DataManagerPlfUtils.getDataKeyPlf(PLF_WORLD_TIME_UTC, "")
             val moshi = Moshi.Builder().build()
             val type = Types.newParameterizedType(
                 MutableList::class.java, DataUtcSelectPlf::class.java
@@ -73,7 +73,7 @@ object DealRecentPlfUtils {
             val moshi = Moshi.Builder().build()
             val adapter = moshi.adapter(DataCurrencyUnitPlf::class.java)
 
-            DataManagerLtdUtils.setDataKeyPlf(
+            DataManagerPlfUtils.setDataKeyPlf(
                 PLF_CURRENCY_UNIT_VALUE,
                 adapter.toJson(dataRecentInfo)
             )
@@ -83,7 +83,7 @@ object DealRecentPlfUtils {
 
     fun getCurrencyUnitRecent(): DataCurrencyUnitPlf? {
         try {
-            val recordData = DataManagerLtdUtils.getDataKeyPlf(PLF_CURRENCY_UNIT_VALUE, "")
+            val recordData = DataManagerPlfUtils.getDataKeyPlf(PLF_CURRENCY_UNIT_VALUE, "")
             val moshi = Moshi.Builder().build()
             val adapter = moshi.adapter(DataCurrencyUnitPlf::class.java)
             if (recordData.isNotEmpty()) {

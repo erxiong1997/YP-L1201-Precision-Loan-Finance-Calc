@@ -9,7 +9,7 @@ import com.loancalculator.finance.manager.databinding.ActivityToolsTemperaturePl
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.TemperatureUnit
 import com.loancalculator.finance.manager.utils.ToolsTemperatureUnitUtils
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mTemperatureUnitList
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mTemperatureUnitList
 
 class PlfToolsTemperatureActivity :
     PlfBindingActivity<ActivityToolsTemperaturePlfBinding>(mBarTextWhite = false) {
@@ -44,7 +44,7 @@ class PlfToolsTemperatureActivity :
     private var mTopUnitData: TemperatureUnit? = null
     private var mBottomUnitData: TemperatureUnit? = null
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_temperature)
 
         val data1 = mTemperatureUnitList[0]

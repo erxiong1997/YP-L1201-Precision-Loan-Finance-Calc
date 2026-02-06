@@ -42,7 +42,7 @@ abstract class PlfBindingActivity<LL : ViewBinding>(
             } catch (_: Exception) {
             }
         }
-        beginViewAndDoLtd()
+        beginViewAndDoPlf()
     }
 
     protected val mOnBackPressedBack = object : OnBackPressedCallback(true) {
@@ -55,7 +55,7 @@ abstract class PlfBindingActivity<LL : ViewBinding>(
         finish()
     }
 
-    abstract fun beginViewAndDoLtd()
+    abstract fun beginViewAndDoPlf()
 
     open fun setPlfRecyclerView() {}
 
@@ -81,11 +81,11 @@ abstract class PlfBindingActivity<LL : ViewBinding>(
     private fun fillTopBar() {
         if (mTopView) {
             try {
-                findViewById<View>(R.id.topBarViewLtd)?.apply {
+                findViewById<View>(R.id.topBarViewPlf)?.apply {
                     layoutParams.height = statusBarHeight
                 }
             } catch (_: Exception) {
-                findViewById<View>(R.id.topBarViewLtd)?.apply {
+                findViewById<View>(R.id.topBarViewPlf)?.apply {
                     layoutParams.height = 46.plfPxDp()
                 }
             }

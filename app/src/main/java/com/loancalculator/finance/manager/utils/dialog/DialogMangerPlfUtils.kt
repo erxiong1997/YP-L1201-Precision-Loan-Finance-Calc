@@ -6,7 +6,7 @@ import android.view.Window
 import android.view.WindowManager
 import com.loancalculator.finance.manager.plfPxDp
 
-object DialogMangerLtdUtils {
+object DialogMangerPlfUtils {
     val mWidthValue by lazy {
         Resources.getSystem().displayMetrics.widthPixels
     }

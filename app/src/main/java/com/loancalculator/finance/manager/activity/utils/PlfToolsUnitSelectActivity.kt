@@ -8,10 +8,10 @@ import com.loancalculator.finance.manager.adapter.AdapterToolsUnitItemPlf
 import com.loancalculator.finance.manager.data.DataUnitSelectPlf
 import com.loancalculator.finance.manager.databinding.ActivityToolsUnitSelectPlfBinding
 import com.loancalculator.finance.manager.setSafeListener
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mLengthUnitList
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mMassUnitList
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mSpeedUnitList
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mTemperatureUnitList
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mLengthUnitList
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mMassUnitList
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mSpeedUnitList
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mTemperatureUnitList
 
 class PlfToolsUnitSelectActivity : PlfBindingActivity<ActivityToolsUnitSelectPlfBinding>() {
     private var mUnitClass: String? = null
@@ -21,7 +21,7 @@ class PlfToolsUnitSelectActivity : PlfBindingActivity<ActivityToolsUnitSelectPlf
 
     private var mSelectPosition = 0
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         intent?.let {
             mUnitClass = it.getStringExtra("unitClass") ?: ""
             mPrePosition = it.getIntExtra("prePosition", -1)

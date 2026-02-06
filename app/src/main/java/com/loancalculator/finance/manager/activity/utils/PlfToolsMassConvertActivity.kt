@@ -9,7 +9,7 @@ import com.loancalculator.finance.manager.databinding.ActivityToolsMassConvertPl
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.MassUnit
 import com.loancalculator.finance.manager.utils.ToolsMassUnitUtils
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mMassUnitList
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mMassUnitList
 
 class PlfToolsMassConvertActivity :
     PlfBindingActivity<ActivityToolsMassConvertPlfBinding>(mBarTextWhite = false) {
@@ -44,7 +44,7 @@ class PlfToolsMassConvertActivity :
     private var mTopUnitData: MassUnit? = null
     private var mBottomUnitData: MassUnit? = null
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_mass_convert)
 
         val data1 = mMassUnitList[4]

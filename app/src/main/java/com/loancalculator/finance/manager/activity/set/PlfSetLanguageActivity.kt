@@ -19,7 +19,7 @@ class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>
 //        }
 //    }
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mStarNativeValue = true
 
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_language)

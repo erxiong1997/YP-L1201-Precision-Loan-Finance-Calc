@@ -1,12 +1,9 @@
 package com.loancalculator.finance.manager.activity.utils
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doAfterTextChanged
 import coil.load
-import com.android.volley.Request.Method
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -17,11 +14,9 @@ import com.loancalculator.finance.manager.data.DataCurrencyRatePlf
 import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
 import com.loancalculator.finance.manager.databinding.ActivityToolsSpeedConvertPlfBinding
 import com.loancalculator.finance.manager.setSafeListener
-import com.loancalculator.finance.manager.utils.ToolsSpeedConverterUtils
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mCurrencyListData
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mDataCurrencyUnitPlf
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mExchangeRateList
-import com.loancalculator.finance.manager.utils.value.ParamsLtdUtils.mRateCurrencyPlf
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mExchangeRateList
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mRateCurrencyPlf
 import com.squareup.moshi.Moshi
 
 class PlfToolsExchangeRateActivity :
@@ -67,7 +62,7 @@ class PlfToolsExchangeRateActivity :
     private var mTopUnitData: DataCurrencyUnitPlf? = null
     private var mBottomUnitData: DataCurrencyUnitPlf? = null
 
-    override fun beginViewAndDoLtd() {
+    override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_speed_convert)
         mRateCurrencyPlf = mDataCurrencyUnitPlf
         val data1 = mRateCurrencyPlf

@@ -173,5 +173,15 @@ but the higher the interest.</string>
     <string name="plf_sharing_failed">Sharing failed!</string>
     <string name="plf_number_of_compound">Number of compound interest</string>
     <string name="plf_number_of_times_interest">Number of times interest is calculated</string>
+    <string name="plf_next">Next</string>
+    <string name="plf_start">Start</string>
+    <string name="plf_help_title1">A variety of computing functions</string>
+    <string name="plf_help_title2">All-In-One Converter</string>
+    <string name="plf_help_title3">Compare Loans</string>
+    <string name="plf_help_title4">Financial Calculator</string>
+    <string name="plf_help_des1">Handle various computations,such as loans,mortgages, investments,and more</string>
+    <string name="plf_help_des2">handle all essential unit conversions for everyday needs</string>
+    <string name="plf_help_des3">compare to discover the ideal loan for your needs</string>
+    <string name="plf_help_des4">A comprehensive solution for all your financial calculations</string>
     <string name="plf_"></string>
 </resources>

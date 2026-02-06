@@ -16,7 +16,7 @@ abstract class PlfRootActivity : AppCompatActivity() {
         super.attachBaseContext(MultiLanguages.attach(newBase))
     }
 
-    protected var mHandlerLtd: Handler? = null
+    protected var mHandlerPlf: Handler? = null
 
     //归因
     protected var mStatusLook = false
@@ -31,7 +31,7 @@ abstract class PlfRootActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mHandlerLtd?.removeCallbacksAndMessages(null)
-        mHandlerLtd = null
+        mHandlerPlf?.removeCallbacksAndMessages(null)
+        mHandlerPlf = null
     }
 }

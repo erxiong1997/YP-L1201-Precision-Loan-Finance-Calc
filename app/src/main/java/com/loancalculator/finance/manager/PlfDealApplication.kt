@@ -21,14 +21,14 @@ class PlfDealApplication : Application(), Application.ActivityLifecycleCallbacks
     companion object {
         lateinit var mPlfContext: Context
 
-        var mAppLtdOpen = false
+        var mAppPlfOpen = false
         val mListActivityList = mutableListOf<Activity>()
 
-        var mLtdClParams = false
+        var mPlfClParams = false
 
         var mStartPageFinish = false
 
-        var mLtdRootActivity: PlfRootActivity? = null
+        var mPlfRootActivity: PlfRootActivity? = null
     }
 
     override fun onCreate() {
@@ -47,22 +47,22 @@ class PlfDealApplication : Application(), Application.ActivityLifecycleCallbacks
         savedInstanceState: Bundle?
     ) {
         if (activity is PlfRootActivity) {
-            mLtdRootActivity = activity
+            mPlfRootActivity = activity
         }
     }
 
     override fun onActivityStarted(activity: Activity) {
         if (activity is PlfRootActivity) {
-            mLtdRootActivity = activity
+            mPlfRootActivity = activity
         }
-        if (!mAppLtdOpen && !mLtdClParams && activity !is StartPlfActivity) {
-            if (PlfTotalUtils.getLtdAppStatus()) {
+        if (!mAppPlfOpen && !mPlfClParams && activity !is StartPlfActivity) {
+            if (PlfTotalUtils.getPlfAppStatus()) {
                 activity.startActivity(Intent(activity, StartPlfActivity::class.java).apply {
                     mStartPageFinish = true
                 })
             }
         }
-        mAppLtdOpen = true
+        mAppPlfOpen = true
         mListActivityList.add(activity)
     }
 
@@ -75,7 +75,7 @@ class PlfDealApplication : Application(), Application.ActivityLifecycleCallbacks
 
     override fun onActivityStopped(activity: Activity) {
         mListActivityList.remove(activity)
-        mAppLtdOpen = mListActivityList.isNotEmpty()
+        mAppPlfOpen = mListActivityList.isNotEmpty()
     }
 
     override fun onActivitySaveInstanceState(

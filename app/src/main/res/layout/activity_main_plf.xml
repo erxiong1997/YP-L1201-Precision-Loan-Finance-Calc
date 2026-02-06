@@ -6,7 +6,7 @@
     android:background="@color/plf_EFF8F4">
 
     <View
-        android:id="@+id/topBarViewLtd"
+        android:id="@+id/topBarViewPlf"
         android:layout_width="match_parent"
         android:layout_height="1px"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/llTableBo"
-        app:layout_constraintTop_toBottomOf="@+id/topBarViewLtd" />
+        app:layout_constraintTop_toBottomOf="@+id/topBarViewPlf" />
 
     <LinearLayout
         android:id="@+id/llTableBo"

@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <View
-        android:id="@+id/topBarViewLtd"
+        android:id="@+id/topBarViewPlf"
         android:layout_width="match_parent"
         android:layout_height="1px" />
 
