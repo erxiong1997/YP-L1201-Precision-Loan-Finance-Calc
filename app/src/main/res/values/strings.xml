@@ -184,5 +184,8 @@ but the higher the interest.</string>
     <string name="plf_help_des3">compare to discover the ideal loan for your needs</string>
     <string name="plf_help_des4">A comprehensive solution for all your financial calculations</string>
     <string name="plf_principal_interest">Principal&amp;Interest</string>
+    <string name="plf_the_example_content_not_delete">The example content cannot be deleted.</string>
+    <string name="plf_ad_is_loading">AD is Loading</string>
+    <string name="plf_loading">Loading</string>
     <string name="plf_"></string>
 </resources>

@@ -115,6 +115,7 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
         mPlcBinding.tvCalculator.isSelected = position == 0
         mPlcBinding.tvInvestment.isSelected = position == 1
         if (!changeItem) {
+            mPlcBinding.topSetPlf.tvSelectAll.isSelected = false
             val fg1 = mFragmentList[0]
             (fg1 as? FragmentHistoryCalculatorPlf)?.initSelectStatus(mDeleteModel)
 

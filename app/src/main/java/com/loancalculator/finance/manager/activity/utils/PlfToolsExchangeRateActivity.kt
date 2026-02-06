@@ -1,7 +1,6 @@
 package com.loancalculator.finance.manager.activity.utils
 
 import android.content.Intent
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doAfterTextChanged
 import coil.load
@@ -14,8 +13,9 @@ import com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity
 import com.loancalculator.finance.manager.data.DataCurrencyRatePlf
 import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
 import com.loancalculator.finance.manager.databinding.ActivityToolsSpeedConvertPlfBinding
-import com.loancalculator.finance.manager.formatToFixString
+import com.loancalculator.finance.manager.dismissGoPlf
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.dialog.DialogInitPlfLoading
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mExchangeRateList
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mRateCurrencyPlf
@@ -23,7 +23,6 @@ import com.squareup.moshi.Moshi
 
 class PlfToolsExchangeRateActivity :
     PlfBindingActivity<ActivityToolsSpeedConvertPlfBinding>(mBarTextWhite = false) {
-    //https://api.frankfurter.dev/v1/latest?base=CNY&symbols=USD
     private val mUnitSelectLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -33,12 +32,16 @@ class PlfToolsExchangeRateActivity :
                     mPlcBinding.tvCurrencyUnitTop.text = mRateCurrencyPlf?.currencySymbol
                     mTopUnitData = mRateCurrencyPlf
                     if (mTopUnitData?.currencyUnit != mBottomUnitData?.currencyUnit) {
+                        mDialogInitPlfLoading = DialogInitPlfLoading(this)
+                        mDialogInitPlfLoading?.show()
+
                         getCurrencyRateSave(
                             mTopUnitData, mBottomUnitData, false
                         )
                         getCurrencyRateSave(
                             mTopUnitData, mBottomUnitData, true
                         )
+                        mPlcBinding.tvCalculate.performClick()
                     }
                 }
                 if (mCurSelect == "bottom") {
@@ -47,12 +50,16 @@ class PlfToolsExchangeRateActivity :
                     mPlcBinding.tvCurrencyUnitBottom.text = mRateCurrencyPlf?.currencySymbol
                     mBottomUnitData = mRateCurrencyPlf
                     if (mTopUnitData?.currencyUnit != mBottomUnitData?.currencyUnit) {
+                        mDialogInitPlfLoading = DialogInitPlfLoading(this)
+                        mDialogInitPlfLoading?.show()
+
                         getCurrencyRateSave(
                             mTopUnitData, mBottomUnitData, false
                         )
                         getCurrencyRateSave(
                             mTopUnitData, mBottomUnitData, true
                         )
+                        mPlcBinding.tvCalculate.performClick()
                     }
                 }
             }
@@ -62,12 +69,13 @@ class PlfToolsExchangeRateActivity :
     private var mTopUnitData: DataCurrencyUnitPlf? = null
     private var mBottomUnitData: DataCurrencyUnitPlf? = null
 
+    private var mDialogInitPlfLoading: DialogInitPlfLoading? = null
+
     override fun beginViewAndDoPlf() {
-        mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_speed_convert)
+        mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_exchange_rate)
         mRateCurrencyPlf = mDataCurrencyUnitPlf
         val data1 = mRateCurrencyPlf
         val data2 = mRateCurrencyPlf
-        Log.d("TAG", "beginViewAndDoPlf:${data1?.currencyUnit} ")
         mTopUnitData = data1
         mBottomUnitData = data2
         mPlcBinding.tvSelectTop.text = data1?.currencyUnit
@@ -119,6 +127,8 @@ class PlfToolsExchangeRateActivity :
 
             changeConvertValue(false)
             changeConvertValue(true)
+
+            mPlcBinding.tvCalculate.performClick()
         }
         mPlcBinding.etInputValueTop.doAfterTextChanged {
             if (it.isNullOrEmpty()) {
@@ -134,10 +144,14 @@ class PlfToolsExchangeRateActivity :
         mPlcBinding.tvCalculate.setSafeListener {
             try {
                 val valueInput = mPlcBinding.etInputValueTop.text.toString().trim().toDouble()
+                mPlcBinding.tvInputValueBottom.text = valueInput.toString()
+                if (valueInput == 0.0) {
+                    return@setSafeListener
+                }
                 for (data in mExchangeRateList) {
-                    if (mTopUnitData?.currencyUnit == data.base) {
-                        val re = (valueInput * (data.rateValue)).formatToFixString()
-                        mPlcBinding.tvInputValueBottom.text = re
+                    if (mTopUnitData?.currencyUnit == data.base && mBottomUnitData?.currencyUnit == data.base) {
+                        val re = valueInput * (data.rateValue)
+                        mPlcBinding.tvInputValueBottom.text = re.toString()
                         break
                     }
                 }
@@ -152,14 +166,19 @@ class PlfToolsExchangeRateActivity :
         endUit: DataCurrencyUnitPlf?,
         revert: Boolean
     ) {
-        if (startUnit == null || endUit == null) return
+        if (startUnit == null || endUit == null) {
+            mDialogInitPlfLoading?.dismissGoPlf()
+            return
+        }
         for (data in mExchangeRateList) {
             if (revert) {
                 if (data.base == endUit.currencyUnit && data.rateUnit == startUnit.currencyUnit) {
+                    mDialogInitPlfLoading?.dismissGoPlf()
                     return
                 }
             } else {
                 if (data.base == startUnit.currencyUnit && data.rateUnit == endUit.currencyUnit) {
+                    mDialogInitPlfLoading?.dismissGoPlf()
                     return
                 }
             }
@@ -200,14 +219,15 @@ class PlfToolsExchangeRateActivity :
                                 }
                             })
                             changeConvertValue(revert)
+                            mDialogInitPlfLoading?.dismissGoPlf()
                         }
                     }
                 } catch (e: Exception) {
-
+                    mDialogInitPlfLoading?.dismissGoPlf()
                 }
             },
             Response.ErrorListener {
-
+                mDialogInitPlfLoading?.dismissGoPlf()
             }) {
             override fun getParamsEncoding(): String {
                 return "UTF-8"

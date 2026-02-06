@@ -42,7 +42,7 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
         }
 
     //month year
-    private var mMonthYear = "month"
+    private var mMonthYear = "year"
     private var mEditIng = false
     private var mEditIngTwo = false
 

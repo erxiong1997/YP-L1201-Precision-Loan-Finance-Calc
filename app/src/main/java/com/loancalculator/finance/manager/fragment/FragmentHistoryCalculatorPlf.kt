@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfRootActivity
 import com.loancalculator.finance.manager.activity.calc.PlfCalculateMortgagesResultActivity
 import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultActivity
@@ -20,6 +21,7 @@ import com.loancalculator.finance.manager.databinding.FragmentToolsPlfBinding
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
+import com.loancalculator.finance.manager.utils.dialog.DialogDeleteConfirmPlf
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -104,14 +106,19 @@ class FragmentHistoryCalculatorPlf : RootPlfFragment<FragmentHistoryCalculatorPl
         mAdapterHistoryCalculatorPlf = AdapterHistoryCalculatorPlf(false, rootActivity, mListData) {
             val data = mListData[it]
             if (mCurDeleteModel) {
-                data.fingerSelect = !data.fingerSelect
-                if (data.fingerSelect) {
-                    mSelectorCount++
-                } else {
-                    mSelectorCount--
-                }
-                mAdapterHistoryCalculatorPlf.notifyItemChanged(it)
-                changeDeleteButton()
+                DialogDeleteConfirmPlf(
+                    rootActivity,
+                    getString(R.string.plf_deleteed_no_recovered)
+                ) {
+                    data.fingerSelect = !data.fingerSelect
+                    if (data.fingerSelect) {
+                        mSelectorCount++
+                    } else {
+                        mSelectorCount--
+                    }
+                    mAdapterHistoryCalculatorPlf.notifyItemChanged(it)
+                    changeDeleteButton()
+                }.show()
             } else {
                 when (data.loanType) {
                     LoanTypePlf.PERSONAL, LoanTypePlf.AUTO -> {

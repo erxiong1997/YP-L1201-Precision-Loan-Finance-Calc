@@ -1,6 +1,8 @@
 package com.loancalculator.finance.manager.activity.utils
 
 import android.content.Intent
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.loancalculator.finance.manager.R
@@ -9,6 +11,7 @@ import com.loancalculator.finance.manager.adapter.AdapterUtcSaveItemPlf
 import com.loancalculator.finance.manager.data.DataUtcSelectPlf
 import com.loancalculator.finance.manager.databinding.ActivityToolsWorldTimePlfBinding
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.showToastIDPlf
 import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.dialog.DialogDeleteConfirmPlf
@@ -25,10 +28,10 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
                             if (data.isNotEmpty()) {
                                 val (a, b) = TimeDatePlfUtils.getCurrentTimeInZoneOffset(data)
                                 val s = a.split(":")[0].toInt()
-                                if (mShowEmpty){
+                                if (mShowEmpty) {
                                     mShowEmpty = false
+                                    mListData.clear()
                                 }
-                                mListData.clear()
                                 mListData.add(0, DataUtcSelectPlf(data, b).apply {
                                     mCurTime = a
                                     amOrPm = if (s > 12) {
@@ -37,7 +40,11 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
                                         "AM"
                                     }
                                 })
-                                mAdapterUtcSaveItemPlf.notifyItemInserted(0)
+                                if (mListData.size == 1) {
+                                    mAdapterUtcSaveItemPlf.notifyDataSetChanged()
+                                } else {
+                                    mAdapterUtcSaveItemPlf.notifyItemInserted(0)
+                                }
                             }
                         }
                         DealRecentPlfUtils.addWorldTimeUtcRecent(mListData)
@@ -62,14 +69,20 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
     override fun setPlfRecyclerView() {
         mListData.clear()
         DealRecentPlfUtils.getWorldTimeUtcRecent(mListData)
+        Log.d("TAG", "size=:${mListData.size} ")
         if (mListData.isEmpty()) {
             mShowEmpty = true
             fillEmptyList(true)
+        } else {
+            mShowEmpty = false
         }
-        mShowEmpty = false
         mAdapterUtcSaveItemPlf = AdapterUtcSaveItemPlf(this, mListData, {
             //long click
             val data = mListData[it]
+            if (mShowEmpty) {
+                showToastIDPlf(R.string.plf_the_example_content_not_delete)
+                return@AdapterUtcSaveItemPlf
+            }
             DialogDeleteConfirmPlf(
                 this, String.format(
                     getString(R.string.plf_please_confirm_whether_delete_clock),

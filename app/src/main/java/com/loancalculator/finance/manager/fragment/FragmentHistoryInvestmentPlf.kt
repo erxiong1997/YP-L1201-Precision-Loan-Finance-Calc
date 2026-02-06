@@ -99,14 +99,19 @@ class FragmentHistoryInvestmentPlf : RootPlfFragment<FragmentHistoryInvestmentPl
         mAdapterHistoryCalculatorPlf = AdapterHistoryCalculatorPlf(false, rootActivity, mListData) {
             val data = mListData[it]
             if (mCurDeleteModel) {
-                data.fingerSelect = !data.fingerSelect
-                if (data.fingerSelect) {
-                    mSelectorCount++
-                } else {
-                    mSelectorCount--
-                }
-                mAdapterHistoryCalculatorPlf.notifyItemChanged(it)
-                changeDeleteButton()
+                DialogDeleteConfirmPlf(
+                    rootActivity,
+                    getString(R.string.plf_deleteed_no_recovered)
+                ) {
+                    data.fingerSelect = !data.fingerSelect
+                    if (data.fingerSelect) {
+                        mSelectorCount++
+                    } else {
+                        mSelectorCount--
+                    }
+                    mAdapterHistoryCalculatorPlf.notifyItemChanged(it)
+                    changeDeleteButton()
+                }.show()
             } else {
                 when (data.loanType) {
                     LoanTypePlf.PERSONAL, LoanTypePlf.AUTO -> {

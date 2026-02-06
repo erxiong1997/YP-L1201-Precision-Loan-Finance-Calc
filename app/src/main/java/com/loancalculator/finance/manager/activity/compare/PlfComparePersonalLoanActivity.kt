@@ -77,7 +77,7 @@ class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersona
                         mPlcBinding.rvRvView.visibility = View.GONE
                         mPlcBinding.clNoData.visibility = View.VISIBLE
                     }
-                    mAdapterComparePersonalLoanPlf.notifyItemRemoved(it)
+                    mAdapterCompareMortgagesPlf.notifyItemRemoved(it)
                 }.show()
             }) {
 
