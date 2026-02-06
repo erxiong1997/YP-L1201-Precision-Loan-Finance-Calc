@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.loancalculator.finance.manager.activity.PlfRootActivity
+import com.loancalculator.finance.manager.activity.utils.PlfToolsExchangeRateActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsLengthConvertActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsMassConvertActivity
 import com.loancalculator.finance.manager.activity.utils.PlfToolsSpeedConvertActivity
@@ -31,7 +32,7 @@ class FragmentToolsPlf : RootPlfFragment<FragmentToolsPlfBinding>() {
         bundle: Bundle?
     ) {
         mPlfBinding.clExchangeRate.setSafeListener {
-
+            startActivity(Intent(rootActivity, PlfToolsExchangeRateActivity::class.java))
         }
         mPlfBinding.clTemperature.setSafeListener {
             startActivity(Intent(rootActivity, PlfToolsTemperatureActivity::class.java))

@@ -8,24 +8,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
-import com.loancalculator.finance.manager.databinding.ItemComparePersonalLoanPlfBinding
+import com.loancalculator.finance.manager.databinding.ItemCompareMortgagesPlfBinding
 import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 
-class AdapterComparePersonalLoanPlf(
+class AdapterCompareMortgagesPlf(
     private val mAdapterContext: Context,
     private val mListDoData: MutableList<DataPersonalLoanPlf>,
     private val tilDeleteBack: (Int) -> Unit,
     private val tilFunBack: (Int) -> Unit
 ) :
-    RecyclerView.Adapter<AdapterComparePersonalLoanPlf.HolderItem>() {
+    RecyclerView.Adapter<AdapterCompareMortgagesPlf.HolderItem>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): HolderItem {
-        val binding = ItemComparePersonalLoanPlfBinding.inflate(
+        val binding = ItemCompareMortgagesPlfBinding.inflate(
             LayoutInflater.from(mAdapterContext),
             parent,
             false
@@ -90,7 +90,7 @@ class AdapterComparePersonalLoanPlf(
         return mListDoData.size
     }
 
-    inner class HolderItem(val mPlfBinding: ItemComparePersonalLoanPlfBinding) :
+    inner class HolderItem(val mPlfBinding: ItemCompareMortgagesPlfBinding) :
         RecyclerView.ViewHolder(mPlfBinding.root)
 
 }

@@ -102,6 +102,7 @@
         <activity
             android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsMassConvertActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.loancalculator.finance.manager.activity.utils.PlfToolsExchangeRateActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
+import com.loancalculator.finance.manager.adapter.AdapterCompareMortgagesPlf
 import com.loancalculator.finance.manager.adapter.AdapterComparePersonalLoanPlf
 import com.loancalculator.finance.manager.data.DataPersonalLoanPlf
 import com.loancalculator.finance.manager.databinding.ActivityComparePersonalLoanPlfBinding
@@ -13,6 +14,7 @@ import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 
 class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersonalLoanPlfBinding>() {
     private lateinit var mAdapterComparePersonalLoanPlf: AdapterComparePersonalLoanPlf
+    private lateinit var mAdapterCompareMortgagesPlf: AdapterCompareMortgagesPlf
     private val mListData = mutableListOf<DataPersonalLoanPlf>()
     private var mCompareType = ""
     private var mTilPersonalLoanDao = mPlfLoanRoom.mTilPersonalLoanDao()
@@ -66,28 +68,53 @@ class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersona
     }
 
     override fun setPlfRecyclerView() {
-        mAdapterComparePersonalLoanPlf = AdapterComparePersonalLoanPlf(this, mListData, {
-            //delete
-            DialogDeleteConfirmPlf(this, getString(R.string.plf_deleteed_no_recovered)) {
-                mListData.removeAt(it)
-                if (mListData.isEmpty()) {
-                    mPlcBinding.rvRvView.visibility = View.GONE
-                    mPlcBinding.clNoData.visibility = View.VISIBLE
-                }
-                mAdapterComparePersonalLoanPlf.notifyItemRemoved(it)
-            }.show()
+        if (mCompareType == "mortgages") {
+            mAdapterCompareMortgagesPlf = AdapterCompareMortgagesPlf(this, mListData, {
+                //delete
+                DialogDeleteConfirmPlf(this, getString(R.string.plf_deleteed_no_recovered)) {
+                    mListData.removeAt(it)
+                    if (mListData.isEmpty()) {
+                        mPlcBinding.rvRvView.visibility = View.GONE
+                        mPlcBinding.clNoData.visibility = View.VISIBLE
+                    }
+                    mAdapterComparePersonalLoanPlf.notifyItemRemoved(it)
+                }.show()
+            }) {
 
-        }) {//item
-
-        }
-        mPlcBinding.rvRvView.layoutManager = LinearLayoutManager(this)
-        mPlcBinding.rvRvView.adapter = mAdapterComparePersonalLoanPlf
-        if (mListData.isEmpty()) {
-            mPlcBinding.rvRvView.visibility = View.GONE
-            mPlcBinding.clNoData.visibility = View.VISIBLE
+            }
+            mPlcBinding.rvRvView.layoutManager = LinearLayoutManager(this)
+            mPlcBinding.rvRvView.adapter = mAdapterCompareMortgagesPlf
+            if (mListData.isEmpty()) {
+                mPlcBinding.rvRvView.visibility = View.GONE
+                mPlcBinding.clNoData.visibility = View.VISIBLE
+            } else {
+                mPlcBinding.rvRvView.visibility = View.VISIBLE
+                mPlcBinding.clNoData.visibility = View.GONE
+            }
         } else {
-            mPlcBinding.rvRvView.visibility = View.VISIBLE
-            mPlcBinding.clNoData.visibility = View.GONE
+            mAdapterComparePersonalLoanPlf = AdapterComparePersonalLoanPlf(this, mListData, {
+                //delete
+                DialogDeleteConfirmPlf(this, getString(R.string.plf_deleteed_no_recovered)) {
+                    mListData.removeAt(it)
+                    if (mListData.isEmpty()) {
+                        mPlcBinding.rvRvView.visibility = View.GONE
+                        mPlcBinding.clNoData.visibility = View.VISIBLE
+                    }
+                    mAdapterComparePersonalLoanPlf.notifyItemRemoved(it)
+                }.show()
+
+            }) {//item
+
+            }
+            mPlcBinding.rvRvView.layoutManager = LinearLayoutManager(this)
+            mPlcBinding.rvRvView.adapter = mAdapterComparePersonalLoanPlf
+            if (mListData.isEmpty()) {
+                mPlcBinding.rvRvView.visibility = View.GONE
+                mPlcBinding.clNoData.visibility = View.VISIBLE
+            } else {
+                mPlcBinding.rvRvView.visibility = View.VISIBLE
+                mPlcBinding.clNoData.visibility = View.GONE
+            }
         }
     }
 
