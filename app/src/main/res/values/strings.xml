@@ -151,7 +151,7 @@ If you have questions about this policy, contact us at: fortunecat0718@gmail.com
     <string name="plf_the_total_price_house">The total price of the house</string>
     <string name="plf_the_longer_term_but_higher">The longer the term, the lower the monthly payment,
 but the higher the interest.</string>
-    <string name="plf_download_payment">Download Payment</string>
+    <string name="plf_down_payment">Down Payment</string>
     <string name="plf_the_portion_paid_loan">The portion of the price that is not paid through a loan</string>
     <string name="plf_payment_ratio">Payment Ratio</string>
     <string name="plf_property_tax">Property Tax</string>
@@ -183,5 +183,6 @@ but the higher the interest.</string>
     <string name="plf_help_des2">handle all essential unit conversions for everyday needs</string>
     <string name="plf_help_des3">compare to discover the ideal loan for your needs</string>
     <string name="plf_help_des4">A comprehensive solution for all your financial calculations</string>
+    <string name="plf_principal_interest">Principal&amp;Interest</string>
     <string name="plf_"></string>
 </resources>

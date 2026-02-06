@@ -11,6 +11,8 @@ import com.loancalculator.finance.manager.fragment.FragmentMinePlf
 import com.loancalculator.finance.manager.fragment.FragmentToolsPlf
 import com.loancalculator.finance.manager.fragment.RootPlfFragment
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
+import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 
 class PlfMainToolActivity : PlfBindingActivity<ActivityMainPlfBinding>() {
     private val mFragmentList = mutableListOf<RootPlfFragment<*>>()
@@ -23,7 +25,7 @@ class PlfMainToolActivity : PlfBindingActivity<ActivityMainPlfBinding>() {
 //        mPlcBinding.tvLoanThree.setSafeListener {
 //            startActivity(Intent(this, PlfToolsWorldTimeActivity::class.java))
 //        }
-
+        mDataCurrencyUnitPlf = DealRecentPlfUtils.getCurrencyUnitRecent()
         addViewPage2()
         mPlcBinding.tvTbHome.setSafeListener {
             if (it.isSelected) return@setSafeListener

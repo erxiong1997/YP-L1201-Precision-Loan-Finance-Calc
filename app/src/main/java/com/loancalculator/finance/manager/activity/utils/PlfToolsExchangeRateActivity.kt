@@ -1,6 +1,7 @@
 package com.loancalculator.finance.manager.activity.utils
 
 import android.content.Intent
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doAfterTextChanged
 import coil.load
@@ -13,6 +14,7 @@ import com.loancalculator.finance.manager.activity.other.PlfCurrencyUnitActivity
 import com.loancalculator.finance.manager.data.DataCurrencyRatePlf
 import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
 import com.loancalculator.finance.manager.databinding.ActivityToolsSpeedConvertPlfBinding
+import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mExchangeRateList
@@ -25,34 +27,32 @@ class PlfToolsExchangeRateActivity :
     private val mUnitSelectLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
-                result.data?.let {
-                    if (mCurSelect == "top") {
-                        mPlcBinding.tvSelectTop.text = mRateCurrencyPlf?.currencyUnit
-                        mPlcBinding.ivCurrencyFlagTop.load(mRateCurrencyPlf?.currencyDrawable)
-                        mPlcBinding.tvCurrencyUnitTop.text = mRateCurrencyPlf?.currencySymbol
-                        mTopUnitData = mRateCurrencyPlf
-                        if (mTopUnitData?.currencyUnit != mBottomUnitData?.currencyUnit) {
-                            getCurrencyRateSave(
-                                mTopUnitData, mBottomUnitData, false
-                            )
-                            getCurrencyRateSave(
-                                mTopUnitData, mBottomUnitData, true
-                            )
-                        }
+                if (mCurSelect == "top") {
+                    mPlcBinding.tvSelectTop.text = mRateCurrencyPlf?.currencyUnit
+                    mPlcBinding.ivCurrencyFlagTop.load(mRateCurrencyPlf?.currencyDrawable)
+                    mPlcBinding.tvCurrencyUnitTop.text = mRateCurrencyPlf?.currencySymbol
+                    mTopUnitData = mRateCurrencyPlf
+                    if (mTopUnitData?.currencyUnit != mBottomUnitData?.currencyUnit) {
+                        getCurrencyRateSave(
+                            mTopUnitData, mBottomUnitData, false
+                        )
+                        getCurrencyRateSave(
+                            mTopUnitData, mBottomUnitData, true
+                        )
                     }
-                    if (mCurSelect == "bottom") {
-                        mPlcBinding.tvSelectBottom.text = mRateCurrencyPlf?.currencyUnit
-                        mPlcBinding.ivCurrencyFlagBottom.load(mRateCurrencyPlf?.currencyDrawable)
-                        mPlcBinding.tvCurrencyUnitBottom.text = mRateCurrencyPlf?.currencySymbol
-                        mBottomUnitData = mRateCurrencyPlf
-                        if (mTopUnitData?.currencyUnit != mBottomUnitData?.currencyUnit) {
-                            getCurrencyRateSave(
-                                mTopUnitData, mBottomUnitData, false
-                            )
-                            getCurrencyRateSave(
-                                mTopUnitData, mBottomUnitData, true
-                            )
-                        }
+                }
+                if (mCurSelect == "bottom") {
+                    mPlcBinding.tvSelectBottom.text = mRateCurrencyPlf?.currencyUnit
+                    mPlcBinding.ivCurrencyFlagBottom.load(mRateCurrencyPlf?.currencyDrawable)
+                    mPlcBinding.tvCurrencyUnitBottom.text = mRateCurrencyPlf?.currencySymbol
+                    mBottomUnitData = mRateCurrencyPlf
+                    if (mTopUnitData?.currencyUnit != mBottomUnitData?.currencyUnit) {
+                        getCurrencyRateSave(
+                            mTopUnitData, mBottomUnitData, false
+                        )
+                        getCurrencyRateSave(
+                            mTopUnitData, mBottomUnitData, true
+                        )
                     }
                 }
             }
@@ -67,6 +67,7 @@ class PlfToolsExchangeRateActivity :
         mRateCurrencyPlf = mDataCurrencyUnitPlf
         val data1 = mRateCurrencyPlf
         val data2 = mRateCurrencyPlf
+        Log.d("TAG", "beginViewAndDoPlf:${data1?.currencyUnit} ")
         mTopUnitData = data1
         mBottomUnitData = data2
         mPlcBinding.tvSelectTop.text = data1?.currencyUnit
@@ -77,8 +78,14 @@ class PlfToolsExchangeRateActivity :
         mPlcBinding.ivCurrencyFlagBottom.load(data2?.currencyDrawable)
         mPlcBinding.tvCurrencyUnitBottom.text = data2?.currencySymbol
 
-        getCurrencyRateSave(mTopUnitData, mBottomUnitData, false)
-        getCurrencyRateSave(mTopUnitData, mBottomUnitData, true)
+        mPlcBinding.tvBottomConvertResult.text =
+            "1 ${data1?.currencyUnit} = 1 ${data1?.currencyUnit}"
+        mPlcBinding.tvTopConvertResult.text =
+            "1 ${data2?.currencyUnit} = 1 ${data2?.currencyUnit}"
+
+
+//        getCurrencyRateSave(mTopUnitData, mBottomUnitData, false)
+//        getCurrencyRateSave(mTopUnitData, mBottomUnitData, true)
 
         mPlcBinding.llSelectTop.setSafeListener {
             mCurSelect = "top"
@@ -127,7 +134,13 @@ class PlfToolsExchangeRateActivity :
         mPlcBinding.tvCalculate.setSafeListener {
             try {
                 val valueInput = mPlcBinding.etInputValueTop.text.toString().trim().toDouble()
-                mPlcBinding.tvInputValueBottom.text = "test2"
+                for (data in mExchangeRateList) {
+                    if (mTopUnitData?.currencyUnit == data.base) {
+                        val re = (valueInput * (data.rateValue)).formatToFixString()
+                        mPlcBinding.tvInputValueBottom.text = re
+                        break
+                    }
+                }
             } catch (_: Exception) {
 
             }
@@ -178,8 +191,13 @@ class PlfToolsExchangeRateActivity :
                     moshiAdapter.fromJson(it)?.let { result ->
                         result.rates?.let { rt ->
                             mExchangeRateList.add(result.apply {
-                                rateUnit = endUit.currencyUnit
-                                rateValue = rt[endUit.currencyUnit] ?: 0.0
+                                if (revert) {
+                                    rateUnit = startUnit.currencyUnit
+                                    rateValue = rt[startUnit.currencyUnit] ?: 0.0
+                                } else {
+                                    rateUnit = endUit.currencyUnit
+                                    rateValue = rt[endUit.currencyUnit] ?: 0.0
+                                }
                             })
                             changeConvertValue(revert)
                         }

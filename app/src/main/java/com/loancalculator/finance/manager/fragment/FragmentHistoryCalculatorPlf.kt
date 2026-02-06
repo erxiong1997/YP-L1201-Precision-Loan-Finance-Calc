@@ -6,6 +6,7 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.loancalculator.finance.manager.activity.PlfRootActivity
+import com.loancalculator.finance.manager.activity.calc.PlfCalculateMortgagesResultActivity
 import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultActivity
 import com.loancalculator.finance.manager.activity.calc.PlfCalculateResultTwoActivity
 import com.loancalculator.finance.manager.activity.calc.PlfInvestmentResultActivity
@@ -136,7 +137,12 @@ class FragmentHistoryCalculatorPlf : RootPlfFragment<FragmentHistoryCalculatorPl
                     }
 
                     LoanTypePlf.MORTGAGES -> {
-
+                        mDataPersonalLoanPlf = data
+                        startActivity(
+                            Intent(
+                                rootActivity, PlfCalculateMortgagesResultActivity::class.java
+                            ).apply { putExtra("model", "details") }
+                        )
                     }
 
                     LoanTypePlf.RD, LoanTypePlf.FD -> {

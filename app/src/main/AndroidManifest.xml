@@ -108,8 +108,12 @@
         <activity
             android:name="com.loancalculator.finance.manager.activity.other.PlfStartCurrencyUnitActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.loancalculator.finance.manager.activity.other.PlfStartHelpActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.other.PlfStartHelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.loancalculator.finance.manager.activity.calc.PlfCalculateMortgagesResultActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

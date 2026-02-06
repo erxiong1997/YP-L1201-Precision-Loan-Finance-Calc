@@ -57,10 +57,10 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
                             mPlcBinding.etDownloadPayment.text.toString().trim().toDoubleOrNull()
                                 ?: 0.0
                         if (total > 0 && down <= total) {
-                            val re = ((down * 1.0 / (total * 1.0)) * 100.0).formatToFixString()
+                            val re = ((down / (total * 1.0)) * 100.0).formatToFixString()
                             mPlcBinding.etPaymentRatio.setText(re)
-                            mEditIng = true
                         }
+                        mEditIng = false
                     }
 
                     1190 -> {
@@ -72,8 +72,8 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
                         if (ratio < 1) {
                             val re = (total * 1.0 * ratio).formatToFixString()
                             mPlcBinding.etDownloadPayment.setText(re)
-                            mEditIng = true
                         }
+                        mEditIng = false
                     }
                 }
             }
@@ -140,13 +140,13 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
                 mPlcBinding.etDownloadPayment.setText(null)
                 mPlcBinding.etPaymentRatio.setText(null)
                 mEditIngTwo = false
-                mPlcBinding.tvDownloadPayment1.visibility = View.GONE
-                mPlcBinding.tvDownloadPayment2.visibility = View.GONE
-                mPlcBinding.clDownloadPayment1.visibility = View.GONE
+                mPlcBinding.tvDownPayment1.visibility = View.GONE
+                mPlcBinding.tvDownPayment2.visibility = View.GONE
+                mPlcBinding.clDownPayment1.visibility = View.GONE
             } else {
-                mPlcBinding.tvDownloadPayment1.visibility = View.VISIBLE
-                mPlcBinding.tvDownloadPayment2.visibility = View.VISIBLE
-                mPlcBinding.clDownloadPayment1.visibility = View.VISIBLE
+                mPlcBinding.tvDownPayment1.visibility = View.VISIBLE
+                mPlcBinding.tvDownPayment2.visibility = View.VISIBLE
+                mPlcBinding.clDownPayment1.visibility = View.VISIBLE
             }
         }
         mPlcBinding.etDownloadPayment.doAfterTextChanged {
@@ -211,15 +211,15 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
         }
         if (mPlcBinding.etDownloadPayment.text.isNullOrEmpty()) {
             hasAllValue--
-            mPlcBinding.tvDownloadPaymentError.visibility = View.VISIBLE
+            mPlcBinding.tvDownPaymentError.visibility = View.VISIBLE
         } else {
-            mPlcBinding.tvDownloadPaymentError.visibility = View.GONE
+            mPlcBinding.tvDownPaymentError.visibility = View.GONE
         }
         if (mPlcBinding.etPaymentRatio.text.isNullOrEmpty()) {
             hasAllValue--
-            mPlcBinding.etPaymentRatio.visibility = View.VISIBLE
+            mPlcBinding.tvPaymentRatioError.visibility = View.VISIBLE
         } else {
-            mPlcBinding.etPaymentRatio.visibility = View.GONE
+            mPlcBinding.tvPaymentRatioError.visibility = View.GONE
         }
         if (hasAllValue != 5) {
             return
@@ -249,14 +249,14 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
         if (mMonthYear == "year") {
             term *= 12
         }
-        val downloadPayment =
+        val downPayment =
             mPlcBinding.etDownloadPayment.text.toString().trim().toDoubleOrNull() ?: 0.0
-        if (downloadPayment > amount) {
-            mPlcBinding.tvDownloadPaymentError.visibility = View.VISIBLE
+        if (downPayment > amount) {
+            mPlcBinding.tvDownPaymentError.visibility = View.VISIBLE
             mPlcBinding.tvHomePriceError.visibility = View.VISIBLE
             return
         } else {
-            mPlcBinding.tvDownloadPaymentError.visibility = View.GONE
+            mPlcBinding.tvDownPaymentError.visibility = View.GONE
             mPlcBinding.tvHomePriceError.visibility = View.GONE
         }
         val one = mPlcBinding.etPropertyTax.text.toString().trim().toIntOrNull() ?: 0
@@ -264,23 +264,27 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
         val three = mPlcBinding.etHOAFees.text.toString().trim().toIntOrNull() ?: 0
         val four = mPlcBinding.etHomeInsurance.text.toString().trim().toIntOrNull() ?: 0
 
-        val total = amount + one + two + three + four - downloadPayment
+        val total = amount - downPayment
+        var totalTax = one + two + three + four
 
         val dataPersonalLoanPlf = DataPersonalLoanPlf().apply {
             loanType = LoanTypePlf.MORTGAGES
             loanAmount = amount
-            firstAmount = downloadPayment
+            firstAmount = downPayment
             interestRate = rate
             loanTerm = term2
             loanTermUnit = mMonthYear
             startDate = System.currentTimeMillis()
             currencySymbol = mDataCurrencyUnitPlf?.currencySymbol ?: "$"
+            propertyTax = one
+            pmiMoney = two
+            hoaMoney = three
+            homeownersInsurance = four
         }
         val (a, b) = ToolsLoanMonthDetailUtils.calculateAmortization(total, rate / 100, term)
-        dataPersonalLoanPlf.monthlyPayment = a
-        dataPersonalLoanPlf.mLoanMonthDetailList = b
+        dataPersonalLoanPlf.monthlyPayment = a + totalTax
         mDataPersonalLoanPlf = dataPersonalLoanPlf
-        startActivity(Intent(this, PlfCalculateResultActivity::class.java))
+        startActivity(Intent(this, PlfCalculateMortgagesResultActivity::class.java))
     }
 
     private fun clearAllValue() {

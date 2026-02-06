@@ -294,13 +294,13 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/tvDownloadPayment1"
+                android:id="@+id/tvDownPayment1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="16dp"
                 android:drawablePadding="4dp"
-                android:text="@string/plf_download_payment"
+                android:text="@string/plf_down_payment"
                 android:textColor="@color/plf_050C03"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -308,7 +308,7 @@
                 app:drawableEndCompat="@drawable/plf_til_input_must_icon" />
 
             <TextView
-                android:id="@+id/tvDownloadPayment2"
+                android:id="@+id/tvDownPayment2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
@@ -319,13 +319,13 @@
                 android:visibility="gone" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clDownloadPayment1"
+                android:id="@+id/clDownPayment1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clDownloadPayment"
+                    android:id="@+id/clDownPayment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -346,7 +346,7 @@
                         android:layout_marginEnd="12dp"
                         android:background="@null"
                         android:digits="@string/plf_number_1"
-                        android:hint="@string/plf_download_payment"
+                        android:hint="@string/plf_down_payment"
                         android:inputType="number"
                         android:maxLength="7"
                         android:singleLine="true"
@@ -370,7 +370,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/tvDownloadPaymentError"
+                    android:id="@+id/tvDownPaymentError"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="12dp"
@@ -380,7 +380,7 @@
                     android:textSize="12sp"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/clDownloadPayment" />
+                    app:layout_constraintTop_toBottomOf="@+id/clDownPayment" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clPaymentRatio"
@@ -392,7 +392,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/plf_shape_12dp_eff8f4"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/clDownloadPayment"
+                    app:layout_constraintStart_toEndOf="@+id/clDownPayment"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <EditText

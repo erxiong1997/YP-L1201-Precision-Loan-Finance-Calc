@@ -58,31 +58,22 @@ class AdapterCompareMortgagesPlf(
             }
             tvStartDate2.text = TimeDatePlfUtils.getTimeDateOnePlf(data.startDate)
 
-            if (data.loanType == LoanTypePlf.AUTO || data.loanType == LoanTypePlf.PERSONAL) {
-                clPart2.visibility = View.VISIBLE
-                clPart3.visibility = View.GONE
-                tvMonthPayment2.text = "${data.monthlyPayment}${data.currencySymbol}"
+            tvMonthPayment2.text = "${data.monthlyPayment}${data.currencySymbol}"
 
-                val totalPay = data.monthlyPayment * if (data.loanTermUnit == "month") {
-                    data.loanTerm
-                } else {
-                    data.loanTerm * 12
-                }
-
-                tvTotalPayment2.text = totalPay.formatToFixString()
-                tvTotalInterestPayable2.text =
-                    (totalPay - data.loanAmount).formatToFixString()
-                tvPayingOffDate2.text =
-                    TimeDatePlfUtils.getTimeDateOnePlf(
-                        TimeDatePlfUtils.getOverDatePlf(
-                            data.loanTerm.toLong(), data.startDate
-                        )
-                    )
+            val totalPay = data.monthlyPayment * if (data.loanTermUnit == "month") {
+                data.loanTerm
             } else {
-                clPart2.visibility = View.GONE
-                clPart3.visibility = View.VISIBLE
-                tvMonthPayment4.text = "${data.monthlyPayment}${data.currencySymbol}"
+                data.loanTerm * 12
             }
+
+            tvDownPayment2.text = "${data.firstAmount}${data.currencySymbol}"
+            tvPropertyTax2.text = "${data.propertyTax}${data.currencySymbol}"
+            tvPMI2.text = "${data.pmiMoney}${data.currencySymbol}"
+            tvHomeInsurance2.text = "${data.homeownersInsurance}${data.currencySymbol}"
+            tvHOAFees2.text = "${data.hoaMoney}${data.currencySymbol}"
+
+            tvMonthPayment2.text = "${data.monthlyPayment}${data.currencySymbol}"
+            tvTotalPayment2.text = "${totalPay.formatToFixString()}${data.currencySymbol}"
         }
     }
 

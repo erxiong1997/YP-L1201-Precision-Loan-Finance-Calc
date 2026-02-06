@@ -69,9 +69,9 @@ class AdapterComparePersonalLoanPlf(
                     data.loanTerm * 12
                 }
 
-                tvTotalPayment2.text = totalPay.formatToFixString()
+                tvTotalPayment2.text = "${totalPay.formatToFixString()}${data.currencySymbol}"
                 tvTotalInterestPayable2.text =
-                    (totalPay - data.loanAmount).formatToFixString()
+                    "${(totalPay - data.loanAmount).formatToFixString()}${data.currencySymbol}"
                 tvPayingOffDate2.text =
                     TimeDatePlfUtils.getTimeDateOnePlf(
                         TimeDatePlfUtils.getOverDatePlf(
