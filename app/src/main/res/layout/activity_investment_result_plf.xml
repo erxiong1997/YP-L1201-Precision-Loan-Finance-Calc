@@ -289,37 +289,31 @@
 
             <TextView
                 android:id="@+id/tvSharePDF"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/plf_stroke_24dp_1dp_0ace86"
                 android:gravity="center"
                 android:paddingVertical="16dp"
-                android:text="@string/plf_share"
+                android:text="@string/plf_share_pdf"
                 android:textColor="@color/plf_0ACE86"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/tvGoHome"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/clTil2" />
 
             <TextView
                 android:id="@+id/tvGoHome"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/plf_pressed_24dp_0ace86"
                 android:gravity="center"
                 android:paddingVertical="16dp"
                 android:text="@string/plf_go_home"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvSharePDF"
-                app:layout_constraintTop_toBottomOf="@+id/clTil2" />
+                app:layout_constraintTop_toBottomOf="@+id/tvSharePDF" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

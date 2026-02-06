@@ -6,6 +6,7 @@
     <string name="app_4" translatable="false">4</string>
     <string name="app_12" translatable="false">12</string>
     <string name="app_percent" translatable="false">%</string>
+    <string name="app_jin_hao" translatable="false">#</string>
 
     <string name="plf_number_1" translatable="false">0123456789</string>
     <string name="plf_number_2" translatable="false">0123456789.</string>
@@ -119,7 +120,7 @@ If you have questions about this policy, contact us at: fortunecat0718@gmail.com
     <string name="plf_loan_information">Loan Information</string>
     <string name="plf_investment_information">Investment Information</string>
     <string name="plf_result_after_calculation">Result After Calculation</string>
-    <string name="plf_add_to_compare_list">Add to compare list</string>
+    <string name="plf_add_to_compare_list">Add To Compare List</string>
     <string name="plf_amortization_table">Amortization Table</string>
     <string name="plf_go_home">Go Home</string>
     <string name="plf_monthly_payment">Monthly Payment</string>
@@ -187,5 +188,9 @@ but the higher the interest.</string>
     <string name="plf_the_example_content_not_delete">The example content cannot be deleted.</string>
     <string name="plf_ad_is_loading">AD is Loading</string>
     <string name="plf_loading">Loading</string>
+    <string name="plf_share_xls">Share XLS</string>
+    <string name="plf_balance">Balance</string>
+    <string name="plf_principal">Principal</string>
+    <string name="plf_payment">Payment</string>
     <string name="plf_"></string>
 </resources>

@@ -201,14 +201,14 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/clTil2" />
+                app:layout_constraintTop_toBottomOf="@+id/tvAddCompareList" />
 
             <TextView
                 android:id="@+id/tvAddCompareList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="12dp"
                 android:background="@drawable/plf_pressed_24dp_ff9e4c"
                 android:gravity="center"
@@ -218,14 +218,14 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvShare"
-                app:layout_constraintTop_toBottomOf="@+id/tvGoHome" />
+                app:layout_constraintTop_toBottomOf="@+id/clTil2" />
 
             <TextView
                 android:id="@+id/tvShare"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="4dp"
                 android:background="@drawable/plf_stroke_24dp_1dp_0ace86"
                 android:gravity="center"
@@ -235,7 +235,7 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toStartOf="@+id/tvAddCompareList"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvGoHome" />
+                app:layout_constraintTop_toBottomOf="@+id/clTil2" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

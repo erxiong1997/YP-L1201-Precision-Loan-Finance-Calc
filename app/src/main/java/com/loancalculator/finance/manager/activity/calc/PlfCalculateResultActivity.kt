@@ -2,9 +2,11 @@ package com.loancalculator.finance.manager.activity.calc
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.view.View
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
+import com.loancalculator.finance.manager.activity.other.PlfAmortizationTableActivity
 import com.loancalculator.finance.manager.data.EventManagerHome
 import com.loancalculator.finance.manager.databinding.ActivityCalculateResultPlfBinding
 import com.loancalculator.finance.manager.formatToFixString
@@ -14,6 +16,7 @@ import com.loancalculator.finance.manager.showToastIDPlf
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.dialog.DialogAddCompareName
+import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 import org.greenrobot.eventbus.EventBus
 
 class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlfBinding>(
@@ -29,6 +32,10 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
         }
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_calculate_result)
         mDataPersonalLoanPlf?.let { data ->
+            if (data.loanType == LoanTypePlf.PERSONAL) {
+                mPlcBinding.tvAmortizationTable.visibility = View.VISIBLE
+                mPlcBinding.tvAmortizationTable2.visibility = View.INVISIBLE
+            }
             mPlcBinding.tvLoanAmount2.text =
                 "${data.loanAmount}${data.currencySymbol}"
             mPlcBinding.tvIntersetRate2.text = "${data.interestRate}%"
@@ -91,9 +98,9 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
             }.show()
         }
         mPlcBinding.tvAmortizationTable.setSafeListener {
-
+            startActivity(Intent(this, PlfAmortizationTableActivity::class.java))
         }
-        mPlcBinding.tvShare.setSafeListener {
+        mPlcBinding.tvSharePDF.setSafeListener {
 
         }
         mPlcBinding.tvGoHome.setSafeListener {

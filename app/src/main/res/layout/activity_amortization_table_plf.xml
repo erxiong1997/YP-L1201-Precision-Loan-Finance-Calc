@@ -9,7 +9,7 @@
         android:id="@+id/topSetPlf"
         layout="@layout/layout_top_set_plf" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -138,30 +138,15 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvLoanTerm1" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tvTil2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/plf_result_after_calculation"
-                android:textColor="@color/plf_050C03"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/clTil1" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clTil2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/plf_shape_12dp_eff8f4"
-                android:paddingBottom="14dp"
-                app:layout_constraintTop_toBottomOf="@+id/tvTil2">
+                <View
+                    android:id="@+id/viewLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/plf_shape_12dp_white"
+                    app:layout_constraintTop_toBottomOf="@+id/tvStartDate1" />
 
                 <TextView
                     android:id="@+id/tvMonthPayment1"
@@ -173,7 +158,7 @@
                     android:textColor="@color/plf_050C03"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/viewLine" />
 
                 <TextView
                     android:id="@+id/tvMonthPayment2"
@@ -185,7 +170,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/viewLine" />
 
                 <TextView
                     android:id="@+id/tvTotalPayment1"
@@ -261,91 +246,166 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/tvAmortizationTable2"
-                android:layout_width="0dp"
+                android:id="@+id/tvTil2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="4dp"
-                android:background="@drawable/plf_pressed_24dp_0ace86"
-                android:gravity="center"
-                android:paddingVertical="8dp"
-                android:text="@string/plf_amortization_table"
-                android:textColor="@color/white"
+                android:text="@string/plf_result_after_calculation"
+                android:textColor="@color/plf_050C03"
                 android:textSize="14sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toStartOf="@+id/tvAmortizationTable"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/clTil2" />
+                app:layout_constraintTop_toBottomOf="@+id/clTil1" />
 
-            <TextView
-                android:id="@+id/tvAmortizationTable"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/plf_pressed_24dp_0ace86"
-                android:gravity="center"
-                android:paddingVertical="8dp"
-                android:text="@string/plf_amortization_table"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvAmortizationTable2"
-                app:layout_constraintTop_toBottomOf="@+id/clTil2" />
-
-            <TextView
-                android:id="@+id/tvSharePDF"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="4dp"
-                android:background="@drawable/plf_stroke_24dp_1dp_0ace86"
-                android:gravity="center"
-                android:paddingVertical="16dp"
-                android:text="@string/plf_share_pdf"
-                android:textColor="@color/plf_0ACE86"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/tvAddCompareList"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAmortizationTable2" />
-
-            <TextView
-                android:id="@+id/tvAddCompareList"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/plf_pressed_24dp_ff9e4c"
-                android:gravity="center"
-                android:paddingVertical="16dp"
-                android:text="@string/plf_add_to_compare_list"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvSharePDF"
-                app:layout_constraintTop_toBottomOf="@+id/tvAmortizationTable2" />
-
-            <TextView
-                android:id="@+id/tvGoHome"
+            <LinearLayout
+                android:id="@+id/llTil1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/plf_pressed_24dp_0ace86"
-                android:gravity="center"
-                android:paddingVertical="16dp"
-                android:text="@string/plf_go_home"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvSharePDF"
-                app:layout_constraintTop_toBottomOf="@+id/tvAddCompareList" />
+                android:background="@drawable/plf_stroke_12dp_1dp_707070_24"
+                android:orientation="vertical"
+                android:padding="2dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvTil2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/plf_shape_12dp_white_top"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/app_jin_hao"
+                        android:textColor="@color/plf_050C03_70"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/plf_payment"
+                        android:textColor="@color/plf_050C03_70"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/plf_interest"
+                        android:textColor="@color/plf_050C03_70"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/plf_principal"
+                        android:textColor="@color/plf_050C03_70"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/plf_balance"
+                        android:textColor="@color/plf_050C03_70"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRvView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                app:layout_constraintTop_toBottomOf="@+id/llTil1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/tvAddCompareList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/plf_pressed_24dp_0ace86"
+        android:gravity="center"
+        android:paddingVertical="16dp"
+        android:text="@string/plf_add_to_compare_list"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvShareXLS"
+        app:layout_constraintEnd_toStartOf="@+id/tvGoHome"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvGoHome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/plf_pressed_24dp_ff9e4c"
+        android:gravity="center"
+        android:paddingVertical="16dp"
+        android:text="@string/plf_go_home"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvShareXLS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvAddCompareList" />
+
+    <TextView
+        android:id="@+id/tvShareXLS"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/plf_stroke_24dp_1dp_0ace86"
+        android:gravity="center"
+        android:paddingVertical="16dp"
+        android:text="@string/plf_share_xls"
+        android:textColor="@color/plf_0ACE86"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvSharePDF"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSharePDF"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/plf_pressed_24dp_0ace86"
+        android:gravity="center"
+        android:paddingVertical="16dp"
+        android:text="@string/plf_share_pdf"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvShareXLS" />
 </androidx.constraintlayout.widget.ConstraintLayout>

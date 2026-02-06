@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingVertical="8dp">
+
+    <TextView
+        android:id="@+id/tvNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/plf_050C03_70"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvPayment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/plf_050C03_70"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvInterest"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/plf_050C03_70"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvPrincipal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/plf_050C03_70"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvBalance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/plf_050C03_70"
+        android:textSize="12sp" />
+
+</LinearLayout>
