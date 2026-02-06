@@ -72,6 +72,8 @@ Contact
 If you have questions about this policy, contact us at: fortunecat0718@gmail.com
     </string>
 
+    <string name="plf_pmi" translatable="false">PMI</string>
+
     <string name="plf_personal_loan">Personal Loan</string>
     <string name="plf_loan_amount">Loan Amount</string>
     <string name="plf_loan_term">Loan Term</string>
@@ -156,7 +158,6 @@ but the higher the interest.</string>
     <string name="plf_the_portion_paid_loan">The portion of the price that is not paid through a loan</string>
     <string name="plf_payment_ratio">Payment Ratio</string>
     <string name="plf_property_tax">Property Tax</string>
-    <string name="plf_pmi">PMI</string>
     <string name="plf_hoa_fees">HOA Fees</string>
     <string name="plf_home_insurance">Home Insurance</string>
     <string name="plf_select_all">Select All</string>

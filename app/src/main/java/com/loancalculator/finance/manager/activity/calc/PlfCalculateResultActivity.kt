@@ -13,6 +13,7 @@ import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.showToastIDPlf
+import com.loancalculator.finance.manager.utils.ShareResultPdfPlfUtil
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.dialog.DialogAddCompareName
@@ -53,9 +54,9 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
                 data.loanTerm * 12
             }
 
-            mPlcBinding.tvTotalPayment2.text = totalPay.formatToFixString()
+            mPlcBinding.tvTotalPayment2.text = "${totalPay.formatToFixString()}${data.currencySymbol}"
             mPlcBinding.tvTotalInterestPayable2.text =
-                (totalPay - data.loanAmount).formatToFixString()
+                "${(totalPay - data.loanAmount).formatToFixString()}${data.currencySymbol}"
             mPlcBinding.tvPayingOffDate2.text =
                 TimeDatePlfUtils.getTimeDateOnePlf(
                     TimeDatePlfUtils.getOverDatePlf(

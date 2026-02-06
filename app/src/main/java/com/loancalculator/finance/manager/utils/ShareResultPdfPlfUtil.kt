@@ -9,12 +9,21 @@ import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import androidx.core.content.FileProvider
+import androidx.core.graphics.createBitmap
+import com.loancalculator.finance.manager.PlfDealApplication.Companion.mDirTableFile
+import com.loancalculator.finance.manager.R
+import com.loancalculator.finance.manager.showToastIDPlf
+import org.apache.poi.ss.usermodel.BorderStyle
+import org.apache.poi.ss.usermodel.FillPatternType
+import org.apache.poi.ss.usermodel.HorizontalAlignment
+import org.apache.poi.ss.usermodel.IndexedColors
+import org.apache.poi.ss.usermodel.Sheet
+import org.apache.poi.ss.usermodel.VerticalAlignment
+import org.apache.poi.ss.usermodel.Workbook
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import androidx.core.graphics.createBitmap
-import com.loancalculator.finance.manager.R
-import com.loancalculator.finance.manager.showToastIDPlf
 
 object ShareResultPdfPlfUtil {
 
@@ -109,7 +118,7 @@ object ShareResultPdfPlfUtil {
         context: Context,
         listText: List<String>,
         listIndex: List<Int>,
-        pdfFileName: String = "share_pdf_file",
+        pdfFileName: String = "Pdf_${System.currentTimeMillis()}",
         shareAfterCreate: Boolean = true
     ) {
         var pdfDocument: PdfDocument? = null
@@ -160,7 +169,7 @@ object ShareResultPdfPlfUtil {
             pdfDocument.finishPage(page)
 
             // 5. 保存到临时文件
-            tempPdfFile = File(context.cacheDir, "$pdfFileName.pdf")
+            tempPdfFile = File(mDirTableFile, "$pdfFileName.pdf")
             if (tempPdfFile.exists()) {
                 tempPdfFile.delete()
             }
@@ -189,5 +198,232 @@ object ShareResultPdfPlfUtil {
             pdfDocument?.close()
         }
 
+    }
+
+    /**
+     * 生成包含基本信息 + 分期表的 Excel 文件，并分享
+     *
+     * @param context Context
+     * @param loanAmount 贷款金额 (如 10000.0)
+     * @param annualRate 年利率 (如 0.10)
+     * @param termYears 年限 (如 1)
+     * @param firstPaymentDate 首付日期 (如 "05/02/2026")
+     * @param totalPrincipalPaid 总本金 (通常 = loanAmount)
+     * @param totalInterest 总利息 (如 6703.0)
+     * @param totalAmount 总本息 (如 126702.81)
+     * @param maturityDate 到期日 (如 "05/02/2027")
+     * @param rows 分期表数据 List<Map<String, Any>> 或自定义数据类
+     * @param fileNameWithoutExt 文件名（不含 .xlsx）
+     */
+
+    fun generateAndShareExcel(
+        context: Context,
+        loanAmount: Int,
+        interestRate: Double,
+        loanTerm: String,
+        startDate: String,
+        monthlyPayment: Double,
+        totalPay: String,
+        totalInterestPay: String,
+        payingOffDate: String,
+        rows: List<LoanMonthDetail>?,  // 分期表每一行
+        fileNameWithoutExt: String = "Amortization_${System.currentTimeMillis()}"
+    ) {
+        if (rows == null) {
+            context.showToastIDPlf(R.string.plf_sharing_failed)
+            return
+        }
+        try {
+            val workbook: Workbook = XSSFWorkbook()
+            val sheet: Sheet = workbook.createSheet("Amortization Table")
+
+            // 样式准备
+            val headerStyle = workbook.createCellStyle().apply {
+                fillForegroundColor = IndexedColors.WHITE.index
+                fillPattern = FillPatternType.SOLID_FOREGROUND
+                alignment = HorizontalAlignment.CENTER
+                verticalAlignment = VerticalAlignment.CENTER
+                borderTop = BorderStyle.THIN
+                borderBottom = BorderStyle.THIN
+                borderLeft = BorderStyle.THIN
+                borderRight = BorderStyle.THIN
+            }
+            val boldFont = workbook.createFont().apply { bold = true }
+            headerStyle.setFont(boldFont)
+
+            val cellStyle = workbook.createCellStyle().apply {
+                alignment = HorizontalAlignment.CENTER
+                verticalAlignment = VerticalAlignment.CENTER
+                borderTop = BorderStyle.THIN
+                borderBottom = BorderStyle.THIN
+                borderLeft = BorderStyle.THIN
+                borderRight = BorderStyle.THIN
+            }
+
+//        val dateStyle = workbook.createCellStyle().apply {
+//            dataFormat = workbook.creationHelper.createDataFormat().getFormat("yyyy-MM-dd")
+//            alignment = HorizontalAlignment.CENTER
+//        }
+
+            var rowIndex = 0
+
+            // ── 第一部分：基本信息 ──
+            sheet.createRow(rowIndex++).apply {
+                createCell(0).apply {
+                    setCellValue(context.getString(R.string.plf_loan_amount))
+                    this.cellStyle = cellStyle
+                }
+                createCell(1).apply {
+                    setCellValue(loanAmount.toDouble())
+                    this.cellStyle = cellStyle
+                }
+            }
+            sheet.createRow(rowIndex++).apply {
+                createCell(0).apply {
+                    setCellValue(context.getString(R.string.plf_interest_rate))
+                    this.cellStyle = cellStyle
+                }
+                createCell(1).apply {
+                    setCellValue("${interestRate}%")
+                    this.cellStyle = cellStyle
+                }
+            }
+            sheet.createRow(rowIndex++).apply {
+                createCell(0).apply {
+                    setCellValue(context.getString(R.string.plf_loan_term))
+                    this.cellStyle = cellStyle
+                }
+                createCell(1).apply {
+                    setCellValue(loanTerm)
+                    this.cellStyle = cellStyle
+                }
+            }
+            sheet.createRow(rowIndex++).apply {
+                createCell(0).apply {
+                    setCellValue(context.getString(R.string.plf_start_date))
+                    this.cellStyle = cellStyle
+                }
+                createCell(1).apply {
+                    setCellValue(startDate)
+                    this.cellStyle = cellStyle
+                }
+            }
+
+            rowIndex++  // 空行
+
+            sheet.createRow(rowIndex++).apply {
+                createCell(0).apply {
+                    setCellValue(context.getString(R.string.plf_monthly_payment))
+                    this.cellStyle = cellStyle
+                }
+                createCell(1).apply {
+                    setCellValue(monthlyPayment)
+                    this.cellStyle = cellStyle
+                }
+            }
+            sheet.createRow(rowIndex++).apply {
+                createCell(0).apply {
+                    setCellValue(context.getString(R.string.plf_total_payment))
+                    this.cellStyle = cellStyle
+                }
+                createCell(1).apply {
+                    setCellValue(totalPay)
+                    this.cellStyle = cellStyle
+                }
+            }
+            sheet.createRow(rowIndex++).apply {
+                createCell(0).apply {
+                    setCellValue(context.getString(R.string.plf_total_interest_payable))
+                    this.cellStyle = cellStyle
+                }
+                createCell(1).apply {
+                    setCellValue(totalInterestPay)
+                    this.cellStyle = cellStyle
+                }
+            }
+            sheet.createRow(rowIndex++).apply {
+                createCell(0).apply {
+                    setCellValue(context.getString(R.string.plf_paying_off_date))
+                    this.cellStyle = cellStyle
+                }
+                createCell(1).apply {
+                    setCellValue(payingOffDate)
+                    this.cellStyle = cellStyle
+                }
+            }
+
+            rowIndex += 2  // 多空两行分隔
+
+            // ── 第二部分：分期表标题 ──
+            val headerRow = sheet.createRow(rowIndex++)
+            listOf(
+                context.getString(R.string.app_jin_hao),
+                context.getString(R.string.plf_payment),
+                context.getString(R.string.plf_interest),
+                context.getString(R.string.plf_principal),
+                context.getString(R.string.plf_balance)
+            ).forEachIndexed { i, title ->
+                val cell = headerRow.createCell(i)
+                cell.setCellValue(title)
+                cell.cellStyle = headerStyle
+            }
+
+            // ── 分期表数据 ──
+            rows.forEach { row ->
+                val dataRow = sheet.createRow(rowIndex++)
+                dataRow.createCell(0).apply {
+                    setCellValue(row.month.toDouble())
+                    this.cellStyle = cellStyle
+                }
+                dataRow.createCell(1).apply {
+                    setCellValue(row.payment)
+                    this.cellStyle = cellStyle
+                }
+                dataRow.createCell(2).apply {
+                    setCellValue(row.interestPart)
+                    this.cellStyle = cellStyle
+                }
+                dataRow.createCell(3).apply {
+                    setCellValue(row.principalPart)
+                    this.cellStyle = cellStyle
+                }
+                dataRow.createCell(4).apply {
+                    setCellValue(row.remainingPrincipal)
+                    this.cellStyle = cellStyle
+                }
+            }
+
+            sheet.setColumnWidth(0, 20 * 256)   // #
+            sheet.setColumnWidth(1, 20 * 256)   // Payment
+            sheet.setColumnWidth(2, 20 * 256)   // Interest
+            sheet.setColumnWidth(3, 20 * 256)   // Principal
+            sheet.setColumnWidth(4, 20 * 256)
+
+            // 自动调整列宽
+//            (0..4).forEach { sheet.autoSizeColumn(it) }
+
+            // 保存文件
+            val file = File(mDirTableFile, "$fileNameWithoutExt.xlsx")
+            FileOutputStream(file).use { out ->
+                workbook.write(out)
+            }
+            workbook.close()
+
+            // 分享
+            val uri = FileProvider.getUriForFile(
+                context,
+                "${context.packageName}.fileprovider",
+                file
+            )
+
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                putExtra(Intent.EXTRA_STREAM, uri)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            context.startActivity(Intent.createChooser(shareIntent, ""))
+        } catch (_: Exception) {
+            context.showToastIDPlf(R.string.plf_sharing_failed)
+        }
     }
 }

@@ -12,6 +12,7 @@ import com.loancalculator.finance.manager.utils.PlfTotalUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
 
 class PlfDealApplication : Application(), Application.ActivityLifecycleCallbacks {
     override fun attachBaseContext(newBase: Context?) {
@@ -29,6 +30,14 @@ class PlfDealApplication : Application(), Application.ActivityLifecycleCallbacks
         var mStartPageFinish = false
 
         var mPlfRootActivity: PlfRootActivity? = null
+
+        val mDirTableFile by lazy {
+            val dir = File(mPlfContext.filesDir, "shareFile")
+            if (!dir.exists()) {
+                dir.mkdirs()
+            }
+            dir
+        }
     }
 
     override fun onCreate() {
@@ -38,7 +47,18 @@ class PlfDealApplication : Application(), Application.ActivityLifecycleCallbacks
         registerActivityLifecycleCallbacks(this)
         mPlfLoanRoom
         CoroutineScope(Dispatchers.IO).launch {
-
+            launch {
+                mDirTableFile.walk().filter {
+                    it.isFile
+                }.forEach {
+                    if (it.exists()) {
+                        try {
+                            it.delete()
+                        } catch (_: Exception) {
+                        }
+                    }
+                }
+            }
         }
     }
 

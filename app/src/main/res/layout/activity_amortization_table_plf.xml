@@ -382,7 +382,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/plf_stroke_24dp_1dp_0ace86"
+        android:background="@drawable/plf_stroke_24dp_white_1dp_0ace86"
         android:gravity="center"
         android:paddingVertical="16dp"
         android:text="@string/plf_share_xls"
