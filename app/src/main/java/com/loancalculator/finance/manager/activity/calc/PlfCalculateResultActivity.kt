@@ -6,7 +6,9 @@ import android.view.View
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
+import com.loancalculator.finance.manager.activity.compare.PlfComparePersonalLoanActivity
 import com.loancalculator.finance.manager.activity.other.PlfAmortizationTableActivity
+import com.loancalculator.finance.manager.data.DataComparePlf
 import com.loancalculator.finance.manager.data.EventManagerHome
 import com.loancalculator.finance.manager.databinding.ActivityCalculateResultPlfBinding
 import com.loancalculator.finance.manager.formatToFixString
@@ -24,6 +26,7 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
     mBarTextWhite = false
 ) {
     private var mTilPersonalLoanDao = mPlfLoanRoom.mTilPersonalLoanDao()
+    private var mTilCompareDao = mPlfLoanRoom.mTilCompareDao()
     private var mViewModel = ""
 
     @SuppressLint("SetTextI18n")
@@ -87,11 +90,51 @@ class PlfCalculateResultActivity : PlfBindingActivity<ActivityCalculateResultPlf
             DialogAddCompareName(this) { name ->
                 mDataPersonalLoanPlf?.let {
                     if (it.dataIndexId > -1L) {
-                        it.addCompareTable = "yes"
-                        it.aTableName = name
-                        val re = mTilPersonalLoanDao.updateContent(it)
+                        val data = DataComparePlf()
+                        data.loanType = it.loanType
+                        data.loanTerm = it.loanTerm
+                        data.currencySymbol = it.currencySymbol
+                        data.loanAmount = it.loanAmount
+                        data.firstAmount = it.firstAmount
+                        data.interestRate = it.interestRate
+                        data.loanTermUnit = it.loanTermUnit
+                        data.numberInvestment = it.numberInvestment
+                        data.startDate = it.startDate
+                        data.monthlyPayment = it.monthlyPayment
+                        data.addDate = it.addDate
+                        data.propertyTax = it.propertyTax
+                        data.pmiMoney = it.pmiMoney
+                        data.homeownersInsurance = it.homeownersInsurance
+                        data.hoaMoney = it.hoaMoney
+                        data.tempLong1 = it.tempLong1
+                        data.tempLong2 = it.tempLong2
+                        data.tempString1 = it.tempString1
+                        data.tempString2 = it.tempString2
+                        data.mLoanMonthDetailList = it.mLoanMonthDetailList
+                        data.fingerSelect = it.fingerSelect
+                        data.totalInvestmentInterest = it.totalInvestmentInterest
+                        data.totalInterest = it.totalInterest
+
+                        data.addCompareTable = "yes"
+                        data.aTableName = name
+                        val re = mTilCompareDao.insertContent(data)
                         if (re > 0) {
                             showToastIDPlf(R.string.plf_added_successfully)
+                            startActivity(
+                                Intent(
+                                    this,
+                                    PlfComparePersonalLoanActivity::class.java
+                                ).apply {
+                                    putExtra(
+                                        "compareType", if (it.loanType == LoanTypePlf.AUTO) {
+                                            "autoLoan"
+                                        } else if (it.loanType == LoanTypePlf.PERSONAL) {
+                                            "personalLoan"
+                                        } else {
+                                            ""
+                                        }
+                                    )
+                                })
                         } else {
                             showToastIDPlf(R.string.plf_add_failed)
                         }

@@ -17,7 +17,7 @@ class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersona
     private lateinit var mAdapterCompareMortgagesPlf: AdapterCompareMortgagesPlf
     private val mListData = mutableListOf<DataPersonalLoanPlf>()
     private var mCompareType = ""
-    private var mTilPersonalLoanDao = mPlfLoanRoom.mTilPersonalLoanDao()
+    private var mTilCompareDao = mPlfLoanRoom.mTilCompareDao()
 
     override fun beginViewAndDoPlf() {
         intent?.let {
@@ -28,7 +28,7 @@ class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersona
                         getString(R.string.plf_compare_2),
                         getString(R.string.plf_personal_loan)
                     )
-                    mTilPersonalLoanDao.getListByLoanType(LoanTypePlf.PERSONAL).let {
+                    mTilCompareDao.getListByLoanType(LoanTypePlf.PERSONAL).let {
                         mListData.addAll(it)
                     }
                 }
@@ -38,7 +38,7 @@ class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersona
                         getString(R.string.plf_compare_2),
                         getString(R.string.plf_business_loan)
                     )
-                    mTilPersonalLoanDao.getListByLoanType(LoanTypePlf.BUSINESS).let {
+                    mTilCompareDao.getListByLoanType(LoanTypePlf.BUSINESS).let {
                         mListData.addAll(it)
                     }
                 }
@@ -48,7 +48,7 @@ class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersona
                         getString(R.string.plf_compare_2),
                         getString(R.string.plf_mortgages)
                     )
-                    mTilPersonalLoanDao.getListByLoanType(LoanTypePlf.MORTGAGES).let {
+                    mTilCompareDao.getListByLoanType(LoanTypePlf.MORTGAGES).let {
                         mListData.addAll(it)
                     }
                 }
@@ -58,7 +58,7 @@ class PlfComparePersonalLoanActivity : PlfBindingActivity<ActivityComparePersona
                         getString(R.string.plf_compare_2),
                         getString(R.string.plf_auto_loan)
                     )
-                    mTilPersonalLoanDao.getListByLoanType(LoanTypePlf.AUTO).let {
+                    mTilCompareDao.getListByLoanType(LoanTypePlf.AUTO).let {
                         mListData.addAll(it)
                     }
                 }

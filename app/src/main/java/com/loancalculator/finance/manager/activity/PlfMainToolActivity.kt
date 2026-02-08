@@ -16,7 +16,7 @@ import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
 import com.loancalculator.finance.manager.utils.value.ConstantNextPlf.PLF_ENTER_MAIN_RESULT
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 
-class PlfMainToolActivity : PlfBindingActivity<ActivityMainPlfBinding>() {
+class PlfMainToolActivity : PlfBindingActivity<ActivityMainPlfBinding>(mBarTextWhite = true) {
     private val mFragmentList = mutableListOf<RootPlfFragment<*>>()
     private val mFragmentValueList = mutableListOf(1, 2, 3, 4)
 
