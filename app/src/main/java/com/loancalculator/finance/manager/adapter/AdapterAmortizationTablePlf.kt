@@ -36,7 +36,7 @@ class AdapterAmortizationTablePlf(
     ) {
         val data = mListDoData[position]
         holder.mPlfBinding.apply {
-            tvNumber.text = position.toString()
+            tvNumber.text = (position + 1).toString()
             tvPayment.text = data.payment.toString()
             tvInterest.text = data.interestPart.toString()
             tvPrincipal.text = data.principalPart.toString()

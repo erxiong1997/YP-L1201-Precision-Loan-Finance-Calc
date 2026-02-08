@@ -57,6 +57,14 @@ class PlfToolsUnitSelectActivity : PlfBindingActivity<ActivityToolsUnitSelectPlf
         }
         mPlcBinding.rvRvView.layoutManager = LinearLayoutManager(this)
         mPlcBinding.rvRvView.adapter = mAdapterToolsUnitItemPlf
+
+        if (mSelectPosition > 4) {
+            mPlcBinding.rvRvView.postDelayed(
+                {
+                    mPlcBinding.rvRvView.smoothScrollToPosition(mSelectPosition)
+                }, 636
+            )
+        }
     }
 
     private fun getUnitClassList() {

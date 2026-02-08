@@ -211,5 +211,8 @@ but the higher the interest.</string>
     <string name="plf_balance">Balance</string>
     <string name="plf_principal">Principal</string>
     <string name="plf_payment">Payment</string>
+    <string name="plf_amortization_table_monthly">Amortization Table(Monthly)</string>
+    <string name="plf_back_to_home">Back to Home</string>
+    <string name="plf_are_you_sure_back_home">Are you sure to back to home?\nThe entered content will be cleared.</string>
     <string name="plf_"></string>
 </resources>

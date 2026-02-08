@@ -90,7 +90,32 @@ class PlfAmortizationTableActivity : PlfBindingActivity<ActivityAmortizationTabl
             startActivity(Intent(this, PlfMainToolActivity::class.java))
         }
         mPlcBinding.tvSharePDF.setSafeListener {
-
+            mDataPersonalLoanPlf?.let {
+                ShareResultPdfPlfUtil.generateInvestmentPdf(
+                    this,
+                    mutableListOf(
+                        getString(R.string.plf_loan_information),
+                        getString(R.string.plf_loan_amount),
+                        mPlcBinding.tvLoanAmount2.text.toString(),
+                        getString(R.string.plf_interest_rate),
+                        mPlcBinding.tvIntersetRate2.text.toString(),
+                        getString(R.string.plf_loan_term),
+                        mPlcBinding.tvLoanTerm2.text.toString(),
+                        getString(R.string.plf_start_date),
+                        mPlcBinding.tvStartDate2.text.toString(),
+                        getString(R.string.plf_result_after_calculation),
+                        getString(R.string.plf_monthly_payment),
+                        mPlcBinding.tvMonthPayment2.text.toString(),
+                        getString(R.string.plf_total_payment),
+                        mPlcBinding.tvTotalPayment2.text.toString(),
+                        getString(R.string.plf_total_interest_payable),
+                        mPlcBinding.tvTotalInterestPayable2.text.toString(),
+                        getString(R.string.plf_paying_off_date),
+                        mPlcBinding.tvPayingOffDate2.text.toString(),
+                        getString(R.string.plf_amortization_table_monthly)
+                    ), mutableListOf(0, 9, 18), it.mLoanMonthDetailList
+                )
+            }
         }
         mPlcBinding.tvShareXLS.setSafeListener {
             mDataPersonalLoanPlf?.let { data ->

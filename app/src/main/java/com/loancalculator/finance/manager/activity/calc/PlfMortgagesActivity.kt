@@ -25,6 +25,7 @@ import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
+import com.loancalculator.finance.manager.utils.dialog.DialogExitToHomePlf
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 
@@ -45,6 +46,12 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
     private var mMonthYear = "year"
     private var mEditIng = false
     private var mEditIngTwo = false
+
+    override fun doBackPressed() {
+        DialogExitToHomePlf(this) {
+            super.doBackPressed()
+        }
+    }
 
     init {
         mHandlerPlf = object : Handler(Looper.getMainLooper()) {

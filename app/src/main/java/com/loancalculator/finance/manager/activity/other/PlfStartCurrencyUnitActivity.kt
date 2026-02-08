@@ -22,14 +22,6 @@ class PlfStartCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfB
             mUnitClass = it.getStringExtra("unitClass") ?: ""
         }
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_currency_unit)
-        mDataCurrencyUnitPlf?.let {
-            for (d in mListData) {
-                if (d.currencyUnit == it.currencyUnit) {
-                    d.fingerSelect = true
-                    break
-                }
-            }
-        }
         setPlfRecyclerView()
 
         mPlcBinding.topSetPlf.ivSelect.setSafeListener {
@@ -66,6 +58,7 @@ class PlfStartCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfB
         }
         mPlcBinding.rvRvView.layoutManager = LinearLayoutManager(this)
         mPlcBinding.rvRvView.adapter = mAdapterCurrencyUnitItemPlf
+
     }
 
     override fun getLayoutValue(): ActivityCurrencyUnitPlfBinding {

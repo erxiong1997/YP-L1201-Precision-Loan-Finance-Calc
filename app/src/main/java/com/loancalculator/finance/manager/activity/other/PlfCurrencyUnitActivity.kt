@@ -20,6 +20,7 @@ class PlfCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfBindin
     private lateinit var mAdapterCurrencyUnitItemPlf: AdapterCurrencyUnitItemPlf
     private var mListData = mutableListOf<DataCurrencyUnitPlf>()
     private var mUnitClass = ""
+    private var mMovePosition = 0
     override fun beginViewAndDoPlf() {
         intent?.let {
             mUnitClass = it.getStringExtra("unitClass") ?: ""
@@ -49,11 +50,24 @@ class PlfCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfBindin
         }
         mListData.clear()
         mListData.addAll(mCurrencyListData)
-        mDataCurrencyUnitPlf?.let {
-            for (d in mListData) {
-                if (d.currencyUnit == it.currencyUnit) {
-                    d.fingerSelect = true
-                    break
+        if (mUnitClass == "convert") {
+            mRateCurrencyPlf?.let {
+                for (i in mListData.indices) {
+                    if (mListData[i].currencyUnit == it.currencyUnit) {
+                        mMovePosition = i
+                        mListData[i].fingerSelect = true
+                        break
+                    }
+                }
+            }
+        } else {
+            mDataCurrencyUnitPlf?.let {
+                for (i in mListData.indices) {
+                    if (mListData[i].currencyUnit == it.currencyUnit) {
+                        mMovePosition = i
+                        mListData[i].fingerSelect = true
+                        break
+                    }
                 }
             }
         }
@@ -72,6 +86,14 @@ class PlfCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfBindin
         }
         mPlcBinding.rvRvView.layoutManager = LinearLayoutManager(this)
         mPlcBinding.rvRvView.adapter = mAdapterCurrencyUnitItemPlf
+
+        if (mMovePosition > 4) {
+            mPlcBinding.rvRvView.postDelayed(
+                {
+                    mPlcBinding.rvRvView.smoothScrollToPosition(mMovePosition)
+                }, 636
+            )
+        }
     }
 
     override fun getLayoutValue(): ActivityCurrencyUnitPlfBinding {

@@ -20,6 +20,7 @@ import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
+import com.loancalculator.finance.manager.utils.dialog.DialogExitToHomePlf
 import com.loancalculator.finance.manager.utils.value.LoanTypePlf
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 
@@ -33,6 +34,11 @@ class PlfBusinessLoanActivity : PlfBindingActivity<ActivityBusinessLoanPlfBindin
                 DealRecentPlfUtils.addCurrencyUnitRecent(mDataCurrencyUnitPlf)
             }
         }
+    override fun doBackPressed() {
+        DialogExitToHomePlf(this) {
+            super.doBackPressed()
+        }
+    }
 
     //month year
     private var mMonthYear = "month"

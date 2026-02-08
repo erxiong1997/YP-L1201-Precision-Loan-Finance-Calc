@@ -57,7 +57,7 @@ class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>
         mPlcBinding.rvRvView.adapter = mAdapterLanguageItemPlf
         mPlcBinding.rvRvView.postDelayed({
             mPlcBinding.rvRvView.smoothScrollToPosition(mLtdSelectIndex + 3)
-        }, 800)
+        }, 636)
     }
 
     private fun initLanguageDataLtd() {

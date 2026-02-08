@@ -2,21 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
     android:background="@drawable/plf_shape_24dp_white"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:src="@drawable/plf_til_dialog_delete_head" />
+        android:src="@drawable/plf_til_dialog_exit_home" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/plf_delete_reminder"
+        android:text="@string/plf_back_to_home"
         android:textColor="@color/plf_050C03"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -27,6 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/plf_are_you_sure_back_home"
         android:textColor="@color/plf_050C03"
         android:textSize="14sp" />
 
@@ -40,28 +42,28 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvCancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/plf_stroke_24dp_1dp_050c03"
-            android:gravity="center"
-            android:paddingVertical="16dp"
-            android:text="@string/plf_cancel"
-            android:textColor="@color/plf_050C03"
-            android:textSize="14sp" />
-
-        <TextView
             android:id="@+id/tvYes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
             android:layout_weight="1"
             android:background="@drawable/plf_pressed_24dp_0ace86"
             android:gravity="center"
             android:paddingVertical="16dp"
             android:text="@string/plf_Yes"
             android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:background="@drawable/plf_stroke_24dp_1dp_050c03"
+            android:gravity="center"
+            android:paddingVertical="16dp"
+            android:text="@string/plf_cancel"
+            android:textColor="@color/plf_050C03"
             android:textSize="14sp" />
     </LinearLayout>
 </LinearLayout>

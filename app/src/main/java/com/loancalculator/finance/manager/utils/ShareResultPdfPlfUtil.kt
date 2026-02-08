@@ -201,6 +201,149 @@ object ShareResultPdfPlfUtil {
 
     }
 
+    fun generateInvestmentPdf(
+        context: Context,
+        listText: List<String>,
+        listIndex: List<Int>,
+        listHorTable: List<LoanMonthDetail>?,
+        pdfFileName: String = "Pdf_${System.currentTimeMillis()}",
+        shareAfterCreate: Boolean = true
+    ) {
+        if (listHorTable == null) return
+        var pdfDocument: PdfDocument? = null
+        var page: PdfDocument.Page? = null
+        var canvas: Canvas? = null
+        var yPosition = 50f
+        var tempPdfFile: File? = null
+
+        try {
+            // 1. 创建 PDF 文档（A4 大小，595x842 pt）
+            pdfDocument = PdfDocument()
+            val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create()
+            page = pdfDocument.startPage(pageInfo)
+            canvas = page.canvas
+
+            // 2. 设置画笔（字体大小、颜色等）
+            val paint = Paint().apply {
+                color = Color.BLACK
+                textSize = 16f  // 调整字体大小
+                isAntiAlias = true
+                isFakeBoldText = true
+            }
+
+            // 3. 一个一个写上文本（模拟用户图片/PDF 的布局，从上到下，左对齐）
+            var count = 0
+            for ((i, text) in listText.withIndex()) {
+                if (i in listIndex) {
+                    canvas.drawText(text, 50f, yPosition, paint)
+                    yPosition += 28f
+                } else {
+                    count++
+                    canvas.drawText(
+                        text, if (count == 1) {
+                            50f
+                        } else {
+                            400f
+                        }, yPosition, paint
+                    )
+                    if (count == 2) {
+                        count = 0
+                        yPosition += 28f
+                        if ((i + 1) in listIndex) {
+                            yPosition += 28f
+                        }
+                    }
+                }
+            }
+
+            // 4. 绘制 Amortization Table
+            val headers = arrayOf(
+                context.getString(R.string.app_jin_hao),
+                context.getString(R.string.plf_payment),
+                context.getString(R.string.plf_interest),
+                context.getString(R.string.plf_principal),
+                context.getString(R.string.plf_balance)
+            )
+            val columnX = floatArrayOf(50f, 100f, 200f, 300f, 400f)
+            val nf = java.text.NumberFormat.getNumberInstance()
+
+            // 绘制表头
+            for (j in headers.indices) {
+                canvas.drawText(headers[j], columnX[j], yPosition, paint)
+            }
+            yPosition += 28f
+
+            // 绘制表格行
+            for (detail in listHorTable) {
+                if (yPosition > 800f) {  // 接近页面底部，换页
+                    pdfDocument.finishPage(page)
+                    val newPageInfo =
+                        PdfDocument.PageInfo.Builder(595, 842, pdfDocument.pages.size + 1).create()
+                    page = pdfDocument.startPage(newPageInfo)
+                    canvas = page.canvas
+                    yPosition = 50f
+
+                    // 新页重新绘制表头
+                    for (j in headers.indices) {
+                        canvas.drawText(headers[j], columnX[j], yPosition, paint)
+                    }
+                    yPosition += 28f
+                }
+
+                // 绘制行数据
+                canvas?.drawText(detail.month.toString(), columnX[0], yPosition, paint)
+                canvas?.drawText(nf.format(detail.payment.toInt()), columnX[1], yPosition, paint)
+                canvas?.drawText(
+                    nf.format(detail.interestPart.toInt()),
+                    columnX[2],
+                    yPosition,
+                    paint
+                )
+                canvas?.drawText(
+                    nf.format(detail.principalPart.toInt()),
+                    columnX[3],
+                    yPosition,
+                    paint
+                )
+                canvas?.drawText(detail.remainingPrincipal.toString(), columnX[4], yPosition, paint)
+                yPosition += 28f
+            }
+
+            // 5. 完成最后一页
+            pdfDocument.finishPage(page)
+
+            // 6. 保存到临时文件
+            tempPdfFile = File(mDirTableFile, "$pdfFileName.pdf")
+            if (tempPdfFile.exists()) {
+                tempPdfFile.delete()
+            }
+            FileOutputStream(tempPdfFile).use { out ->
+                pdfDocument.writeTo(out)
+            }
+
+            if (shareAfterCreate) {
+                // 7. 分享 PDF（用 FileProvider）
+                val pdfUri: Uri = FileProvider.getUriForFile(
+                    context,
+                    "${context.packageName}.fileprovider",
+                    tempPdfFile
+                )
+                val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                    type = "application/pdf"
+                    putExtra(Intent.EXTRA_STREAM, pdfUri)
+                    putExtra(Intent.EXTRA_TITLE, tempPdfFile.name)
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+                context.startActivity(Intent.createChooser(shareIntent, ""))
+            }
+
+        } catch (e: Exception) {
+            context.showToastIDPlf(R.string.plf_sharing_failed)
+        } finally {
+            pdfDocument?.close()
+        }
+    }
+
     /**
      * 生成包含基本信息 + 分期表的 Excel 文件，并分享
      *
@@ -395,10 +538,10 @@ object ShareResultPdfPlfUtil {
             }
 
             sheet.setColumnWidth(0, 20 * 256)   // #
-            sheet.setColumnWidth(1, 20 * 256)   // Payment
-            sheet.setColumnWidth(2, 20 * 256)   // Interest
-            sheet.setColumnWidth(3, 20 * 256)   // Principal
-            sheet.setColumnWidth(4, 20 * 256)
+            sheet.setColumnWidth(1, 16 * 256)   // Payment
+            sheet.setColumnWidth(2, 16 * 256)   // Interest
+            sheet.setColumnWidth(3, 16 * 256)   // Principal
+            sheet.setColumnWidth(4, 16 * 256)
 
             // 自动调整列宽
 //            (0..4).forEach { sheet.autoSizeColumn(it) }

@@ -42,7 +42,6 @@ class PlfToolsExchangeRateActivity :
                         getCurrencyRateSave(
                             mTopUnitData, mBottomUnitData, true
                         )
-                        mPlcBinding.tvCalculate.performClick()
                     }
                 }
                 if (mCurSelect == "bottom") {
@@ -61,7 +60,6 @@ class PlfToolsExchangeRateActivity :
                         getCurrencyRateSave(
                             mTopUnitData, mBottomUnitData, true
                         )
-                        mPlcBinding.tvCalculate.performClick()
                     }
                 }
             }
@@ -99,6 +97,7 @@ class PlfToolsExchangeRateActivity :
 
         mPlcBinding.llSelectTop.setSafeListener {
             mCurSelect = "top"
+            mRateCurrencyPlf = mTopUnitData
             mUnitSelectLauncher.launch(
                 Intent(this, PlfCurrencyUnitActivity::class.java).apply {
                     putExtra("unitClass", "convert")
@@ -107,6 +106,7 @@ class PlfToolsExchangeRateActivity :
         }
         mPlcBinding.llSelectBottom.setSafeListener {
             mCurSelect = "bottom"
+            mRateCurrencyPlf = mBottomUnitData
             mUnitSelectLauncher.launch(
                 Intent(this, PlfCurrencyUnitActivity::class.java).apply {
                     putExtra("unitClass", "convert")
@@ -225,18 +225,21 @@ class PlfToolsExchangeRateActivity :
                             mStartEnd++
                             if (mStartEnd >= 2) {
                                 mDialogInitPlfLoading?.dismissGoPlf()
+                                mPlcBinding.tvCalculate.performClick()
                             }
                         }
                     }
                 } catch (e: Exception) {
                     if (mStartEnd >= 2) {
                         mDialogInitPlfLoading?.dismissGoPlf()
+                        mPlcBinding.tvCalculate.performClick()
                     }
                 }
             },
             Response.ErrorListener {
                 if (mStartEnd >= 2) {
                     mDialogInitPlfLoading?.dismissGoPlf()
+                    mPlcBinding.tvCalculate.performClick()
                 }
             }) {
             override fun getParamsEncoding(): String {
