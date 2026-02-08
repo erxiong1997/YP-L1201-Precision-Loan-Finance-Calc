@@ -10,6 +10,8 @@ import com.loancalculator.finance.manager.activity.other.PlfStartCurrencyUnitAct
 import com.loancalculator.finance.manager.adapter.AdapterStartHelpPlf
 import com.loancalculator.finance.manager.data.DataStartHelpPlf
 import com.loancalculator.finance.manager.databinding.ActivityStartHelpPlfBinding
+import com.loancalculator.finance.manager.utils.DataManagerPlfUtils
+import com.loancalculator.finance.manager.utils.value.ConstantNextPlf.PLF_ENTER_MAIN_RESULT
 
 class PlfStartHelpActivity : PlfBindingActivity<ActivityStartHelpPlfBinding>() {
 
@@ -17,7 +19,7 @@ class PlfStartHelpActivity : PlfBindingActivity<ActivityStartHelpPlfBinding>() {
     private lateinit var mAdapterStartHelpPlf: AdapterStartHelpPlf
     private var mNextCount = 0
     override fun beginViewAndDoPlf() {
-
+        DataManagerPlfUtils.setDataKeyPlf(PLF_ENTER_MAIN_RESULT, "remind")
         setPlfRecyclerView()
         mPlcBinding.tvGoHome.setOnClickListener {
             if (mNextCount < 3) {

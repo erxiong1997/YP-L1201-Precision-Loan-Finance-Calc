@@ -46,7 +46,7 @@ class PlfToolsLengthConvertActivity :
 
     override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_length_convert)
-
+        mPlcBinding.tvCalculate.isEnabled = false
         val data1 = mLengthUnitList[0]
         val data2 = mLengthUnitList[3]
         mTopUnitData = data1

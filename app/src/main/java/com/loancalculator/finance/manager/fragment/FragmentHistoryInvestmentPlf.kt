@@ -50,9 +50,12 @@ class FragmentHistoryInvestmentPlf : RootPlfFragment<FragmentHistoryInvestmentPl
             DialogDeleteConfirmPlf(rootActivity, getString(R.string.plf_deleteed_no_recovered)) {
                 for ((index, data) in mListData.withIndex().reversed()) {
                     if (data.fingerSelect) {
-                        mListData.removeAt(index)
-                        mSelectorCount--
-                        mAdapterHistoryCalculatorPlf.notifyItemRemoved(index)
+                        val deleteRows = mTilPersonalLoanDao.deleteContent(data)
+                        if (deleteRows > 0) {
+                            mListData.removeAt(index)
+                            mSelectorCount--
+                            mAdapterHistoryCalculatorPlf.notifyItemRemoved(index)
+                        }
                     }
                 }
                 changeDeleteButton()
@@ -101,19 +104,14 @@ class FragmentHistoryInvestmentPlf : RootPlfFragment<FragmentHistoryInvestmentPl
         }) {
             val data = mListData[it]
             if (mCurDeleteModel) {
-                DialogDeleteConfirmPlf(
-                    rootActivity,
-                    getString(R.string.plf_deleteed_no_recovered)
-                ) {
-                    data.fingerSelect = !data.fingerSelect
-                    if (data.fingerSelect) {
-                        mSelectorCount++
-                    } else {
-                        mSelectorCount--
-                    }
-                    mAdapterHistoryCalculatorPlf.notifyItemChanged(it)
-                    changeDeleteButton()
-                }.show()
+                data.fingerSelect = !data.fingerSelect
+                if (data.fingerSelect) {
+                    mSelectorCount++
+                } else {
+                    mSelectorCount--
+                }
+                mAdapterHistoryCalculatorPlf.notifyItemChanged(it)
+                changeDeleteButton()
             } else {
                 when (data.loanType) {
                     LoanTypePlf.PERSONAL, LoanTypePlf.AUTO -> {

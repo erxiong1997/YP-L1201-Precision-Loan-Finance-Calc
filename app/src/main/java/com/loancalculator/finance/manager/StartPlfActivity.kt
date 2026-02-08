@@ -7,7 +7,10 @@ import android.os.Message
 import com.loancalculator.finance.manager.PlfDealApplication.Companion.mStartPageFinish
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
 import com.loancalculator.finance.manager.activity.PlfMainToolActivity
+import com.loancalculator.finance.manager.activity.set.PlfStartLanguageActivity
 import com.loancalculator.finance.manager.databinding.ActivityStartPlfBinding
+import com.loancalculator.finance.manager.utils.DataManagerPlfUtils
+import com.loancalculator.finance.manager.utils.value.ConstantNextPlf.PLF_ENTER_MAIN_RESULT
 
 class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
     private var mAgainStartPlf = "no"
@@ -69,12 +72,12 @@ class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
 //                PLF_SHOW_HIDE_LANGUAGE_START, "showLanguage"
 //            ) == "showLanguage"
 //        ) {
-//            if (!DataManagerPlfUtils.getDataKeyPlf(PLF_ENTER_MAIN_RESULT, false)) {
-//                startActivity(Intent(this, PlfStartLanguageActivity::class.java))
-//                finish()
-//                return
-//            }
-////        }
+        if (DataManagerPlfUtils.getDataKeyPlf(PLF_ENTER_MAIN_RESULT, "") != "home") {
+            startActivity(Intent(this, PlfStartLanguageActivity::class.java))
+            finish()
+            return
+        }
+//        }
         startActivity(Intent(this, PlfMainToolActivity::class.java).apply {
 
         })

@@ -11,7 +11,9 @@ import com.loancalculator.finance.manager.fragment.FragmentMinePlf
 import com.loancalculator.finance.manager.fragment.FragmentToolsPlf
 import com.loancalculator.finance.manager.fragment.RootPlfFragment
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.DataManagerPlfUtils
 import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
+import com.loancalculator.finance.manager.utils.value.ConstantNextPlf.PLF_ENTER_MAIN_RESULT
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 
 class PlfMainToolActivity : PlfBindingActivity<ActivityMainPlfBinding>() {
@@ -19,6 +21,7 @@ class PlfMainToolActivity : PlfBindingActivity<ActivityMainPlfBinding>() {
     private val mFragmentValueList = mutableListOf(1, 2, 3, 4)
 
     override fun beginViewAndDoPlf() {
+        DataManagerPlfUtils.setDataKeyPlf(PLF_ENTER_MAIN_RESULT, "home")
 //        mPlcBinding.tvLoanTwo.setSafeListener {
 //            startActivity(Intent(this, PlfToolsTemperatureActivity::class.java))
 //        }

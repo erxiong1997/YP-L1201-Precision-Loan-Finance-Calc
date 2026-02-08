@@ -68,7 +68,7 @@ object ToolsLengthConvertUtils {
             value.roundToInt().toString()
         } else {
             "%.${decimalPlaces}f".format(value)
-            value.toString()
+            value.formatToFixString(12)
         }
     }
 }

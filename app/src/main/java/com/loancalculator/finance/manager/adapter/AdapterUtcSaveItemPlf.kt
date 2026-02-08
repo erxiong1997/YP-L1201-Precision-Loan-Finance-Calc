@@ -3,6 +3,7 @@ package com.loancalculator.finance.manager.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.loancalculator.finance.manager.data.DataUtcSelectPlf
 import com.loancalculator.finance.manager.databinding.ItemUtcSaveItemPlfBinding
@@ -28,12 +29,14 @@ class AdapterUtcSaveItemPlf(
         holderItem.itemView.setSafeListener {
             tilFunBack(holderItem.absoluteAdapterPosition)
         }
-        holderItem.itemView.setOnLongClickListener {
+        binding.clContent.setOnLongClickListener {
             tilLongBack(holderItem.absoluteAdapterPosition)
             true
         }
         binding.flDelete.setSafeListener {
-            tilLongBack(holderItem.absoluteAdapterPosition)
+            if (binding.flDelete.isVisible) {
+                tilLongBack(holderItem.absoluteAdapterPosition)
+            }
         }
         return holderItem
     }

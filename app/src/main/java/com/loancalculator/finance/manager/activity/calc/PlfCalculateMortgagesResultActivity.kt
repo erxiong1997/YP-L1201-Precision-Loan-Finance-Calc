@@ -136,7 +136,11 @@ class PlfCalculateMortgagesResultActivity :
                     getString(R.string.plf_home_insurance),
                     mPlcBinding.tvHomeInsurance2.text.toString(),
                     getString(R.string.plf_hoa_fees),
-                    mPlcBinding.tvHOAFees2.text.toString()
+                    mPlcBinding.tvHOAFees2.text.toString(),
+                    getString(R.string.plf_monthly_payment),
+                    mPlcBinding.tvMonthlyPayment.text.toString(),
+                    getString(R.string.plf_total_payment),
+                    mPlcBinding.tvTotalPayment.text.toString()
                 ), mutableListOf(0)
             )
         }

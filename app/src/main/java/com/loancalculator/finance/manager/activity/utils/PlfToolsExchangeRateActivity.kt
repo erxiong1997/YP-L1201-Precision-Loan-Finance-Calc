@@ -14,6 +14,7 @@ import com.loancalculator.finance.manager.data.DataCurrencyRatePlf
 import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
 import com.loancalculator.finance.manager.databinding.ActivityToolsSpeedConvertPlfBinding
 import com.loancalculator.finance.manager.dismissGoPlf
+import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.utils.dialog.DialogInitPlfLoading
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
@@ -73,6 +74,8 @@ class PlfToolsExchangeRateActivity :
 
     override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_exchange_rate)
+        mPlcBinding.tvCalculate.isEnabled = false
+
         mRateCurrencyPlf = mDataCurrencyUnitPlf
         val data1 = mRateCurrencyPlf
         val data2 = mRateCurrencyPlf
@@ -146,14 +149,14 @@ class PlfToolsExchangeRateActivity :
         mPlcBinding.tvCalculate.setSafeListener {
             try {
                 val valueInput = mPlcBinding.etInputValueTop.text.toString().trim().toDouble()
-                mPlcBinding.tvInputValueBottom.text = valueInput.toString()
+                mPlcBinding.tvInputValueBottom.text = valueInput.formatToFixString(12)
                 if (valueInput == 0.0) {
                     return@setSafeListener
                 }
                 for (data in mExchangeRateList) {
                     if (mTopUnitData?.currencyUnit == data.base && mBottomUnitData?.currencyUnit == data.rateUnit) {
                         val re = valueInput * (data.rateValue)
-                        mPlcBinding.tvInputValueBottom.text = re.toString()
+                        mPlcBinding.tvInputValueBottom.text = re.formatToFixString(12)
                         break
                     }
                 }
@@ -264,14 +267,14 @@ class PlfToolsExchangeRateActivity :
             for (data in mExchangeRateList) {
                 if (data.base == mBottomUnitData?.currencyUnit && data.rateUnit == mTopUnitData?.currencyUnit) {
                     mPlcBinding.tvBottomConvertResult.text =
-                        "${data.amount} ${data.base} = ${data.rateValue} ${data.rateUnit}"
+                        "${data.amount} ${data.base} = ${data.rateValue.formatToFixString(12)} ${data.rateUnit}"
                 }
             }
         } else {
             for (data in mExchangeRateList) {
                 if (data.base == mTopUnitData?.currencyUnit && data.rateUnit == mBottomUnitData?.currencyUnit) {
                     mPlcBinding.tvTopConvertResult.text =
-                        "${data.amount} ${data.base} = ${data.rateValue} ${data.rateUnit}"
+                        "${data.amount} ${data.base} = ${data.rateValue.formatToFixString(12)} ${data.rateUnit}"
                 }
             }
         }

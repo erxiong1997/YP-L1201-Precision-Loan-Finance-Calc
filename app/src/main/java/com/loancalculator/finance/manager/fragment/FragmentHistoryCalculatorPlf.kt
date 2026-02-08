@@ -58,9 +58,12 @@ class FragmentHistoryCalculatorPlf : RootPlfFragment<FragmentHistoryCalculatorPl
         mPlfBinding.tvDelete.setSafeListener {
             for ((index, data) in mListData.withIndex().reversed()) {
                 if (data.fingerSelect) {
-                    mListData.removeAt(index)
-                    mSelectorCount--
-                    mAdapterHistoryCalculatorPlf.notifyItemRemoved(index)
+                    val deleteRows = mTilPersonalLoanDao.deleteContent(data)
+                    if (deleteRows > 0) {
+                        mListData.removeAt(index)
+                        mSelectorCount--
+                        mAdapterHistoryCalculatorPlf.notifyItemRemoved(index)
+                    }
                 }
             }
             changeDeleteButton()

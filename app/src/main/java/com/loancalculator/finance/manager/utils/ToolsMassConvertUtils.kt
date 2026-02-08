@@ -1,5 +1,6 @@
 package com.loancalculator.finance.manager.utils
 
+import com.loancalculator.finance.manager.formatToFixString
 import kotlin.math.roundToInt
 
 /**
@@ -66,7 +67,7 @@ object ToolsMassUnitUtils {
             value.roundToInt().toString()
         } else {
             "%.${decimalPlaces}f".format(value)
-            value.toString()
+            value.formatToFixString(12)
         }
     }
 }

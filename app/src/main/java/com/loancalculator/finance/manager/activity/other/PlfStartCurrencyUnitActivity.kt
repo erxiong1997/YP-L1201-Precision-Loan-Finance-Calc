@@ -10,7 +10,9 @@ import com.loancalculator.finance.manager.adapter.AdapterCurrencyUnitItemPlf
 import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
 import com.loancalculator.finance.manager.databinding.ActivityCurrencyUnitPlfBinding
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.DataManagerPlfUtils
 import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
+import com.loancalculator.finance.manager.utils.value.ConstantNextPlf.PLF_ENTER_MAIN_RESULT
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mCurrencyListData
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mRateCurrencyPlf
@@ -22,6 +24,7 @@ class PlfStartCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfB
     private var mListData = mutableListOf<DataCurrencyUnitPlf>()
 
     override fun beginViewAndDoPlf() {
+        DataManagerPlfUtils.setDataKeyPlf(PLF_ENTER_MAIN_RESULT, "currency")
         mPlcBinding.topSetPlf.ivBackAll.visibility = View.INVISIBLE
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_currency_unit)
         setPlfRecyclerView()

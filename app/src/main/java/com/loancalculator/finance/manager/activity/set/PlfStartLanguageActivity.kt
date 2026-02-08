@@ -1,33 +1,36 @@
 package com.loancalculator.finance.manager.activity.set
 
 import android.content.Intent
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hjq.language.MultiLanguages
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.StartPlfActivity
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
+import com.loancalculator.finance.manager.activity.set.PlfStartHelpActivity
 import com.loancalculator.finance.manager.adapter.AdapterLanguageItemPlf
 import com.loancalculator.finance.manager.data.DataPlfLanguage
 import com.loancalculator.finance.manager.databinding.ActivitySetLanguagePlfBinding
+import com.loancalculator.finance.manager.utils.DataManagerPlfUtils
+import com.loancalculator.finance.manager.utils.value.ConstantNextPlf.PLF_ENTER_MAIN_RESULT
 import java.util.Locale
 
-class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>() {
+class PlfStartLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>() {
     private lateinit var mAdapterLanguageItemPlf: AdapterLanguageItemPlf
     private val mListDoData = mutableListOf<DataPlfLanguage>()
     private var mPlfSelectIndex = -1
 
     override fun beginViewAndDoPlf() {
         mStarNativeValue = true
-
+        DataManagerPlfUtils.setDataKeyPlf(PLF_ENTER_MAIN_RESULT, "language")
+        mPlcBinding.topSetPlf.ivBackAll.visibility = View.INVISIBLE
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_language)
         setPlfRecyclerView()
         mPlcBinding.topSetPlf.ivSelect.setOnClickListener {
             for (data in mListDoData) {
                 if (data.fingerSelect) {
                     MultiLanguages.setAppLanguage(this, data.mLocale)
-                    startActivity(Intent(this, StartPlfActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    })
+                    startActivity(Intent(this, PlfStartHelpActivity::class.java))
 
                     finish()
                     break

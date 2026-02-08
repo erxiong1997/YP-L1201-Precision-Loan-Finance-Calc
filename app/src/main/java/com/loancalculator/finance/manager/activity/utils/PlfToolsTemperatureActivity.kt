@@ -46,7 +46,7 @@ class PlfToolsTemperatureActivity :
 
     override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_temperature)
-
+        mPlcBinding.tvCalculate.isEnabled = false
         val data1 = mTemperatureUnitList[0]
         val data2 = mTemperatureUnitList[2]
         mTopUnitData = data1

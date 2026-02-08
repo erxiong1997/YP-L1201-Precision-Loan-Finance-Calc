@@ -47,7 +47,7 @@ class PlfToolsSpeedConvertActivity :
 
     override fun beginViewAndDoPlf() {
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_speed_convert)
-
+        mPlcBinding.tvCalculate.isEnabled = false
         val data1 = mSpeedUnitList[0]
         val data2 = mSpeedUnitList[3]
         mTopUnitData = data1
