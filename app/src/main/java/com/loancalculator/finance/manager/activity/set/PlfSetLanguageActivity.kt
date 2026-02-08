@@ -6,7 +6,7 @@ import com.hjq.language.MultiLanguages
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.StartPlfActivity
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
-import com.loancalculator.finance.manager.activity.other.PlfStartHelpActivity
+import com.loancalculator.finance.manager.activity.set.PlfStartHelpActivity
 import com.loancalculator.finance.manager.adapter.AdapterLanguageItemPlf
 import com.loancalculator.finance.manager.data.DataPlfLanguage
 import com.loancalculator.finance.manager.databinding.ActivitySetLanguagePlfBinding
@@ -15,7 +15,7 @@ import java.util.Locale
 class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>() {
     private lateinit var mAdapterLanguageItemPlf: AdapterLanguageItemPlf
     private val mListDoData = mutableListOf<DataPlfLanguage>()
-    private var mLtdSelectIndex = -1
+    private var mPlfSelectIndex = -1
 
     override fun beginViewAndDoPlf() {
         mStarNativeValue = true
@@ -39,7 +39,7 @@ class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>
     }
 
     override fun setPlfRecyclerView() {
-        initLanguageDataLtd()
+        initLanguageDataPlf()
         mAdapterLanguageItemPlf = AdapterLanguageItemPlf(this, mListDoData) {
             val data = mListDoData[it]
             if (data.fingerSelect) return@AdapterLanguageItemPlf
@@ -56,11 +56,11 @@ class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>
         mPlcBinding.rvRvView.layoutManager = LinearLayoutManager(this)
         mPlcBinding.rvRvView.adapter = mAdapterLanguageItemPlf
         mPlcBinding.rvRvView.postDelayed({
-            mPlcBinding.rvRvView.smoothScrollToPosition(mLtdSelectIndex + 3)
+            mPlcBinding.rvRvView.smoothScrollToPosition(mPlfSelectIndex + 3)
         }, 636)
     }
 
-    private fun initLanguageDataLtd() {
+    private fun initLanguageDataPlf() {
 
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_en), Locale("en", "US")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_es), Locale("es", "US")))
@@ -85,12 +85,12 @@ class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>
             val data = mListDoData[index]
             if (data.mLocale.language == locale.language) {
                 data.fingerSelect = true
-                mLtdSelectIndex = index
+                mPlfSelectIndex = index
                 break
             }
         }
-        if (mLtdSelectIndex == -1) {
-            mLtdSelectIndex = 0
+        if (mPlfSelectIndex == -1) {
+            mPlfSelectIndex = 0
             mListDoData[0].fingerSelect = true
         }
     }

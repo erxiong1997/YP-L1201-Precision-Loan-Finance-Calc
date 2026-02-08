@@ -1,10 +1,12 @@
-package com.loancalculator.finance.manager.activity.other
+package com.loancalculator.finance.manager.activity.set
 
+import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
+import com.loancalculator.finance.manager.activity.other.PlfStartCurrencyUnitActivity
 import com.loancalculator.finance.manager.adapter.AdapterStartHelpPlf
 import com.loancalculator.finance.manager.data.DataStartHelpPlf
 import com.loancalculator.finance.manager.databinding.ActivityStartHelpPlfBinding
@@ -23,6 +25,7 @@ class PlfStartHelpActivity : PlfBindingActivity<ActivityStartHelpPlfBinding>() {
                 mPlcBinding.rvHelpContent.smoothScrollToPosition(mNextCount)
                 changeHelpPosition(mNextCount)
             } else {
+                startActivity(Intent(this, PlfStartCurrencyUnitActivity::class.java))
                 finish()
             }
         }
@@ -82,7 +85,7 @@ class PlfStartHelpActivity : PlfBindingActivity<ActivityStartHelpPlfBinding>() {
 
     private fun changeHelpPosition(position: Int) {
         mNextCount = position
-        mPlcBinding.pointView.changeLtdPosition(mNextCount)
+        mPlcBinding.pointView.changePlfPosition(mNextCount)
         if (mNextCount == 3) {
             mPlcBinding.tvGoHome.text = getString(R.string.plf_start)
         } else {

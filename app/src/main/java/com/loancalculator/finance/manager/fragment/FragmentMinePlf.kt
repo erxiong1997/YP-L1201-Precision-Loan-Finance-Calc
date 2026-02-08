@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.loancalculator.finance.manager.activity.PlfRootActivity
-import com.loancalculator.finance.manager.activity.other.PlfStartHelpActivity
+import com.loancalculator.finance.manager.activity.set.PlfStartHelpActivity
 import com.loancalculator.finance.manager.activity.set.PlfSetLanguageActivity
 import com.loancalculator.finance.manager.activity.set.PlfSetPolicyActivity
 import com.loancalculator.finance.manager.databinding.FragmentMinePlfBinding

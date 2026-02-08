@@ -50,7 +50,7 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
     override fun doBackPressed() {
         DialogExitToHomePlf(this) {
             super.doBackPressed()
-        }
+        }.show()
     }
 
     init {

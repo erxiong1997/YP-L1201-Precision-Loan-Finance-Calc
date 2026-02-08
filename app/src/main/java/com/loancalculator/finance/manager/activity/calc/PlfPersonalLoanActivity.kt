@@ -43,7 +43,7 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
     override fun doBackPressed() {
         DialogExitToHomePlf(this) {
             super.doBackPressed()
-        }
+        }.show()
     }
 
     //month year

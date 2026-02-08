@@ -20,11 +20,11 @@ class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
             override fun handleMessage(msg: Message) {
                 when (msg.what) {
                     6381 -> {
-                        startLtdActivity()
+                        startPlfActivity()
                     }
 
                     6382 -> {
-//                        if (!ParamsLtdUtils.mLtdInitUmp && mPlcBinding.progressStart.progress == 10) {
+//                        if (!ParamsPlfUtils.mPlfInitUmp && mPlcBinding.progressStart.progress == 10) {
 //                            sendEmptyMessageDelayed(6382, 156)
 //                            return
 //                        }
@@ -49,7 +49,7 @@ class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
         mHandlerPlf?.sendEmptyMessageDelayed(6382, 220)
     }
 
-    private fun startLtdActivity() {
+    private fun startPlfActivity() {
         if (isFinishing || isDestroyed) return
         if (!PlfDealApplication.mAppPlfOpen) {
             mAgainStartPlf = "yes"
@@ -65,12 +65,12 @@ class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
             finish()
             return
         }
-//        if (DataManagerLtdUtils.getDataKeyPlf(
+//        if (DataManagerPlfUtils.getDataKeyPlf(
 //                PLF_SHOW_HIDE_LANGUAGE_START, "showLanguage"
 //            ) == "showLanguage"
 //        ) {
-//            if (!DataManagerLtdUtils.getDataKeyPlf(PLF_ENTER_MAIN_RESULT, false)) {
-//                startActivity(Intent(this, LtdStartLanguageActivity::class.java))
+//            if (!DataManagerPlfUtils.getDataKeyPlf(PLF_ENTER_MAIN_RESULT, false)) {
+//                startActivity(Intent(this, PlfStartLanguageActivity::class.java))
 //                finish()
 //                return
 //            }
@@ -85,7 +85,7 @@ class StartPlfActivity : PlfBindingActivity<ActivityStartPlfBinding>() {
         super.onResume()
         if (mAgainStartPlf == "yes") {
             mAgainStartPlf = "no"
-            startLtdActivity()
+            startPlfActivity()
         } else {
             if (mBackGroundShow) {
                 mBackGroundShow = false

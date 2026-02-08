@@ -42,7 +42,7 @@ class PlfFixedDepositActivity : PlfBindingActivity<ActivityFixedDepositPlfBindin
     override fun doBackPressed() {
         DialogExitToHomePlf(this) {
             super.doBackPressed()
-        }
+        }.show()
     }
 
     //month year

@@ -20,7 +20,7 @@ object PermissionPlfUtils {
                     override fun onGranted(
                         permissions: MutableList<String>, allGranted: Boolean
                     ) {
-//                        PlcTokenMeans.getLtdTokenValue(activity)
+//                        PlcTokenMeans.getPlfTokenValue(activity)
                         tilFunBack(true)
                     }
 

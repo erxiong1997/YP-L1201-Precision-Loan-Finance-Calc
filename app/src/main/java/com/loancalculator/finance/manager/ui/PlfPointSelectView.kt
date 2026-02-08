@@ -60,7 +60,7 @@ class PlfPointSelectView @JvmOverloads constructor(
         )
     }
 
-    fun changeLtdPosition(position: Int) {
+    fun changePlfPosition(position: Int) {
         mSelectPosition = position
         invalidate()
     }

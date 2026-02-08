@@ -1,12 +1,16 @@
 package com.loancalculator.finance.manager.activity.other
 
+import android.content.Intent
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.loancalculator.finance.manager.R
 import com.loancalculator.finance.manager.activity.PlfBindingActivity
+import com.loancalculator.finance.manager.activity.PlfMainToolActivity
 import com.loancalculator.finance.manager.adapter.AdapterCurrencyUnitItemPlf
 import com.loancalculator.finance.manager.data.DataCurrencyUnitPlf
 import com.loancalculator.finance.manager.databinding.ActivityCurrencyUnitPlfBinding
 import com.loancalculator.finance.manager.setSafeListener
+import com.loancalculator.finance.manager.utils.DealRecentPlfUtils
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mCurrencyListData
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mRateCurrencyPlf
@@ -16,23 +20,18 @@ class PlfStartCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfB
 ) {
     private lateinit var mAdapterCurrencyUnitItemPlf: AdapterCurrencyUnitItemPlf
     private var mListData = mutableListOf<DataCurrencyUnitPlf>()
-    private var mUnitClass = ""
+
     override fun beginViewAndDoPlf() {
-        intent?.let {
-            mUnitClass = it.getStringExtra("unitClass") ?: ""
-        }
+        mPlcBinding.topSetPlf.ivBackAll.visibility = View.INVISIBLE
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_currency_unit)
         setPlfRecyclerView()
 
         mPlcBinding.topSetPlf.ivSelect.setSafeListener {
             for (data in mListData) {
                 if (data.fingerSelect) {
-                    if (mUnitClass == "convert") {
-                        mRateCurrencyPlf = data
-                    } else {
-                        mDataCurrencyUnitPlf = data
-                    }
-                    setResult(RESULT_OK)
+                    mDataCurrencyUnitPlf = data
+                    DealRecentPlfUtils.addCurrencyUnitRecent(data)
+                    startActivity(Intent(this, PlfMainToolActivity::class.java))
                     finish()
                     break
                 }
