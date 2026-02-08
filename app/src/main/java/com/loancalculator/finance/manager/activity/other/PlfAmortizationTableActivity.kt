@@ -19,6 +19,9 @@ import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.dialog.DialogAddCompareName
 
+/**
+ * 摊销表
+ */
 class PlfAmortizationTableActivity : PlfBindingActivity<ActivityAmortizationTablePlfBinding>() {
     private lateinit var mAdapterAmortizationTablePlf: AdapterAmortizationTablePlf
     private var mListData = mutableListOf<LoanMonthDetail>()

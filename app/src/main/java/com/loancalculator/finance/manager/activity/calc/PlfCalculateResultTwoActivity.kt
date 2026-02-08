@@ -10,6 +10,7 @@ import com.loancalculator.finance.manager.databinding.ActivityCalculateResultTwo
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.showToastIDPlf
+import com.loancalculator.finance.manager.utils.ShareResultPdfPlfUtil
 import com.loancalculator.finance.manager.utils.TimeDatePlfUtils
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.dialog.DialogAddCompareName
@@ -71,7 +72,22 @@ class PlfCalculateResultTwoActivity : PlfBindingActivity<ActivityCalculateResult
             }.show()
         }
         mPlcBinding.tvShare.setSafeListener {
-
+            ShareResultPdfPlfUtil.generateInvestmentPdf(
+                this, mutableListOf(
+                    getString(R.string.plf_loan_information),
+                    getString(R.string.plf_loan_amount),
+                    mPlcBinding.tvLoanAmount2.text.toString(),
+                    getString(R.string.plf_interest_rate),
+                    mPlcBinding.tvIntersetRate2.text.toString(),
+                    getString(R.string.plf_loan_term),
+                    mPlcBinding.tvLoanTerm2.text.toString(),
+                    getString(R.string.plf_start_date),
+                    mPlcBinding.tvStartDate2.text.toString(),
+                    getString(R.string.plf_result_after_calculation),
+                    getString(R.string.plf_monthly_payment),
+                    mPlcBinding.tvMonthPayment2.text.toString()
+                ), mutableListOf(0, 9)
+            )
         }
         mPlcBinding.tvGoHome.setSafeListener {
             startActivity(Intent(this, PlfMainToolActivity::class.java))

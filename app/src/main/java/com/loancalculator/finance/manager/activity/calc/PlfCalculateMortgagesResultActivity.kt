@@ -11,6 +11,7 @@ import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.showToastIDPlf
+import com.loancalculator.finance.manager.utils.ShareResultPdfPlfUtil
 import com.loancalculator.finance.manager.utils.ToolsLoanMonthDetailUtils.mDataPersonalLoanPlf
 import com.loancalculator.finance.manager.utils.dialog.DialogAddCompareName
 import org.greenrobot.eventbus.EventBus
@@ -117,7 +118,27 @@ class PlfCalculateMortgagesResultActivity :
             }.show()
         }
         mPlcBinding.tvSharePDF.setSafeListener {
-
+            ShareResultPdfPlfUtil.generateInvestmentPdf(
+                this, mutableListOf(
+                    getString(R.string.plf_loan_information),
+                    getString(R.string.plf_home_price),
+                    mPlcBinding.tvHomePrice2.text.toString(),
+                    getString(R.string.plf_interest_rate),
+                    mPlcBinding.tvIntersetRate2.text.toString(),
+                    getString(R.string.plf_loan_term),
+                    mPlcBinding.tvLoanTerm2.text.toString(),
+                    getString(R.string.plf_down_payment),
+                    mPlcBinding.tvDownPayment2.text.toString(),
+                    getString(R.string.plf_property_tax),
+                    mPlcBinding.tvPropertyTax2.text.toString(),
+                    getString(R.string.plf_pmi),
+                    mPlcBinding.tvPMIMoney.text.toString(),
+                    getString(R.string.plf_home_insurance),
+                    mPlcBinding.tvHomeInsurance2.text.toString(),
+                    getString(R.string.plf_hoa_fees),
+                    mPlcBinding.tvHOAFees2.text.toString()
+                ), mutableListOf(0)
+            )
         }
         mPlcBinding.tvGoHome.setSafeListener {
             startActivity(Intent(this, PlfMainToolActivity::class.java))

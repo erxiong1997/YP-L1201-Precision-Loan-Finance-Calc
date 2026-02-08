@@ -128,7 +128,7 @@ object ShareResultPdfPlfUtil {
         try {
             // 1. 创建 PDF 文档（A4 大小，595x842 pt）
             pdfDocument = PdfDocument()
-            val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create()
+            val pageInfo = PdfDocument.PageInfo.Builder(594, 842, 1).create()
             page = pdfDocument.startPage(pageInfo)
 
             // 2. 设置画笔（字体大小、颜色等）
