@@ -32,6 +32,9 @@ class AdapterUtcSaveItemPlf(
             tilLongBack(holderItem.absoluteAdapterPosition)
             true
         }
+        binding.flDelete.setSafeListener {
+            tilLongBack(holderItem.absoluteAdapterPosition)
+        }
         return holderItem
     }
 

@@ -71,4 +71,6 @@ dependencies {
     //xls
     implementation("org.apache.poi:poi:5.3.0")
     implementation("org.apache.poi:poi-ooxml:5.3.0")
+
+    implementation("com.github.zerobranch:SwipeLayout:1.3.1")
 }
