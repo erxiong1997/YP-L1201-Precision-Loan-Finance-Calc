@@ -90,6 +90,7 @@ If you have questions about this policy, contact us at: fortunecat0718@gmail.com
     <string name="plf_th" translatable="false">แบบไทย</string>
     <string name="plf_ru" translatable="false">Русский</string>
     <string name="plf_ms" translatable="false">Bahasa Melayu</string>
+    <string name="plf_zh" translatable="false">繁體中文</string>
 
     <string name="plf_pmi" translatable="false">PMI</string>
 
@@ -215,5 +216,6 @@ but the higher the interest.</string>
     <string name="plf_amortization_table_monthly">Amortization Table(Monthly)</string>
     <string name="plf_back_to_home">Back to Home</string>
     <string name="plf_are_you_sure_back_home">Are you sure to back to home?\nThe entered content will be cleared.</string>
+    <string name="plf_year_payment">Yearly payment</string>
     <string name="plf_"></string>
 </resources>

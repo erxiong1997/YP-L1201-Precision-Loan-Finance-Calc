@@ -9,6 +9,7 @@ import com.loancalculator.finance.manager.activity.compare.PlfComparePersonalLoa
 import com.loancalculator.finance.manager.data.DataComparePlf
 import com.loancalculator.finance.manager.data.EventManagerHome
 import com.loancalculator.finance.manager.databinding.ActivityCalculateResultTwoPlfBinding
+import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.room.mPlfLoanRoom
 import com.loancalculator.finance.manager.setSafeListener
 import com.loancalculator.finance.manager.showToastIDPlf
@@ -43,7 +44,14 @@ class PlfCalculateResultTwoActivity : PlfBindingActivity<ActivityCalculateResult
                 "${data.loanTerm} ${getString(R.string.plf_year)}"
             }
             mPlcBinding.tvStartDate2.text = TimeDatePlfUtils.getTimeDateOnePlf(data.startDate)
-            mPlcBinding.tvMonthPayment2.text = "${data.monthlyPayment}${data.currencySymbol}"
+
+            if (data.loanTermUnit == "month") {
+                mPlcBinding.tvMonthPayment2.text = "${data.monthlyPayment}${data.currencySymbol}"
+            } else {
+                mPlcBinding.tvMonthPayment1.text = getString(R.string.plf_year_payment)
+                mPlcBinding.tvMonthPayment2.text =
+                    "${(data.monthlyPayment * 12).formatToFixString()}${data.currencySymbol}"
+            }
 
             if (mViewModel != "details") {
                 val dataIndexId = mTilPersonalLoanDao.insertContent(data)

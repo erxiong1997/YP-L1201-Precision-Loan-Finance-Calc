@@ -12,6 +12,7 @@ import androidx.core.content.FileProvider
 import androidx.core.graphics.createBitmap
 import com.loancalculator.finance.manager.PlfDealApplication.Companion.mDirTableFile
 import com.loancalculator.finance.manager.R
+import com.loancalculator.finance.manager.formatToFixString
 import com.loancalculator.finance.manager.showToastIDPlf
 import org.apache.poi.ss.usermodel.BorderStyle
 import org.apache.poi.ss.usermodel.FillPatternType
@@ -265,7 +266,6 @@ object ShareResultPdfPlfUtil {
                 context.getString(R.string.plf_balance)
             )
             val columnX = floatArrayOf(50f, 100f, 200f, 300f, 400f)
-            val nf = java.text.NumberFormat.getNumberInstance()
 
             // 绘制表头
             for (j in headers.indices) {
@@ -292,20 +292,25 @@ object ShareResultPdfPlfUtil {
 
                 // 绘制行数据
                 canvas?.drawText(detail.month.toString(), columnX[0], yPosition, paint)
-                canvas?.drawText(nf.format(detail.payment.toInt()), columnX[1], yPosition, paint)
+                canvas?.drawText(detail.payment.formatToFixString(), columnX[1], yPosition, paint)
                 canvas?.drawText(
-                    nf.format(detail.interestPart.toInt()),
+                    detail.interestPart.formatToFixString(),
                     columnX[2],
                     yPosition,
                     paint
                 )
                 canvas?.drawText(
-                    nf.format(detail.principalPart.toInt()),
+                    detail.principalPart.formatToFixString(),
                     columnX[3],
                     yPosition,
                     paint
                 )
-                canvas?.drawText(detail.remainingPrincipal.toString(), columnX[4], yPosition, paint)
+                canvas?.drawText(
+                    detail.remainingPrincipal.formatToFixString(),
+                    columnX[4],
+                    yPosition,
+                    paint
+                )
                 yPosition += 28f
             }
 

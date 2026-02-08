@@ -65,10 +65,12 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
         mPlcBinding.topSetPlf.tvSelectAll.setSafeListener {
             it.isSelected = !it.isSelected
             if (mPlcBinding.tilViewPager.currentItem == 0) {
+                oneSelect = it.isSelected
                 val fg1 = mFragmentList[0]
                 (fg1 as? FragmentHistoryCalculatorPlf)?.changeSelectStatus(it.isSelected)
             }
             if (mPlcBinding.tilViewPager.currentItem == 1) {
+                twoSelect = it.isSelected
                 val fg1 = mFragmentList[1]
                 (fg1 as? FragmentHistoryInvestmentPlf)?.changeSelectStatus(it.isSelected)
             }
@@ -108,6 +110,8 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
         mPlcBinding.tilViewPager.registerOnPageChangeCallback(mListenerPager)
     }
 
+    private var oneSelect = false
+    private var twoSelect = false
     private fun movePosition(position: Int, changeItem: Boolean) {
         if (changeItem) {
             mPlcBinding.tilViewPager.currentItem = position
@@ -115,7 +119,12 @@ class PlfHistoryCalculateActivity : PlfBindingActivity<ActivityHistoryCalculateP
         mPlcBinding.tvCalculator.isSelected = position == 0
         mPlcBinding.tvInvestment.isSelected = position == 1
         if (!changeItem) {
-            mPlcBinding.topSetPlf.tvSelectAll.isSelected = false
+            if (position == 0) {
+                mPlcBinding.topSetPlf.tvSelectAll.isSelected = oneSelect
+            }
+            if (position == 1) {
+                mPlcBinding.topSetPlf.tvSelectAll.isSelected = twoSelect
+            }
             val fg1 = mFragmentList[0]
             (fg1 as? FragmentHistoryCalculatorPlf)?.initSelectStatus(mDeleteModel)
 

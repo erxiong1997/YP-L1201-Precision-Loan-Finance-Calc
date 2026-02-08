@@ -72,6 +72,7 @@ class AdapterComparePersonalLoanPlf(
                 tvTotalPayment2.text = "${totalPay.formatToFixString()}${data.currencySymbol}"
                 tvTotalInterestPayable2.text =
                     "${(totalPay - data.loanAmount).formatToFixString()}${data.currencySymbol}"
+
                 tvPayingOffDate2.text =
                     TimeDatePlfUtils.getTimeDateOnePlf(
                         TimeDatePlfUtils.getOverDatePlf(
@@ -82,6 +83,14 @@ class AdapterComparePersonalLoanPlf(
                 clPart2.visibility = View.GONE
                 clPart3.visibility = View.VISIBLE
                 tvMonthPayment4.text = "${data.monthlyPayment}${data.currencySymbol}"
+
+                if (data.loanTermUnit == "month") {
+                    tvMonthPayment4.text = "${data.monthlyPayment}${data.currencySymbol}"
+                } else {
+                    tvMonthPayment3.text = mAdapterContext.getString(R.string.plf_year_payment)
+                    tvMonthPayment4.text =
+                        "${(data.monthlyPayment * 12).formatToFixString()}${data.currencySymbol}"
+                }
             }
         }
     }
