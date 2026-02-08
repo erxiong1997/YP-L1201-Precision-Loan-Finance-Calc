@@ -16,6 +16,7 @@ class AdapterHistoryCalculatorPlf(
     var mDeleteModel: Boolean,
     private val mAdapterContext: Context,
     private val mListDoData: MutableList<DataPersonalLoanPlf>,
+    private val tilLongBack: (Int) -> Unit,
     private val tilFunBack: (Int) -> Unit
 ) :
     RecyclerView.Adapter<AdapterHistoryCalculatorPlf.HolderItem>() {
@@ -31,6 +32,10 @@ class AdapterHistoryCalculatorPlf(
         val holderItem = HolderItem(binding)
         holderItem.itemView.setOnClickListener {
             tilFunBack(holderItem.absoluteAdapterPosition)
+        }
+        holderItem.itemView.setOnLongClickListener {
+            tilLongBack(holderItem.absoluteAdapterPosition)
+            true
         }
         return holderItem
     }

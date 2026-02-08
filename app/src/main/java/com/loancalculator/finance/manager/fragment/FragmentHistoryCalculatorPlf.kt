@@ -103,22 +103,19 @@ class FragmentHistoryCalculatorPlf : RootPlfFragment<FragmentHistoryCalculatorPl
         val list = mTilPersonalLoanDao.getAllListCalculator(LoanTypePlf.RD, LoanTypePlf.FD)
         mListData.clear()
         mListData.addAll(list)
-        mAdapterHistoryCalculatorPlf = AdapterHistoryCalculatorPlf(false, rootActivity, mListData) {
+        mAdapterHistoryCalculatorPlf = AdapterHistoryCalculatorPlf(false, rootActivity, mListData, {
+
+        }) {
             val data = mListData[it]
             if (mCurDeleteModel) {
-                DialogDeleteConfirmPlf(
-                    rootActivity,
-                    getString(R.string.plf_deleteed_no_recovered)
-                ) {
-                    data.fingerSelect = !data.fingerSelect
-                    if (data.fingerSelect) {
-                        mSelectorCount++
-                    } else {
-                        mSelectorCount--
-                    }
-                    mAdapterHistoryCalculatorPlf.notifyItemChanged(it)
-                    changeDeleteButton()
-                }.show()
+                data.fingerSelect = !data.fingerSelect
+                if (data.fingerSelect) {
+                    mSelectorCount++
+                } else {
+                    mSelectorCount--
+                }
+                mAdapterHistoryCalculatorPlf.notifyItemChanged(it)
+                changeDeleteButton()
             } else {
                 when (data.loanType) {
                     LoanTypePlf.PERSONAL, LoanTypePlf.AUTO -> {

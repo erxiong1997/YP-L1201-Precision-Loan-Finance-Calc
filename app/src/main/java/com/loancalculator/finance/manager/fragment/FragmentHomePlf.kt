@@ -100,7 +100,9 @@ class FragmentHomePlf : RootPlfFragment<FragmentHomePlfBinding>() {
         val list = mTilPersonalLoanDao.getLatestItems(4)
         mListData.clear()
         mListData.addAll(list)
-        mAdapterHistoryCalculatorPlf = AdapterHistoryCalculatorPlf(false, rootActivity, mListData) {
+        mAdapterHistoryCalculatorPlf = AdapterHistoryCalculatorPlf(false, rootActivity, mListData,{
+
+        }) {
             val data = mListData[it]
             mDataPersonalLoanPlf = data
             when (data.loanType) {

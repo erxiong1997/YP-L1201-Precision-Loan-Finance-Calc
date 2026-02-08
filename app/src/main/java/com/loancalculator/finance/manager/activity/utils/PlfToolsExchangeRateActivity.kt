@@ -176,12 +176,22 @@ class PlfToolsExchangeRateActivity :
         for (data in mExchangeRateList) {
             if (revert) {
                 if (data.base == endUit.currencyUnit && data.rateUnit == startUnit.currencyUnit) {
-                    mDialogInitPlfLoading?.dismissGoPlf()
+                    mStartEnd++
+                    changeConvertValue(revert)
+                    if (mStartEnd >= 2) {
+                        mDialogInitPlfLoading?.dismissGoPlf()
+                        mPlcBinding.tvCalculate.performClick()
+                    }
                     return
                 }
             } else {
                 if (data.base == startUnit.currencyUnit && data.rateUnit == endUit.currencyUnit) {
-                    mDialogInitPlfLoading?.dismissGoPlf()
+                    mStartEnd++
+                    changeConvertValue(revert)
+                    if (mStartEnd >= 2) {
+                        mDialogInitPlfLoading?.dismissGoPlf()
+                        mPlcBinding.tvCalculate.performClick()
+                    }
                     return
                 }
             }

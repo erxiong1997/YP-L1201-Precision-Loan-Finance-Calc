@@ -96,7 +96,9 @@ class FragmentHistoryInvestmentPlf : RootPlfFragment<FragmentHistoryInvestmentPl
         val list = mTilPersonalLoanDao.getAllListInvestment(LoanTypePlf.RD, LoanTypePlf.FD)
         mListData.clear()
         mListData.addAll(list)
-        mAdapterHistoryCalculatorPlf = AdapterHistoryCalculatorPlf(false, rootActivity, mListData) {
+        mAdapterHistoryCalculatorPlf = AdapterHistoryCalculatorPlf(false, rootActivity, mListData, {
+
+        }) {
             val data = mListData[it]
             if (mCurDeleteModel) {
                 DialogDeleteConfirmPlf(

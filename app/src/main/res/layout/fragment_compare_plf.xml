@@ -18,271 +18,285 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/tvTools">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/llPersonalLoan"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/plf_shape_12dp_white"
-            android:gravity="center_horizontal"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ivPersonal"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/plf_til_home_personal_loan"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvPersonalLoan1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/plf_personal_loan"
-                android:textColor="@color/plf_050C03"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivPersonal" />
-
-            <TextView
-                android:id="@+id/tvPersonalLoan2"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="12dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/tvTools">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/llPersonalLoan"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/plf_shape_12dp_white"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/ivPersonal"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/plf_til_home_personal_loan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvPersonalLoan1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/plf_personal_loan"
+                        android:textColor="@color/plf_050C03"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivPersonal" />
+
+                    <TextView
+                        android:id="@+id/tvPersonalLoan2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/plf_compare_des_personal"
+                        android:textColor="@color/plf_050C03_30"
+                        android:textSize="10sp"
+                        app:layout_constraintTop_toBottomOf="@+id/tvPersonalLoan1" />
+
+                    <TextView
+                        android:id="@+id/tvPersonalLoanGo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/plf_pressed_16dp_0ace86"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"
+                        android:text="@string/plf_go"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvPersonalLoan2"
+                        app:layout_constraintVertical_bias="1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/llBusinessLoan"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/plf_shape_12dp_white"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/ivBusinessLoan"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/plf_til_home_business_loan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvBusinessLoan1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/plf_business_loan"
+                        android:textColor="@color/plf_050C03"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivBusinessLoan" />
+
+                    <TextView
+                        android:id="@+id/tvBusinessLoan2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/plf_compare_des_business"
+                        android:textColor="@color/plf_050C03_30"
+                        android:textSize="10sp"
+                        app:layout_constraintTop_toBottomOf="@+id/tvBusinessLoan1" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/plf_pressed_16dp_0ace86"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"
+                        android:text="@string/plf_go"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvBusinessLoan2"
+                        app:layout_constraintVertical_bias="1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/plf_compare_des_personal"
-                android:textColor="@color/plf_050C03_30"
-                android:textSize="10sp"
-                app:layout_constraintTop_toBottomOf="@+id/tvPersonalLoan1" />
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/tvTools">
 
-            <TextView
-                android:id="@+id/tvPersonalLoanGo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/plf_pressed_16dp_0ace86"
-                android:gravity="center"
-                android:paddingVertical="6dp"
-                android:text="@string/plf_go"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPersonalLoan2"
-                app:layout_constraintVertical_bias="1" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/llMortgages"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/plf_shape_12dp_white"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/llBusinessLoan"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="12dp"
-            android:layout_weight="1"
-            android:background="@drawable/plf_shape_12dp_white"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/ivMortgages"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/plf_til_home_mortgages"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/ivBusinessLoan"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/plf_til_home_business_loan"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/tvMortgages1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/plf_mortgages"
+                        android:textColor="@color/plf_050C03"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivMortgages" />
 
-            <TextView
-                android:id="@+id/tvBusinessLoan1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/plf_business_loan"
-                android:textColor="@color/plf_050C03"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivBusinessLoan" />
+                    <TextView
+                        android:id="@+id/tvMortgages2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/plf_compare_des_mortgages"
+                        android:textColor="@color/plf_050C03_30"
+                        android:textSize="10sp"
+                        app:layout_constraintTop_toBottomOf="@+id/tvMortgages1" />
 
-            <TextView
-                android:id="@+id/tvBusinessLoan2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/plf_compare_des_business"
-                android:textColor="@color/plf_050C03_30"
-                android:textSize="10sp"
-                app:layout_constraintTop_toBottomOf="@+id/tvBusinessLoan1" />
+                    <TextView
+                        android:id="@+id/tvMortgagesGo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/plf_pressed_16dp_0ace86"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"
+                        android:text="@string/plf_go"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvMortgages2"
+                        app:layout_constraintVertical_bias="1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/plf_pressed_16dp_0ace86"
-                android:gravity="center"
-                android:paddingVertical="6dp"
-                android:text="@string/plf_go"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvBusinessLoan2"
-                app:layout_constraintVertical_bias="1" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/llAutoLoanLoan"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/plf_shape_12dp_white"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/tvTools">
+                    <ImageView
+                        android:id="@+id/ivAutoLoanLoan"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/plf_til_home_auto_loan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/llMortgages"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/plf_shape_12dp_white"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvAutoLoanLoan1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/plf_auto_loan"
+                        android:textColor="@color/plf_050C03"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivAutoLoanLoan" />
 
-            <ImageView
-                android:id="@+id/ivMortgages"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/plf_til_home_mortgages"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/tvAutoLoanLoan2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/plf_compare_des_auto_loan"
+                        android:textColor="@color/plf_050C03_30"
+                        android:textSize="10sp"
+                        app:layout_constraintTop_toBottomOf="@+id/tvAutoLoanLoan1" />
 
-            <TextView
-                android:id="@+id/tvMortgages1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/plf_mortgages"
-                android:textColor="@color/plf_050C03"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivMortgages" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/plf_pressed_16dp_0ace86"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"
+                        android:text="@string/plf_go"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvAutoLoanLoan2"
+                        app:layout_constraintVertical_bias="1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvMortgages2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/plf_compare_des_mortgages"
-                android:textColor="@color/plf_050C03_30"
-                android:textSize="10sp"
-                app:layout_constraintTop_toBottomOf="@+id/tvMortgages1" />
-
-            <TextView
-                android:id="@+id/tvMortgagesGo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/plf_pressed_16dp_0ace86"
-                android:gravity="center"
-                android:paddingVertical="6dp"
-                android:text="@string/plf_go"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvMortgages2"
-                app:layout_constraintVertical_bias="1" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/llAutoLoanLoan"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="12dp"
-            android:layout_weight="1"
-            android:background="@drawable/plf_shape_12dp_white"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/ivAutoLoanLoan"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/plf_til_home_auto_loan"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvAutoLoanLoan1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/plf_auto_loan"
-                android:textColor="@color/plf_050C03"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivAutoLoanLoan" />
-
-            <TextView
-                android:id="@+id/tvAutoLoanLoan2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/plf_compare_des_auto_loan"
-                android:textColor="@color/plf_050C03_30"
-                android:textSize="10sp"
-                app:layout_constraintTop_toBottomOf="@+id/tvAutoLoanLoan1" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/plf_pressed_16dp_0ace86"
-                android:gravity="center"
-                android:paddingVertical="6dp"
-                android:text="@string/plf_go"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAutoLoanLoan2"
-                app:layout_constraintVertical_bias="1" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
