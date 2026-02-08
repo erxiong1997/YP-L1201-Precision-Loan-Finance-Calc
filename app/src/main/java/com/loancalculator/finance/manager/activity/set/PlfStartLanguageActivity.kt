@@ -80,6 +80,7 @@ class PlfStartLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBindin
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_ja), Locale("ja", "JP")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_bn), Locale("bn", "BD")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_ru), Locale("ru", "RU")))
+        mListDoData.add(DataPlfLanguage(getString(R.string.plf_ms), Locale("ms", "MY")))
 
         val locale = MultiLanguages.getAppLanguage(this)
         for (index in mListDoData.indices) {

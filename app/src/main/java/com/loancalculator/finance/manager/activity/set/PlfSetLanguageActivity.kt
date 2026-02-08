@@ -61,12 +61,13 @@ class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>
     private fun initLanguageDataPlf() {
 
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_en), Locale("en", "US")))
+        mListDoData.add(DataPlfLanguage(getString(R.string.plf_ar), Locale("ar", "AE")))
+        mListDoData.add(DataPlfLanguage(getString(R.string.plf_bn), Locale("bn", "BD")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_es), Locale("es", "US")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_pt), Locale("pt", "BR")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_fr), Locale("fr", "FR")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_in), Locale("in", "ID")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_tr), Locale("tr", "TR")))
-        mListDoData.add(DataPlfLanguage(getString(R.string.plf_ar), Locale("ar", "AE")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_de), Locale("de", "DE")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_th), Locale("th", "TH")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_it), Locale("it", "IT")))
@@ -75,8 +76,8 @@ class PlfSetLanguageActivity : PlfBindingActivity<ActivitySetLanguagePlfBinding>
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_fil), Locale("fil", "PH")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_ko), Locale("ko", "KR")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_ja), Locale("ja", "JP")))
-        mListDoData.add(DataPlfLanguage(getString(R.string.plf_bn), Locale("bn", "BD")))
         mListDoData.add(DataPlfLanguage(getString(R.string.plf_ru), Locale("ru", "RU")))
+        mListDoData.add(DataPlfLanguage(getString(R.string.plf_ms), Locale("ms", "MY")))
 
         val locale = MultiLanguages.getAppLanguage(this)
         for (index in mListDoData.indices) {

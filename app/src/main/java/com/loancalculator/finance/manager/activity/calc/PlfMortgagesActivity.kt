@@ -239,7 +239,8 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
             mPlcBinding.tvHomePriceError.visibility = View.GONE
         }
         val rate = mPlcBinding.etInterestRate.text.toString().trim().toDoubleOrNull() ?: 0.0
-        if (rate <= 0) {
+        if (rate <= 0 || rate > 100) {
+            mPlcBinding.etInterestRate.setText(null)
             mPlcBinding.tvInterestRateError.visibility = View.VISIBLE
             return
         } else {
@@ -260,11 +261,9 @@ class PlfMortgagesActivity : PlfBindingActivity<ActivityMortgagesPlfBinding>(
             mPlcBinding.etDownloadPayment.text.toString().trim().toDoubleOrNull() ?: 0.0
         if (downPayment > amount) {
             mPlcBinding.tvDownPaymentError.visibility = View.VISIBLE
-            mPlcBinding.tvHomePriceError.visibility = View.VISIBLE
             return
         } else {
             mPlcBinding.tvDownPaymentError.visibility = View.GONE
-            mPlcBinding.tvHomePriceError.visibility = View.GONE
         }
         val one = mPlcBinding.etPropertyTax.text.toString().trim().toIntOrNull() ?: 0
         val two = mPlcBinding.etPmiText.text.toString().trim().toIntOrNull() ?: 0

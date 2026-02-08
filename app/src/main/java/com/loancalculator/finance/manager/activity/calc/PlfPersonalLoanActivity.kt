@@ -149,7 +149,8 @@ class PlfPersonalLoanActivity : PlfBindingActivity<ActivityPersonalLoanPlfBindin
             mPlcBinding.tvLoanAmountError.visibility = View.GONE
         }
         val rate = mPlcBinding.etInterestRate.text.toString().trim().toDoubleOrNull() ?: 0.0
-        if (rate <= 0) {
+        if (rate <= 0 || rate > 100) {
+            mPlcBinding.etInterestRate.setText(null)
             mPlcBinding.tvInterestRateError.visibility = View.VISIBLE
             return
         } else {
