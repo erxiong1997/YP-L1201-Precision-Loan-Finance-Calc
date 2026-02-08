@@ -1,8 +1,6 @@
 package com.loancalculator.finance.manager.activity.utils
 
 import android.content.Intent
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.loancalculator.finance.manager.R
@@ -69,7 +67,6 @@ class PlfToolsWorldTimeActivity : PlfBindingActivity<ActivityToolsWorldTimePlfBi
     override fun setPlfRecyclerView() {
         mListData.clear()
         DealRecentPlfUtils.getWorldTimeUtcRecent(mListData)
-        Log.d("TAG", "size=:${mListData.size} ")
         if (mListData.isEmpty()) {
             mShowEmpty = true
             fillEmptyList(true)

@@ -20,7 +20,7 @@ class PlfStartHelpActivity : PlfBindingActivity<ActivityStartHelpPlfBinding>() {
         mPlcBinding.tvGoHome.setOnClickListener {
             if (mNextCount < 3) {
                 mNextCount++
-                mPlcBinding.rvHelpContent.scrollToPosition(mNextCount)
+                mPlcBinding.rvHelpContent.smoothScrollToPosition(mNextCount)
                 changeHelpPosition(mNextCount)
             } else {
                 finish()

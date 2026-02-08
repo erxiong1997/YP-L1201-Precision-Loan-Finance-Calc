@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/topSetPlf"
-        layout="@layout/layout_top_set_plf" />
+        layout="@layout/layout_top_set_plf_select" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRvView"

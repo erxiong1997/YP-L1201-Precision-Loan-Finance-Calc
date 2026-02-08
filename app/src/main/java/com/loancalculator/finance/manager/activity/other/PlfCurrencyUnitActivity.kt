@@ -11,6 +11,9 @@ import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mCurrencyLi
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mDataCurrencyUnitPlf
 import com.loancalculator.finance.manager.utils.value.ParamsPlfUtils.mRateCurrencyPlf
 
+/**
+ * 选择当前货币符号
+ */
 class PlfCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfBinding>(
     mBarTextWhite = false
 ) {
@@ -22,14 +25,6 @@ class PlfCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfBindin
             mUnitClass = it.getStringExtra("unitClass") ?: ""
         }
         mPlcBinding.topSetPlf.tvTitleAll.text = getString(R.string.plf_currency_unit)
-        mDataCurrencyUnitPlf?.let {
-            for (d in mListData) {
-                if (d.currencyUnit == it.currencyUnit) {
-                    d.fingerSelect = true
-                    break
-                }
-            }
-        }
         setPlfRecyclerView()
 
         mPlcBinding.topSetPlf.ivSelect.setSafeListener {
@@ -49,8 +44,19 @@ class PlfCurrencyUnitActivity : PlfBindingActivity<ActivityCurrencyUnitPlfBindin
     }
 
     override fun setPlfRecyclerView() {
+        mCurrencyListData.forEach {
+            it.fingerSelect = false
+        }
         mListData.clear()
         mListData.addAll(mCurrencyListData)
+        mDataCurrencyUnitPlf?.let {
+            for (d in mListData) {
+                if (d.currencyUnit == it.currencyUnit) {
+                    d.fingerSelect = true
+                    break
+                }
+            }
+        }
         mAdapterCurrencyUnitItemPlf = AdapterCurrencyUnitItemPlf(this, mListData) {
             val data = mListData[it]
             if (data.fingerSelect) return@AdapterCurrencyUnitItemPlf

@@ -35,6 +35,7 @@ class PlfToolsExchangeRateActivity :
                         mDialogInitPlfLoading = DialogInitPlfLoading(this)
                         mDialogInitPlfLoading?.show()
 
+                        mStartEnd = 0
                         getCurrencyRateSave(
                             mTopUnitData, mBottomUnitData, false
                         )
@@ -53,6 +54,7 @@ class PlfToolsExchangeRateActivity :
                         mDialogInitPlfLoading = DialogInitPlfLoading(this)
                         mDialogInitPlfLoading?.show()
 
+                        mStartEnd = 0
                         getCurrencyRateSave(
                             mTopUnitData, mBottomUnitData, false
                         )
@@ -149,7 +151,7 @@ class PlfToolsExchangeRateActivity :
                     return@setSafeListener
                 }
                 for (data in mExchangeRateList) {
-                    if (mTopUnitData?.currencyUnit == data.base && mBottomUnitData?.currencyUnit == data.base) {
+                    if (mTopUnitData?.currencyUnit == data.base && mBottomUnitData?.currencyUnit == data.rateUnit) {
                         val re = valueInput * (data.rateValue)
                         mPlcBinding.tvInputValueBottom.text = re.toString()
                         break
@@ -161,6 +163,7 @@ class PlfToolsExchangeRateActivity :
         }
     }
 
+    private var mStartEnd = 0
     private fun getCurrencyRateSave(
         startUnit: DataCurrencyUnitPlf?,
         endUit: DataCurrencyUnitPlf?,
@@ -219,15 +222,22 @@ class PlfToolsExchangeRateActivity :
                                 }
                             })
                             changeConvertValue(revert)
-                            mDialogInitPlfLoading?.dismissGoPlf()
+                            mStartEnd++
+                            if (mStartEnd >= 2) {
+                                mDialogInitPlfLoading?.dismissGoPlf()
+                            }
                         }
                     }
                 } catch (e: Exception) {
-                    mDialogInitPlfLoading?.dismissGoPlf()
+                    if (mStartEnd >= 2) {
+                        mDialogInitPlfLoading?.dismissGoPlf()
+                    }
                 }
             },
             Response.ErrorListener {
-                mDialogInitPlfLoading?.dismissGoPlf()
+                if (mStartEnd >= 2) {
+                    mDialogInitPlfLoading?.dismissGoPlf()
+                }
             }) {
             override fun getParamsEncoding(): String {
                 return "UTF-8"
@@ -239,14 +249,14 @@ class PlfToolsExchangeRateActivity :
     private fun changeConvertValue(revert: Boolean) {
         if (revert) {
             for (data in mExchangeRateList) {
-                if (data.base == mBottomUnitData?.currencyUnit) {
+                if (data.base == mBottomUnitData?.currencyUnit && data.rateUnit == mTopUnitData?.currencyUnit) {
                     mPlcBinding.tvBottomConvertResult.text =
                         "${data.amount} ${data.base} = ${data.rateValue} ${data.rateUnit}"
                 }
             }
         } else {
             for (data in mExchangeRateList) {
-                if (data.base == mTopUnitData?.currencyUnit) {
+                if (data.base == mTopUnitData?.currencyUnit && data.rateUnit == mBottomUnitData?.currencyUnit) {
                     mPlcBinding.tvTopConvertResult.text =
                         "${data.amount} ${data.base} = ${data.rateValue} ${data.rateUnit}"
                 }

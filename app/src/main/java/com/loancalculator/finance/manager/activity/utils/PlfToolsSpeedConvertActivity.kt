@@ -40,7 +40,7 @@ class PlfToolsSpeedConvertActivity :
             }
         }
     private var mTopPosition = 0
-    private var mBottomPosition = 2
+    private var mBottomPosition = 3
     private var mCurSelect = "no"
     private var mTopUnitData: SpeedUnit? = null
     private var mBottomUnitData: SpeedUnit? = null

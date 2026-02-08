@@ -38,8 +38,8 @@ class PlfToolsMassConvertActivity :
                 }
             }
         }
-    private var mTopPosition = 0
-    private var mBottomPosition = 2
+    private var mTopPosition = 4
+    private var mBottomPosition = 5
     private var mCurSelect = "no"
     private var mTopUnitData: MassUnit? = null
     private var mBottomUnitData: MassUnit? = null

@@ -187,6 +187,7 @@ object ShareResultPdfPlfUtil {
                 val shareIntent = Intent(Intent.ACTION_SEND).apply {
                     type = "application/pdf"
                     putExtra(Intent.EXTRA_STREAM, pdfUri)
+                    putExtra(Intent.EXTRA_TITLE, tempPdfFile.name)
                     addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 }
                 context.startActivity(Intent.createChooser(shareIntent, ""))

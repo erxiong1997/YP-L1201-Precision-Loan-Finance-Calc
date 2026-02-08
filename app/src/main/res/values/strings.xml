@@ -72,6 +72,24 @@ Contact
 If you have questions about this policy, contact us at: fortunecat0718@gmail.com
     </string>
 
+    <string name="plf_en" translatable="false">English</string>
+    <string name="plf_es" translatable="false">Español</string>
+    <string name="plf_fr" translatable="false">Français</string>
+    <string name="plf_bn" translatable="false">বাংলা</string>
+    <string name="plf_de" translatable="false">Deutsch</string>
+    <string name="plf_ar" translatable="false">العربية</string>
+    <string name="plf_it" translatable="false">Italiano</string>
+    <string name="plf_ko" translatable="false">한국인</string>
+    <string name="plf_ja" translatable="false">日本語</string>
+    <string name="plf_pt" translatable="false">Português</string>
+    <string name="plf_tr" translatable="false">Türkçe</string>
+    <string name="plf_vi" translatable="false">Tiếng Việt</string>
+    <string name="plf_hi" translatable="false">हिंदी</string>
+    <string name="plf_fil" translatable="false">Filipino</string>
+    <string name="plf_in" translatable="false">Indonesia</string>
+    <string name="plf_th" translatable="false">แบบไทย</string>
+    <string name="plf_ru" translatable="false">Русский</string>
+
     <string name="plf_pmi" translatable="false">PMI</string>
 
     <string name="plf_personal_loan">Personal Loan</string>

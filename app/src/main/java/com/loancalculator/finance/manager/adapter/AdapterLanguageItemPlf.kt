@@ -35,7 +35,7 @@ class AdapterLanguageItemPlf(
     ) {
         val data = mListDoData[position]
         holder.mPlfBinding.apply {
-//            tvLanguageName.text = data.name
+            tvLanguageName.text = data.name
             holder.itemView.isSelected = data.fingerSelect
         }
     }
